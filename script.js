@@ -12,7 +12,49 @@
 
     initHeader();
     initMobileMenu();
+    initStatCountUp();
   });
+
+  /* ---------- Stat count-up (animate once on scroll) ---------- */
+  function initStatCountUp() {
+    var grid = document.getElementById('stat-grid');
+    if (!grid) return;
+    var nums = grid.querySelectorAll('.stat-num');
+
+    var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    var animate = function (el) {
+      var target = parseInt(el.getAttribute('data-target'), 10) || 0;
+      var suffix = el.getAttribute('data-suffix') || '';
+      if (reduce) { el.textContent = target.toLocaleString('en-IN') + suffix; return; }
+
+      var duration = 1600;
+      var start = null;
+      var step = function (ts) {
+        if (start === null) start = ts;
+        var p = Math.min((ts - start) / duration, 1);
+        var eased = 1 - Math.pow(1 - p, 3); // easeOutCubic
+        var val = Math.round(eased * target);
+        el.textContent = val.toLocaleString('en-IN') + suffix;
+        if (p < 1) requestAnimationFrame(step);
+      };
+      requestAnimationFrame(step);
+    };
+
+    if (!('IntersectionObserver' in window)) {
+      nums.forEach(animate);
+      return;
+    }
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          nums.forEach(animate);
+          io.disconnect();
+        }
+      });
+    }, { threshold: 0.35 });
+    io.observe(grid);
+  }
 
   /* ---------- Sticky header shadow on scroll ---------- */
   function initHeader() {
