@@ -307,3 +307,87 @@ ul { list-style: none; }
   .stat-grid { grid-template-columns: repeat(3, 1fr); gap: 20px; }
   .stat-tile { padding: 38px 24px; }
 }
+
+/* ============================ Story ============================ */
+.story { background: var(--bg); }
+.story-inner { max-width: 720px; }
+.story-body { margin-top: 26px; }
+.story-body p {
+  max-width: 640px;
+  font-size: clamp(1.05rem, 2.6vw, 1.2rem);
+  line-height: 1.75;
+  color: var(--charcoal);
+  margin-bottom: 22px;
+}
+.story-emphasis {
+  font-weight: 900;
+  color: var(--terracotta);
+  font-size: clamp(1.6rem, 5vw, 2.2rem) !important;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  margin-block: 8px 24px !important;
+}
+
+/* ========================== Ecosystem ========================== */
+.ecosystem { background: linear-gradient(180deg, var(--bg) 0%, #F6F1EC 100%); }
+.ecosystem-head { margin-bottom: 46px; }
+.eco-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+}
+.eco-card {
+  position: relative;
+  display: block;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-card);
+  padding: 34px 30px;
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+.eco-card:hover, .eco-card:focus-visible {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+  border-color: rgba(196, 85, 42, 0.3);
+}
+.eco-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 60px;
+  height: 60px;
+  border-radius: var(--r-pill);
+  background: rgba(196, 85, 42, 0.10);
+  color: var(--terracotta);
+  margin-bottom: 18px;
+}
+.eco-icon svg { width: 28px; height: 28px; }
+.eco-title { font-weight: 900; font-size: 1.45rem; letter-spacing: -0.01em; }
+.eco-tag { color: var(--gold); font-style: italic; font-weight: 500; margin-top: 4px; }
+.eco-desc { color: var(--muted); margin-top: 12px; line-height: 1.55; }
+.eco-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  margin-top: 18px;
+  font-weight: 700;
+  color: var(--terracotta);
+}
+.eco-cta svg { width: 18px; height: 18px; transition: transform 0.2s ease; }
+.eco-card:hover .eco-cta svg { transform: translateX(4px); }
+.eco-badge {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  background: var(--sage);
+  color: #fff;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  padding: 6px 12px;
+  border-radius: var(--r-pill);
+}
+@media (min-width: 768px) {
+  .eco-grid { grid-template-columns: repeat(2, 1fr); gap: 24px; }
+}
