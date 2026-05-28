@@ -13,7 +13,43 @@
     initHeader();
     initMobileMenu();
     initStatCountUp();
+    initComingSoon();
   });
+
+  /* ---------- Coming-soon modal for Academy + Baker cards ---------- */
+  function initComingSoon() {
+    var modal = document.getElementById('cs-modal');
+    if (!modal) return;
+    var titleEl = document.getElementById('cs-modal-title');
+    var closeBtn = document.getElementById('cs-modal-close');
+    var lastFocus = null;
+
+    var open = function (name) {
+      titleEl.textContent = name + ' is launching soon';
+      lastFocus = document.activeElement;
+      modal.hidden = false;
+      closeBtn.focus();
+    };
+    var close = function () {
+      modal.hidden = true;
+      if (lastFocus && lastFocus.focus) lastFocus.focus();
+    };
+
+    document.querySelectorAll('[data-coming-soon]').forEach(function (card) {
+      card.addEventListener('click', function (e) {
+        e.preventDefault();
+        open(card.getAttribute('data-coming-soon'));
+      });
+    });
+
+    closeBtn.addEventListener('click', close);
+    modal.addEventListener('click', function (e) {
+      if (e.target === modal) close();
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && !modal.hidden) close();
+    });
+  }
 
   /* ---------- Stat count-up (animate once on scroll) ---------- */
   function initStatCountUp() {
