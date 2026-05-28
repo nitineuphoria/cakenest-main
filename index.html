@@ -19,7 +19,73 @@
   <link rel="preconnect" href="https://api.fontshare.com" crossorigin />
 </head>
 <body>
-  <!-- Sections build out across initiatives -->
+  <!-- ============================ HEADER ============================ -->
+  <header class="site-header" id="header">
+    <div class="container header-inner">
+      <a href="#top" class="logo" aria-label="CakeNest home">CakeNest</a>
+
+      <nav class="nav-desktop" aria-label="Primary">
+        <a href="#story">Our Story</a>
+        <a href="#ecosystem">Ecosystem</a>
+        <a href="#community">Community</a>
+        <a href="#footer">Contact</a>
+      </nav>
+
+      <div class="header-ctas">
+        <a class="btn btn-secondary btn-sm" href="https://order.cakenest.in?utm_source=cakenest_master&utm_medium=nav&utm_campaign=ecosystem">Order a Cake</a>
+        <a class="btn btn-primary btn-sm" href="https://pro.cakenest.in?utm_source=cakenest_master&utm_medium=nav&utm_campaign=ecosystem">Join as Baker</a>
+      </div>
+
+      <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-panel">
+        <i data-lucide="menu"></i>
+      </button>
+    </div>
+
+    <!-- Mobile slide-down panel -->
+    <div class="mobile-panel" id="mobile-panel" hidden>
+      <nav class="mobile-nav" aria-label="Mobile">
+        <a href="#story">Our Story</a>
+        <a href="#ecosystem">Ecosystem</a>
+        <a href="#community">Community</a>
+        <a href="#footer">Contact</a>
+      </nav>
+      <div class="mobile-ctas">
+        <a class="btn btn-secondary" href="https://order.cakenest.in?utm_source=cakenest_master&utm_medium=nav&utm_campaign=ecosystem">Order a Cake</a>
+        <a class="btn btn-primary" href="https://pro.cakenest.in?utm_source=cakenest_master&utm_medium=nav&utm_campaign=ecosystem">Join as Baker</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="top">
+    <!-- ============================= HERO ============================= -->
+    <section class="hero">
+      <!-- HERO IMAGE: warm home-baker kitchen -->
+      <div class="container hero-inner">
+        <span class="eyebrow">India's home-baker ecosystem</span>
+        <h1 class="hero-title">
+          Every great baker started in a small kitchen.<br />
+          We built everything that comes next.
+        </h1>
+        <p class="hero-sub">
+          From your first order to your first lakh — CakeNest is the place 5,000+ home bakers
+          learn, sell, grow, and finally run their kitchen like the business it always was.
+        </p>
+
+        <div class="hero-fork">
+          <a class="btn btn-secondary fork-btn" href="https://order.cakenest.in?utm_source=cakenest_master&utm_medium=hero_fork&utm_campaign=ecosystem">
+            <i data-lucide="cake"></i> I want to order a cake
+          </a>
+          <a class="btn btn-primary fork-btn" href="#story">
+            <i data-lucide="chef-hat"></i> I'm a home baker
+          </a>
+        </div>
+
+        <p class="hero-trust">Trusted by a community of 725,000+ bakers and cake lovers.</p>
+      </div>
+    </section>
+
+    <!-- Sections build out across initiatives -->
+  </main>
 
   <script src="https://unpkg.com/lucide@latest"></script>
   <script src="script.js"></script>
