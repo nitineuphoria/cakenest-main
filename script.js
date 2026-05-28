@@ -14,7 +14,40 @@
     initMobileMenu();
     initStatCountUp();
     initComingSoon();
+    initScrollReveal();
   });
+
+  /* ---------- Staggered scroll-reveal for .fade-up ---------- */
+  function initScrollReveal() {
+    var els = document.querySelectorAll('.fade-up');
+    if (!els.length) return;
+
+    if (!('IntersectionObserver' in window)) {
+      els.forEach(function (el) { el.classList.add('is-visible'); });
+      return;
+    }
+
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) return;
+        var el = entry.target;
+        // Stagger siblings within the same grid/row
+        var delay = 0;
+        var parent = el.parentElement;
+        if (parent) {
+          var sibs = Array.prototype.filter.call(parent.children, function (c) {
+            return c.classList && c.classList.contains('fade-up');
+          });
+          delay = Math.min(sibs.indexOf(el), 4) * 90;
+        }
+        el.style.transitionDelay = delay + 'ms';
+        el.classList.add('is-visible');
+        io.unobserve(el);
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+
+    els.forEach(function (el) { io.observe(el); });
+  }
 
   /* ---------- Coming-soon modal for Academy + Baker cards ---------- */
   function initComingSoon() {
