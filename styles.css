@@ -446,3 +446,79 @@ ul { list-style: none; }
 .modal-title { font-weight: 900; font-size: 1.5rem; }
 .modal-text { color: var(--muted); margin-top: 10px; line-height: 1.55; }
 .modal-cta { margin-top: 24px; }
+
+/* ======================= Transformation ======================= */
+.community { background: #F6F1EC; }
+.community-head { margin-bottom: 46px; }
+.testi-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 22px;
+}
+.testi-card {
+  display: flex;
+  flex-direction: column;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-card);
+  padding: 32px 28px;
+  box-shadow: var(--shadow-sm);
+}
+.testi-photo {
+  width: 64px;
+  height: 64px;
+  border-radius: var(--r-pill);
+  background: linear-gradient(135deg, rgba(196,85,42,0.18), rgba(200,164,86,0.22));
+  border: 2px solid var(--border);
+  margin-bottom: 20px;
+  flex: none;
+}
+.testi-quote {
+  font-size: 1.08rem;
+  line-height: 1.6;
+  color: var(--charcoal);
+  flex: 1;
+}
+.testi-meta { margin-top: 20px; }
+.testi-name { display: block; font-weight: 700; color: var(--charcoal); }
+.testi-result { display: block; margin-top: 4px; color: var(--terracotta); font-weight: 500; font-style: italic; font-size: 0.95rem; }
+@media (min-width: 820px) {
+  .testi-grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+/* ========================= Invitation ========================= */
+.invitation {
+  background:
+    radial-gradient(800px 420px at 50% 0%, rgba(200, 164, 86, 0.22), transparent 65%),
+    linear-gradient(135deg, var(--terracotta) 0%, #A8431D 100%);
+  color: #fff;
+  text-align: center;
+}
+.invitation-inner { max-width: 720px; margin-inline: auto; }
+.invitation-title {
+  font-weight: 900;
+  font-size: clamp(1.8rem, 5.4vw, 2.8rem);
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+}
+.invitation-body { margin: 24px auto 0; max-width: 620px; }
+.invitation-body p { color: rgba(255, 255, 255, 0.92); margin-bottom: 16px; font-size: 1.08rem; line-height: 1.65; }
+.invitation-kicker { font-weight: 700; color: #fff !important; font-size: 1.15rem !important; }
+.invitation-cta {
+  margin-top: 30px;
+  background: #fff;
+  color: var(--terracotta);
+  padding: 20px 36px;
+  font-size: 1.08rem;
+  min-height: 60px;
+}
+.invitation-cta:hover { background: var(--gold); color: #fff; }
+.invitation-secondary {
+  display: block;
+  margin-top: 20px;
+  color: rgba(255, 255, 255, 0.9);
+  font-weight: 500;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.invitation-secondary:hover { color: #fff; }
