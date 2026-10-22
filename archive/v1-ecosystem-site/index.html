@@ -1,0 +1,1307 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>CakeNest | India's No. 1 Home-Baker Platform</title>
+<meta name="description" content="Learn, earn and scale with CakeNest, India's No. 1 home-baker platform. Academy, Orders, Marketing, Pro and studio services for home bakers across 100+ cities.">
+<meta name="theme-color" content="#FFFCF6" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0C0B0A" media="(prefers-color-scheme: dark)">
+<link rel="icon" type="image/png" href="assets/img/favicon.png">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="CakeNest">
+<meta property="og:title" content="CakeNest | Where home bakers become Bakepreneurs">
+<meta property="og:description" content="8+ years, 5,000+ home bakers, 100+ cities and 1.5B+ views. Learn, earn and scale with India's No. 1 home-baker platform.">
+<meta property="og:image" content="assets/img/og.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<script>try{var t=localStorage.getItem("cn-theme");if(t==="light"||t==="dark")document.documentElement.setAttribute("data-cn",t)}catch(e){}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Pinyon+Script&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=Poppins:wght@300;400;500;600&family=Sora:wght@400;600;700&display=swap">
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}[hidden]{display:none!important}</style>
+<style>
+/* Layout: one 1240px column of alternating bands (bg / bg-alt) — editorial split hero with a typed
+   calligraphy word, stats ledger, story → ecosystem → A-to-Z journey → proof → brands → join.
+   Two themes from one token set: warm-white light and oven-black dark; the header toggle overrides the system. */
+:root{
+  --mode:light;
+  --bg:#FFFCF6; --bg-alt:#F7F0E4; --bg-soft-a:#FFFCF6; --bg-soft-b:#FBE7DA;
+  --surface:#FFFFFF; --surface-2:#F6EFE3;
+  --text:#17130F; --text-2:#51483D; --text-3:#7C7163;
+  --accent:#86632A; --accent-display:#A47B2C; --accent-soft:#C39A52; --accent-bright:#DEBB71; --accent-hover:#D0A954; --on-accent:#17130F;
+  --line:#E8DDCB; --line-2:#D5C29E;
+  --head-bg:rgba(255,252,246,.86); --glass:rgba(255,252,246,.9);
+  --btn-solid-bg:#17130F; --btn-solid-fg:#FFFCF6;
+  --field-bg:#FFFFFF; --field-border:#DCCDAF; --field-text:#17130F; --placeholder:#A69A88; --focus-ring:rgba(138,103,43,.16);
+  --chip-border:#D5C29E; --chip-text:#51483D; --chip-tint:rgba(195,154,82,.16);
+  --err:#B4442A; --shadow:rgba(70,42,12,.2); --hero-glow:rgba(222,187,113,.30); --img-ring:#F6EFE3;
+  --ig-a:#FFF4EA; --ig-b:#FBE6D8;
+  --mock-bg:#F6EFE3; --mock-col:#FFFFFF; --mock-item:#FBF7F0;
+  --sel-accent:#DEBB71;
+  --show-dark:none; --show-light:block;
+  --ink:#0C0B0A; --cream:#F6F1E7; --gold:#DEBB71; --gold-3:#F3DFAE;
+  --serif:"Playfair Display", Georgia, "Times New Roman", serif;
+  --script:"Pinyon Script", "Great Vibes", "Snell Roundhand", "Apple Chancery", cursive;
+  --sans:"Poppins", "Helvetica Neue", Arial, sans-serif;
+  --label:"Sora", "Poppins", "Helvetica Neue", Arial, sans-serif;
+  --r:18px; --maxw:1240px;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]):not([data-cn="light"]){
+    --mode:dark;
+    --bg:#0C0B0A; --bg-alt:#141210; --bg-soft-a:#141210; --bg-soft-b:#1F1813;
+    --surface:#1C1814; --surface-2:#25201A;
+    --text:#F6F1E7; --text-2:rgba(246,241,231,.74); --text-3:rgba(246,241,231,.52);
+    --accent:#DEBB71; --accent-display:#DEBB71; --accent-soft:#C39A52; --accent-bright:#DEBB71; --accent-hover:#F3DFAE; --on-accent:#0C0B0A;
+    --line:rgba(222,187,113,.2); --line-2:rgba(222,187,113,.42);
+    --head-bg:rgba(12,11,10,.82); --glass:rgba(20,18,16,.8);
+    --btn-solid-bg:#F6F1E7; --btn-solid-fg:#0C0B0A;
+    --field-bg:#110F0D; --field-border:rgba(222,187,113,.24); --field-text:#F6F1E7; --placeholder:rgba(246,241,231,.34); --focus-ring:rgba(222,187,113,.18);
+    --chip-border:rgba(222,187,113,.28); --chip-text:rgba(246,241,231,.74); --chip-tint:rgba(222,187,113,.14);
+    --err:#F2A38A; --shadow:rgba(0,0,0,.6); --hero-glow:rgba(222,187,113,.13); --img-ring:#25201A;
+    --ig-a:#2A211A; --ig-b:#191511;
+    --mock-bg:#25201A; --mock-col:rgba(246,241,231,.04); --mock-item:#1C1814;
+    --sel-accent:#8A672B;
+    --show-dark:block; --show-light:none;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"]:not([data-cn="light"]), :root[data-cn="dark"]{
+  --mode:dark;
+  --bg:#0C0B0A; --bg-alt:#141210; --bg-soft-a:#141210; --bg-soft-b:#1F1813;
+  --surface:#1C1814; --surface-2:#25201A;
+  --text:#F6F1E7; --text-2:rgba(246,241,231,.74); --text-3:rgba(246,241,231,.52);
+  --accent:#DEBB71; --accent-display:#DEBB71; --accent-soft:#C39A52; --accent-bright:#DEBB71; --accent-hover:#F3DFAE; --on-accent:#0C0B0A;
+  --line:rgba(222,187,113,.2); --line-2:rgba(222,187,113,.42);
+  --head-bg:rgba(12,11,10,.82); --glass:rgba(20,18,16,.8);
+  --btn-solid-bg:#F6F1E7; --btn-solid-fg:#0C0B0A;
+  --field-bg:#110F0D; --field-border:rgba(222,187,113,.24); --field-text:#F6F1E7; --placeholder:rgba(246,241,231,.34); --focus-ring:rgba(222,187,113,.18);
+  --chip-border:rgba(222,187,113,.28); --chip-text:rgba(246,241,231,.74); --chip-tint:rgba(222,187,113,.14);
+  --err:#F2A38A; --shadow:rgba(0,0,0,.6); --hero-glow:rgba(222,187,113,.13); --img-ring:#25201A;
+  --ig-a:#2A211A; --ig-b:#191511;
+  --mock-bg:#25201A; --mock-col:rgba(246,241,231,.04); --mock-item:#1C1814;
+  --sel-accent:#8A672B;
+  --show-dark:block; --show-light:none;
+  color-scheme: dark;
+}
+:root.theming *, :root.theming *::before, :root.theming *::after{transition:background-color .35s ease, color .35s ease, border-color .35s ease, fill .35s ease !important}
+
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth; scroll-padding-top:84px}
+@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}}
+body{background:var(--bg); color:var(--text); font-family:var(--sans); font-size:16px; line-height:1.65; -webkit-font-smoothing:antialiased; overflow-x:hidden}
+body::before{content:""; position:fixed; inset:0 0 auto; height:env(safe-area-inset-top, 0px); z-index:60; background:var(--bg)}
+img{display:block; max-width:100%; height:auto}
+a{color:inherit}
+h1,h2,h3,h4{margin:0; font-weight:500; text-wrap:balance}
+p{margin:0}
+:focus-visible{outline:2px solid var(--accent); outline-offset:3px; border-radius:6px}
+.wrap{max-width:calc(var(--maxw) + 2*clamp(16px,4vw,40px)); margin-inline:auto;
+  padding-left:max(clamp(16px,4vw,40px), env(safe-area-inset-left, 0px));
+  padding-right:max(clamp(16px,4vw,40px), env(safe-area-inset-right, 0px))}
+.band{padding-block:clamp(72px,10vw,136px); background:var(--bg)}
+.band--alt{background:var(--bg-alt)}
+.sr-only{position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap}
+.only-dark{display:var(--show-dark)!important}
+.only-light{display:var(--show-light)!important}
+
+/* Type */
+.eyebrow{display:inline-flex; align-items:center; gap:10px; font-family:var(--label); font-size:12px; font-weight:600; letter-spacing:.18em; text-transform:uppercase; color:var(--accent)}
+.hex{width:9px; height:10px; flex:none; background:currentColor; clip-path:polygon(50% 0,100% 25%,100% 75%,50% 100%,0 75%,0 25%)}
+.h2{font-family:var(--serif); font-size:clamp(34px,4.6vw,60px); line-height:1.08; letter-spacing:-.01em; color:var(--text)}
+.h2 em{font-style:italic; color:var(--accent-display)}
+.lede{font-size:clamp(16px,1.35vw,18px); color:var(--text-2); max-width:60ch}
+.sec-head{display:grid; gap:20px 64px; grid-template-columns:1fr; margin-bottom:clamp(40px,5vw,64px)}
+.sec-head > div{display:grid; gap:18px; min-width:0}
+@media (min-width:900px){.sec-head{grid-template-columns:1.1fr .9fr; align-items:end}}
+
+/* Buttons */
+.btn{display:inline-flex; align-items:center; justify-content:center; gap:10px; min-height:50px; padding:0 26px; border-radius:999px; font-family:var(--label); font-weight:600; font-size:14px; letter-spacing:.02em; text-decoration:none; border:1px solid transparent; background:transparent; cursor:pointer; transition:transform .2s ease, background-color .2s ease, border-color .2s ease, color .2s ease}
+.btn:hover{transform:translateY(-1px)}
+.btn--gold{background:var(--accent-bright); color:var(--on-accent)}
+.btn--gold:hover{background:var(--accent-hover)}
+.btn--ghost{border-color:var(--line-2); color:var(--text)}
+.btn--ghost:hover{border-color:var(--accent); color:var(--accent)}
+.btn--solid{background:var(--btn-solid-bg); color:var(--btn-solid-fg)}
+.btn--solid:hover{opacity:.9}
+.btn svg{width:16px; height:16px}
+.link{display:inline-flex; align-items:center; gap:8px; font-family:var(--label); font-size:13px; font-weight:600; letter-spacing:.06em; text-transform:uppercase; color:var(--accent); text-decoration:none; border-bottom:1px solid var(--line-2); padding-bottom:4px}
+.link:hover{color:var(--text); border-color:var(--accent)}
+
+/* Header */
+.site-head{position:sticky; top:env(safe-area-inset-top, 0px); z-index:50; background:var(--head-bg); backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px); border-bottom:1px solid var(--line)}
+.head-in{display:flex; align-items:center; justify-content:space-between; gap:20px; min-height:72px}
+.brand{display:flex; align-items:center; text-decoration:none}
+.brand img{height:26px; width:auto}
+.nav{display:none; gap:30px}
+.nav a{font-family:var(--label); font-size:13px; color:var(--text-2); text-decoration:none; letter-spacing:.02em}
+.nav a:hover{color:var(--accent)}
+.head-actions{display:flex; align-items:center; gap:10px}
+.head-cta{display:none}
+.icon-btn{display:inline-flex; align-items:center; justify-content:center; width:44px; height:44px; border-radius:999px; border:1px solid var(--line-2); background:transparent; color:var(--text); cursor:pointer; transition:border-color .2s ease, color .2s ease}
+.icon-btn:hover{border-color:var(--accent); color:var(--accent)}
+.icon-btn svg{width:19px; height:19px}
+.mnav{border-top:1px solid var(--line); padding-block:12px 20px}
+.mnav a{display:block; padding:12px 0; font-family:var(--label); font-size:15px; color:var(--text); text-decoration:none; border-bottom:1px solid var(--line)}
+.mnav .btn{margin-top:16px; width:100%; border-bottom:0}
+@media (min-width:980px){.nav{display:flex}.head-cta{display:inline-flex; min-height:42px; padding:0 20px; font-size:13px}#menu-btn{display:none}.mnav{display:none!important}}
+
+/* Hero */
+.hero{position:relative; padding-block:clamp(48px,7vw,96px) 0; overflow:hidden; background:var(--bg)}
+.hero::before{content:""; position:absolute; inset:-20% -10% auto auto; width:70vw; height:70vw; max-width:900px; max-height:900px; background:radial-gradient(closest-side, var(--hero-glow), transparent 70%); pointer-events:none}
+.hero-grid{position:relative; display:grid; gap:48px; grid-template-columns:1fr}
+@media (min-width:980px){.hero-grid{grid-template-columns:1.1fr .9fr; gap:56px; align-items:center}}
+.hero-copy{display:grid; gap:26px; min-width:0}
+.h1{font-family:var(--serif); font-weight:500; font-size:clamp(44px,6.2vw,90px); line-height:1.02; letter-spacing:-.015em; color:var(--text)}
+.h1 .word-line{display:block; margin-top:.06em; font-family:var(--script); font-weight:400; font-size:min(1.3em, 15.5vw); line-height:1.12; letter-spacing:0; color:var(--accent-display); white-space:nowrap; min-height:1.12em}
+.tw{position:relative; display:inline-block; padding-right:.12em}
+.tw-text{position:relative}
+.caret{display:inline-block; width:2px; height:.66em; margin-left:.04em; background:var(--accent-display); vertical-align:-.04em; border-radius:2px; animation:blink 1.05s steps(1) infinite}
+.tw.typing .caret{animation:none}
+@keyframes blink{50%{opacity:0}}
+@media (prefers-reduced-motion: reduce){.caret{display:none}}
+.rise{animation:rise .9s cubic-bezier(.2,.7,.2,1) both}
+.rise.d1{animation-delay:.08s}.rise.d2{animation-delay:.18s}.rise.d3{animation-delay:.28s}.rise.d4{animation-delay:.38s}
+@keyframes rise{from{opacity:0; transform:translateY(16px)}to{opacity:1; transform:none}}
+@media (prefers-reduced-motion: reduce){.rise{animation:none}}
+.hero-sub{font-size:clamp(16px,1.4vw,19px); color:var(--text-2); max-width:54ch}
+.hero-ctas{display:flex; flex-wrap:wrap; gap:12px}
+.pillars-mini{display:flex; flex-wrap:wrap; gap:10px 22px; padding-top:6px; font-family:var(--label); font-size:12.5px; letter-spacing:.04em; color:var(--text-3)}
+.pillars-mini span{display:inline-flex; align-items:center; gap:8px}
+.pillars-mini b{color:var(--accent); font-weight:600}
+.hero-media{position:relative; min-width:0}
+.hero-media figure{margin:0; position:relative; border-radius:28px 28px 28px 120px; overflow:hidden; aspect-ratio:4/4.6; max-width:100%; box-shadow:0 40px 80px -36px var(--shadow)}
+.hero-media figure img{width:100%; height:100%; object-fit:cover; object-position:52% 50%}
+.hero-media figure::after{content:""; position:absolute; inset:0; background:linear-gradient(180deg, transparent 60%, rgba(12,11,10,.38))}
+.float{position:absolute; z-index:2; background:var(--glass); backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px); border:1px solid var(--line-2); border-radius:16px; color:var(--text); box-shadow:0 20px 40px -24px var(--shadow)}
+.float--views{left:-14px; bottom:28px; padding:16px 20px; display:grid; gap:2px; max-width:240px}
+.float--views strong{font-family:var(--serif); font-size:40px; line-height:1; font-weight:500; color:var(--accent-display)}
+.float--views span{font-size:13px; line-height:1.45; color:var(--text-2)}
+.float--age{right:16px; top:18px; padding:9px 14px; border-radius:999px; font-family:var(--label); font-size:12px; letter-spacing:.04em; display:flex; gap:8px; align-items:center}
+.float--age .hex{color:var(--accent)}
+@media (max-width:520px){.float--views{left:12px; bottom:12px}.hero-media figure{aspect-ratio:4/4.4; border-radius:22px 22px 22px 72px}}
+
+/* Ledger */
+.ledger{margin-top:clamp(56px,7vw,96px); border-top:1px solid var(--line); display:grid; grid-template-columns:repeat(2,minmax(0,1fr))}
+.ledger div{padding:28px 18px 32px 0; display:grid; gap:6px; align-content:start; border-bottom:1px solid var(--line); min-width:0}
+.ledger div:nth-child(odd){padding-right:18px}
+.ledger div:nth-child(even){padding-left:18px; border-left:1px solid var(--line)}
+.ledger strong{font-family:var(--serif); font-weight:500; font-size:clamp(38px,4.6vw,62px); line-height:1; letter-spacing:-.01em; font-variant-numeric:lining-nums tabular-nums; color:var(--text)}
+.ledger strong sup{font-size:.5em; color:var(--accent-display); vertical-align:.7em; margin-left:2px}
+.ledger b{font-family:var(--label); font-size:11.5px; font-weight:600; letter-spacing:.16em; text-transform:uppercase; color:var(--accent)}
+.ledger small{font-size:13px; color:var(--text-3); line-height:1.5}
+.ledger div:last-child{grid-column:1/-1; border-left:0; padding-left:0}
+@media (min-width:980px){.ledger{grid-template-columns:repeat(5,minmax(0,1fr))}
+  .ledger div{padding:34px 24px 38px!important; border-left:1px solid var(--line)}
+  .ledger div:first-child{border-left:0; padding-left:0!important}
+  .ledger div:last-child{grid-column:auto; border-left:1px solid var(--line)}}
+
+/* Worked with */
+.worked{padding-block:44px 52px; display:grid; gap:18px; grid-template-columns:1fr; align-items:center}
+@media (min-width:980px){.worked{grid-template-columns:200px 1fr; gap:40px}}
+.worked p{font-family:var(--label); font-size:12px; letter-spacing:.16em; text-transform:uppercase; color:var(--text-3); line-height:1.6}
+.names{display:flex; flex-wrap:wrap; align-items:center; gap:10px 22px; list-style:none; margin:0; padding:0}
+.names li{display:inline-flex; align-items:center; gap:22px; font-family:var(--serif); font-size:clamp(20px,2.1vw,28px); color:var(--text); white-space:nowrap}
+.names li i{font-style:italic; color:var(--text-2)}
+.names li + li::before{content:""; width:7px; height:8px; background:var(--accent-soft); clip-path:polygon(50% 0,100% 25%,100% 75%,50% 100%,0 75%,0 25%)}
+
+/* Story */
+.story-grid{display:grid; gap:40px; grid-template-columns:1fr}
+@media (min-width:980px){.story-grid{grid-template-columns:1fr 1fr; gap:80px}}
+.story-copy{display:grid; gap:20px; font-size:17px; color:var(--text-2); max-width:58ch; min-width:0}
+.story-copy strong{color:var(--text); font-weight:500}
+.mission{margin-top:10px; padding:26px 28px; border-radius:var(--r); background:var(--surface); border:1px solid var(--line); display:grid; gap:10px}
+.mission b{font-family:var(--label); font-size:11.5px; letter-spacing:.16em; text-transform:uppercase; color:var(--accent)}
+.mission q{font-family:var(--serif); font-style:italic; font-size:22px; line-height:1.4; color:var(--text); quotes:none}
+
+.ages{margin-top:clamp(56px,7vw,96px); display:grid; gap:28px; grid-template-columns:1fr; align-items:center}
+@media (min-width:900px){.ages{grid-template-columns:220px 1fr 220px; gap:40px}}
+.age-card{margin:0; display:grid; gap:12px}
+.age-card img{width:100%; aspect-ratio:1/1; object-fit:cover; border-radius:50%; border:6px solid var(--img-ring)}
+.age-card figcaption{display:flex; align-items:baseline; gap:12px}
+.age-card figcaption strong{font-family:var(--serif); font-size:56px; line-height:1; font-weight:500; color:var(--text)}
+.age-card figcaption span{font-size:14px; color:var(--text-2); line-height:1.4}
+.age-card--young img{object-position:62% 30%}
+.age-card--senior img{object-position:38% 26%}
+.ruler{display:grid; gap:18px; min-width:0}
+.ruler h3{font-family:var(--serif); font-size:clamp(26px,2.8vw,38px); line-height:1.2; color:var(--text)}
+.ruler h3 em{color:var(--accent-display)}
+.scale{position:relative; height:64px; margin-inline:6px}
+.scale .bar{position:absolute; left:0; right:0; top:14px; height:6px; border-radius:6px; background:linear-gradient(90deg, #F2C9B3, #DEBB71 55%, #8A672B)}
+.scale .ticks{position:absolute; left:0; right:0; top:26px; height:10px; background:repeating-linear-gradient(90deg, var(--line-2) 0 1px, transparent 1px calc(100%/41))}
+.scale .lab{position:absolute; top:42px; transform:translateX(-50%); font-family:var(--label); font-size:12px; color:var(--text-3); font-variant-numeric:tabular-nums}
+.scale .lab:first-of-type{transform:none}
+.scale .lab:last-of-type{transform:translateX(-100%)}
+.scale .pin{position:absolute; top:6px; width:22px; height:22px; margin-left:-11px; background:var(--text); clip-path:polygon(50% 0,100% 25%,100% 75%,50% 100%,0 75%,0 25%)}
+.ruler p{color:var(--text-2); max-width:52ch}
+
+/* Ecosystem */
+.eco{display:grid; gap:20px; grid-template-columns:1fr}
+@media (min-width:860px){.eco{grid-template-columns:1fr 1fr; gap:24px}}
+.eco-card{display:grid; grid-template-rows:auto 1fr; background:var(--surface); border:1px solid var(--line); border-radius:24px; overflow:hidden; min-width:0; box-shadow:0 30px 60px -50px var(--shadow)}
+.eco-media{position:relative; aspect-ratio:16/10; overflow:hidden; background:var(--surface-2)}
+.eco-media img{width:100%; height:100%; object-fit:cover; transition:transform .8s cubic-bezier(.2,.7,.2,1)}
+.eco-card:hover .eco-media img{transform:scale(1.03)}
+.eco-verb{position:absolute; left:18px; top:18px; padding:7px 14px; border-radius:999px; background:var(--glass); backdrop-filter:blur(8px); -webkit-backdrop-filter:blur(8px); font-family:var(--label); font-size:11.5px; font-weight:700; letter-spacing:.2em; color:var(--accent); border:1px solid var(--line-2)}
+.eco-body{padding:26px 28px 30px; display:grid; gap:14px; align-content:start}
+.eco-body h3{font-family:var(--serif); font-size:clamp(26px,2.4vw,32px); line-height:1.15; color:var(--text)}
+.eco-body h3 small{display:block; font-family:var(--label); font-size:12px; letter-spacing:.06em; color:var(--text-3); margin-top:6px}
+.eco-body p{color:var(--text-2); font-size:15.5px}
+.eco-body ul{margin:0; padding:0; list-style:none; display:flex; flex-wrap:wrap; gap:8px}
+.eco-body li{font-size:12.5px; font-family:var(--label); color:var(--text-2); padding:6px 12px; border-radius:999px; border:1px solid var(--line)}
+.eco-body .link{justify-self:start; margin-top:6px}
+.eco-card--wide{grid-template-rows:auto}
+@media (min-width:860px){.eco-card--wide{grid-column:1/-1; grid-template-columns:1.15fr 1fr}
+  .eco-card--wide .eco-media{aspect-ratio:auto; min-height:100%}
+  .eco-card--wide .eco-body{padding:40px 40px 44px; align-content:center}}
+
+/* Pro mock */
+.pro-mock{position:absolute; inset:0; padding:22px; display:grid; grid-template-rows:auto 1fr; gap:14px; background:radial-gradient(120% 90% at 100% 0%, var(--chip-tint), transparent 60%), var(--mock-bg)}
+.pm-top{display:flex; align-items:center; justify-content:space-between; gap:10px; font-family:var(--label); font-size:12px; color:var(--text-2)}
+.pm-top span{display:inline-flex; align-items:center; gap:8px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; min-width:0}
+.pm-top .hex{color:var(--accent)}
+.pm-top em{font-style:normal; white-space:nowrap; padding:4px 10px; border-radius:999px; background:var(--chip-tint); color:var(--accent)}
+.pm-cols{display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:10px; min-height:0}
+.pm-col{display:grid; align-content:start; gap:8px; padding:10px; border-radius:12px; background:var(--mock-col); border:1px solid var(--line); min-width:0}
+.pm-col h5{margin:0 0 2px; font-family:var(--label); font-size:10.5px; letter-spacing:.14em; text-transform:uppercase; color:var(--text-3); font-weight:600}
+.pm-item{display:grid; grid-template-columns:30px 1fr; gap:8px; align-items:center; padding:7px; border-radius:9px; background:var(--mock-item); border:1px solid var(--line); min-width:0}
+.pm-item img{width:30px; height:30px; border-radius:7px; object-fit:cover}
+.pm-item span{font-size:11px; line-height:1.3; color:var(--text); overflow:hidden; text-overflow:ellipsis; white-space:nowrap}
+.pm-item small{display:block; font-size:10px; color:var(--accent)}
+.eco-media .pro-mock{padding-top:64px}
+@media (max-width:520px){.eco-media .pm-item{grid-template-columns:1fr; gap:6px}.eco-media .pm-item img{width:100%; height:auto; aspect-ratio:1}.eco-media .pm-col{padding:8px}.eco-media .pro-mock{padding:58px 16px 16px}}
+.j-visual:has(.pro-mock){aspect-ratio:auto}
+.j-visual .pro-mock{position:relative; inset:auto; min-height:100%; align-content:start; padding:26px}
+.j-visual .pm-cols{grid-template-columns:1fr; align-content:start; gap:12px}
+.j-visual .pm-col{grid-template-columns:repeat(3,minmax(0,1fr)); align-items:start}
+.j-visual .pm-col h5{grid-column:1/-1}
+@media (max-width:520px){.j-visual .pro-mock{padding:18px}.j-visual .pm-col{gap:6px}.j-visual .pm-item{grid-template-columns:24px 1fr; gap:6px; padding:6px}.j-visual .pm-item img{width:24px; height:24px}}
+
+/* Journey */
+.journey{display:grid; gap:28px; grid-template-columns:1fr}
+@media (min-width:980px){.journey{grid-template-columns:380px 1fr; gap:48px; align-items:start}}
+.j-steps{display:flex; gap:10px; overflow-x:auto; padding-bottom:6px; scrollbar-width:thin; scroll-snap-type:x mandatory}
+@media (min-width:980px){.j-steps{flex-direction:column; overflow:visible; gap:0; border-top:1px solid var(--line)}}
+.j-step{flex:none; scroll-snap-align:start; display:grid; grid-template-columns:auto 1fr; gap:4px 14px; align-items:baseline; text-align:left; padding:14px 18px; border-radius:16px; border:1px solid var(--line); background:var(--surface); color:var(--text); cursor:pointer; font:inherit; min-width:220px; transition:background-color .25s ease, border-color .25s ease, color .25s ease}
+.j-step .n{font-family:var(--label); font-size:12px; font-weight:700; letter-spacing:.1em; color:var(--accent); grid-row:span 2}
+.j-step .q{font-family:var(--serif); font-style:italic; font-size:18px; line-height:1.3}
+.j-step .s{font-family:var(--label); font-size:11.5px; letter-spacing:.14em; text-transform:uppercase; color:var(--text-3)}
+.j-step[aria-selected="true"]{background:var(--text); color:var(--bg); border-color:var(--text)}
+.j-step[aria-selected="true"] .n{color:var(--sel-accent)}
+.j-step[aria-selected="true"] .s{color:inherit; opacity:.62}
+.j-step:hover:not([aria-selected="true"]){border-color:var(--line-2)}
+@media (min-width:980px){.j-step{min-width:0; border-radius:0; border-width:0 0 1px 0; background:transparent; padding:20px 18px 20px 6px}
+  .j-step[aria-selected="true"]{border-radius:16px; padding-left:18px; margin-block:-1px 0}}
+.j-panel{display:grid; gap:0; background:var(--surface); border:1px solid var(--line); border-radius:26px; overflow:hidden; min-width:0; box-shadow:0 30px 60px -50px var(--shadow)}
+@media (min-width:700px){.j-panel{grid-template-columns:1fr 1fr}}
+.j-visual{position:relative; aspect-ratio:4/3.2; background:var(--surface-2); overflow:hidden; min-width:0}
+@media (min-width:700px){.j-visual{aspect-ratio:auto; min-height:460px}}
+.j-visual > img{position:absolute; inset:0; width:100%; height:100%; object-fit:cover}
+.j-copy{padding:clamp(24px,3vw,40px); display:grid; gap:16px; align-content:center; min-width:0}
+.j-copy .tag{font-family:var(--label); font-size:12px; font-weight:600; letter-spacing:.16em; text-transform:uppercase; color:var(--accent)}
+.j-copy h3{font-family:var(--serif); font-size:clamp(28px,2.8vw,38px); line-height:1.12; color:var(--text)}
+.j-copy p{color:var(--text-2)}
+.j-copy ul{margin:0; padding:0; list-style:none; display:grid; gap:10px}
+.j-copy li{display:grid; grid-template-columns:14px 1fr; gap:12px; align-items:baseline; font-size:15px; color:var(--text)}
+.j-copy li::before{content:""; width:9px; height:10px; background:var(--accent-soft); clip-path:polygon(50% 0,100% 25%,100% 75%,50% 100%,0 75%,0 25%); transform:translateY(1px)}
+.j-copy .via{font-size:13.5px; color:var(--text-2); padding-top:14px; border-top:1px solid var(--line)}
+.j-copy .via b{color:var(--text); font-weight:600}
+.j-copy .btn{justify-self:start}
+.j-panel[hidden]{display:none}
+.j-panel.is-in{animation:fadein .45s ease both}
+@keyframes fadein{from{opacity:.25}to{opacity:1}}
+@media (prefers-reduced-motion: reduce){.j-panel.is-in{animation:none}}
+
+/* IG mock (a phone screen, light in both themes) */
+.ig{position:absolute; inset:0; display:grid; place-items:center; padding:24px; background:radial-gradient(90% 70% at 30% 20%, var(--ig-a), var(--ig-b))}
+.ig-phone{width:min(100%,300px); background:#fff; border-radius:28px; padding:14px 12px 16px; box-shadow:0 30px 60px -25px rgba(40,20,5,.5); border:1px solid #EADFCB; display:grid; gap:12px}
+.ig-head{display:flex; align-items:center; gap:10px; padding:0 4px}
+.ig-av{width:40px; height:40px; border-radius:50%; background:conic-gradient(from 210deg, #F2C9B3, #DEBB71, #E58A6A, #F2C9B3); display:grid; place-items:center}
+.ig-av span{width:32px; height:32px; border-radius:50%; background:#fff; display:grid; place-items:center}
+.ig-av i{width:14px; height:16px; background:#C39A52; clip-path:polygon(50% 0,100% 25%,100% 75%,50% 100%,0 75%,0 25%)}
+.ig-head b{display:block; font-family:var(--label); font-size:13px; color:#1b1b1b}
+.ig-head small{font-size:11px; color:#7a7166}
+.ig-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:3px; border-radius:10px; overflow:hidden}
+.ig-grid img{aspect-ratio:4/5; width:100%; object-fit:cover}
+
+/* Gallery */
+.marquee{overflow:hidden; mask-image:linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent); -webkit-mask-image:linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent)}
+.marquee + .marquee{margin-top:16px}
+.track{display:flex; gap:16px; width:max-content; animation:slide 70s linear infinite}
+.marquee--rev .track{animation-direction:reverse; animation-duration:80s}
+.marquee:hover .track{animation-play-state:paused}
+.track img{width:clamp(170px,17vw,230px); aspect-ratio:4/5; object-fit:cover; border-radius:16px; flex:none; background:var(--surface-2)}
+@keyframes slide{to{transform:translateX(-50%)}}
+@media (prefers-reduced-motion: reduce){.track{animation:none}.marquee{overflow-x:auto}}
+.gal-note{margin-top:28px; font-size:13px; color:var(--text-3); display:flex; align-items:center; gap:10px}
+.gal-note .hex{color:var(--accent)}
+
+/* Voices (text sits on a dark photo gradient in both themes) */
+.rail{display:grid; grid-auto-flow:column; grid-auto-columns:minmax(220px, 260px); gap:16px; overflow-x:auto; padding-bottom:12px; scroll-snap-type:x mandatory; scrollbar-width:thin}
+.voice{scroll-snap-align:start; position:relative; display:block; border-radius:22px; overflow:hidden; aspect-ratio:3/4; text-decoration:none; color:#F6F1E7; background:var(--surface-2)}
+.voice img{position:absolute; inset:0; width:100%; height:100%; object-fit:cover; transition:transform .7s cubic-bezier(.2,.7,.2,1)}
+.voice:hover img{transform:scale(1.04)}
+.voice::after{content:""; position:absolute; inset:0; background:linear-gradient(180deg, rgba(12,11,10,0) 45%, rgba(12,11,10,.88))}
+.voice .play{position:absolute; z-index:2; right:14px; top:14px; width:42px; height:42px; border-radius:50%; background:rgba(246,241,231,.94); display:grid; place-items:center; color:#0C0B0A}
+.voice .play svg{width:14px; height:14px; margin-left:2px}
+.voice .who{position:absolute; z-index:2; left:18px; right:18px; bottom:16px; display:grid; gap:2px}
+.voice .who b{font-family:var(--serif); font-size:21px; font-weight:500; line-height:1.2}
+.voice .who span{font-family:var(--label); font-size:12px; color:#F3DFAE; letter-spacing:.03em}
+.voice .who em{font-style:normal; font-size:12.5px; color:rgba(246,241,231,.78); margin-top:4px; line-height:1.4}
+.voices-foot{margin-top:28px; display:flex; flex-wrap:wrap; gap:16px 28px; align-items:center; justify-content:space-between}
+.voices-foot p{color:var(--text-2); font-size:15px; max-width:56ch}
+
+/* Brands */
+.brand-grid{display:grid; gap:48px; grid-template-columns:1fr}
+@media (min-width:1020px){.brand-grid{grid-template-columns:1fr 1fr; gap:72px; align-items:start}}
+.brand-copy{display:grid; gap:24px; min-width:0}
+.offer{margin:8px 0 0; padding:0; list-style:none; display:grid; gap:0; border-top:1px solid var(--line)}
+.offer li{display:grid; grid-template-columns:28px 1fr; gap:14px; padding:16px 0; border-bottom:1px solid var(--line)}
+.offer li .hex{color:var(--accent); width:11px; height:12px; margin-top:7px}
+.offer b{display:block; font-weight:500; color:var(--text); font-size:16px}
+.offer span{display:block; font-size:14px; color:var(--text-3)}
+.reach{display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:12px}
+.reach div{padding:16px; border-radius:14px; border:1px solid var(--line); background:var(--surface); display:grid; gap:4px; min-width:0}
+.reach strong{font-family:var(--serif); font-weight:500; font-size:clamp(24px,2.4vw,32px); line-height:1; color:var(--accent-display)}
+.reach span{font-size:12px; color:var(--text-3); line-height:1.35}
+.worked-line{font-size:14.5px; color:var(--text-2)}
+.worked-line b{color:var(--text); font-weight:500}
+
+/* Forms */
+.form-card{border-radius:26px; padding:clamp(24px,3vw,40px); display:grid; gap:22px; min-width:0; background:var(--surface); border:1px solid var(--line-2); color:var(--text); box-shadow:0 40px 80px -55px var(--shadow)}
+.form-card h3{font-family:var(--serif); font-size:clamp(26px,2.4vw,32px); line-height:1.15}
+.form-card .sub{font-size:14.5px; color:var(--text-3)}
+form{display:grid; gap:16px}
+.row2{display:grid; gap:16px; grid-template-columns:1fr}
+@media (min-width:560px){.row2{grid-template-columns:1fr 1fr}}
+.field{display:grid; gap:7px; min-width:0}
+.field label,.field legend{font-family:var(--label); font-size:12px; font-weight:600; letter-spacing:.06em; color:var(--text)}
+.field .opt{font-weight:400; opacity:.65; letter-spacing:0}
+input,select,textarea{font:inherit; font-size:15px; width:100%; min-height:50px; padding:12px 16px; border-radius:14px; outline:none; background-color:var(--field-bg); color:var(--field-text); border:1px solid var(--field-border); transition:border-color .2s ease, box-shadow .2s ease}
+input::placeholder,textarea::placeholder{color:var(--placeholder)}
+input:focus,select:focus,textarea:focus{border-color:var(--accent); box-shadow:0 0 0 3px var(--focus-ring)}
+textarea{min-height:110px; resize:vertical; line-height:1.5}
+select{appearance:none; -webkit-appearance:none; background-image:linear-gradient(45deg, transparent 50%, currentColor 50%), linear-gradient(135deg, currentColor 50%, transparent 50%); background-position:calc(100% - 22px) 52%, calc(100% - 16px) 52%; background-size:6px 6px, 6px 6px; background-repeat:no-repeat; padding-right:42px}
+select option{background:var(--field-bg); color:var(--field-text)}
+fieldset{border:0; margin:0; padding:0; display:grid; gap:10px; min-width:0}
+.chips{display:flex; flex-wrap:wrap; gap:8px}
+.chip{position:relative}
+.chip input{position:absolute; opacity:0; width:1px; height:1px; min-height:0; padding:0}
+.chip span{display:inline-flex; align-items:center; min-height:40px; padding:0 15px; border-radius:999px; font-size:13.5px; cursor:pointer; border:1px solid var(--chip-border); color:var(--chip-text); transition:all .2s ease}
+.chip input:checked + span{background:var(--accent-bright); border-color:var(--accent-bright); color:var(--on-accent)}
+.chip input:focus-visible + span{outline:2px solid var(--accent); outline-offset:2px}
+.err{font-size:12.5px; color:var(--err)}
+.field.bad input,.field.bad select,.field.bad textarea{border-color:var(--err)}
+.form-note{font-size:12.5px; line-height:1.5; color:var(--text-3)}
+.form-actions{display:flex; flex-wrap:wrap; gap:14px; align-items:center}
+.done{display:grid; gap:16px}
+.done h3 em{font-style:italic; color:var(--accent-display)}
+.done pre{margin:0; white-space:pre-wrap; word-break:break-word; font-family:var(--sans); font-size:13.5px; line-height:1.6; padding:16px 18px; border-radius:14px; max-height:240px; overflow:auto; background:var(--bg-alt); color:var(--text-2); border:1px solid var(--line)}
+.textbtn{background:none; border:0; padding:6px 2px; font:inherit; font-family:var(--label); font-size:13px; font-weight:600; cursor:pointer; text-decoration:underline; text-underline-offset:4px; color:var(--text-2)}
+
+/* Join */
+.band--soft{background:linear-gradient(180deg, var(--bg-soft-a) 0%, var(--bg-soft-b) 100%)}
+.join-grid{display:grid; gap:48px; grid-template-columns:1fr}
+@media (min-width:1020px){.join-grid{grid-template-columns:.95fr 1.05fr; gap:72px; align-items:start}}
+.join-copy{display:grid; gap:24px; min-width:0}
+.join-photo{border-radius:24px 24px 24px 90px; overflow:hidden; aspect-ratio:16/10; margin-top:8px}
+.join-photo img{width:100%; height:100%; object-fit:cover; object-position:50% 40%}
+.contact{display:grid; gap:0; border-top:1px solid var(--line-2)}
+.contact > div{display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:8px 16px; padding:16px 0; border-bottom:1px solid var(--line-2)}
+.contact small{display:block; font-family:var(--label); font-size:11px; letter-spacing:.16em; text-transform:uppercase; color:var(--accent)}
+.contact span{font-size:17px; color:var(--text); user-select:all}
+.contact a{font-size:17px; color:var(--text); text-decoration:none; border-bottom:1px solid var(--line-2)}
+.copy{font-family:var(--label); font-size:12px; font-weight:600; padding:8px 14px; border-radius:999px; border:1px solid var(--line-2); background:transparent; color:var(--text); cursor:pointer}
+.copy:hover{border-color:var(--accent)}
+
+/* Footer: oven-black in both themes, the brand's anchor */
+.foot{padding-block:72px 40px; background:#0C0B0A; color:#F6F1E7; border-top:1px solid rgba(222,187,113,.2)}
+.foot-grid{display:grid; gap:40px; grid-template-columns:1fr}
+@media (min-width:900px){.foot-grid{grid-template-columns:1.5fr 1fr 1fr 1fr}}
+.foot-brand{display:grid; gap:16px; align-content:start; max-width:36ch}
+.foot-brand img{height:28px; width:auto}
+.foot-brand p{color:rgba(246,241,231,.56); font-size:14.5px}
+.foot h4{font-family:var(--label); font-size:11.5px; letter-spacing:.16em; text-transform:uppercase; color:#DEBB71; font-weight:600; margin-bottom:14px}
+.foot ul{list-style:none; margin:0; padding:0; display:grid; gap:10px}
+.foot li a,.foot li span{color:rgba(246,241,231,.76); text-decoration:none; font-size:14.5px}
+.foot li a:hover{color:#F3DFAE}
+.foot a:focus-visible{outline-color:#DEBB71}
+.foot-base{margin-top:56px; padding-top:24px; border-top:1px solid rgba(222,187,113,.2); display:flex; flex-wrap:wrap; gap:12px 24px; justify-content:space-between; font-size:13px; color:rgba(246,241,231,.52)}
+</style>
+</head>
+<body>
+<!-- ============ HEADER ============ -->
+<header class="site-head">
+  <div class="wrap head-in">
+    <a class="brand" href="#top" aria-label="CakeNest home">
+      <img class="only-dark" src="assets/img/logo-cream.png" alt="CakeNest" width="540" height="101">
+      <img class="only-light" src="assets/img/logo-ink.png" alt="CakeNest" width="540" height="101">
+    </a>
+    <nav class="nav" aria-label="Primary">
+      <a href="#story">Our story</a>
+      <a href="#ecosystem">Ecosystem</a>
+      <a href="#journey">Your journey</a>
+      <a href="#stories">Bakers' stories</a>
+      <a href="#brands">For brands</a>
+    </nav>
+    <div class="head-actions">
+      <button class="icon-btn" id="theme-btn" type="button" aria-label="Switch to dark mode" title="Switch theme">
+        <svg class="only-light" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.5 14.2A8.5 8.5 0 1 1 9.8 3.5a7 7 0 0 0 10.7 10.7z"/></svg>
+        <svg class="only-dark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.2M12 19.3v2.2M4.6 4.6l1.6 1.6M17.8 17.8l1.6 1.6M2.5 12h2.2M19.3 12h2.2M4.6 19.4l1.6-1.6M17.8 6.2l1.6-1.6"/></svg>
+      </button>
+      <a class="btn btn--gold head-cta" href="#join">Join CakeNest</a>
+      <button class="icon-btn" id="menu-btn" type="button" aria-expanded="false" aria-controls="mnav" aria-label="Open menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h10"/></svg>
+      </button>
+    </div>
+  </div>
+  <div class="wrap">
+    <nav class="mnav" id="mnav" aria-label="Mobile" hidden>
+      <a href="#story">Our story</a>
+      <a href="#ecosystem">Ecosystem</a>
+      <a href="#journey">Your journey</a>
+      <a href="#stories">Bakers' stories</a>
+      <a href="#brands">For brands</a>
+      <a class="btn btn--gold" href="#join">Join CakeNest</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+
+<!-- ============ HERO ============ -->
+<section class="hero" aria-labelledby="hero-title">
+  <div class="wrap">
+    <div class="hero-grid">
+      <div class="hero-copy">
+        <span class="eyebrow rise"><i class="hex"></i>India's No. 1 home-baker platform</span>
+        <h1 class="h1 rise d1" id="hero-title">Where home bakers become <span class="sr-only">Bakepreneurs.</span><span class="word-line" aria-hidden="true"><span class="tw" id="tw"><span class="tw-text">Bakepreneurs.</span><span class="caret"></span></span></span></h1>
+        <p class="hero-sub rise d2">For more than eight years, CakeNest has stood beside India's home bakers. We help you learn the craft, get seen, win orders and build a bakery brand people remember. Wherever you are today, we'll help you take the next step.</p>
+        <div class="hero-ctas rise d3">
+          <a class="btn btn--gold" href="#journey">Start your journey
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+          <a class="btn btn--ghost" href="#brands">Partner with CakeNest</a>
+        </div>
+        <div class="pillars-mini rise d4" aria-label="The CakeNest ecosystem">
+          <span><b>Learn</b> Academy</span>
+          <span><b>Earn</b> Orders</span>
+          <span><b>Grow</b> Marketing</span>
+          <span><b>Run</b> Pro</span>
+          <span><b>Scale</b> Studio services</span>
+        </div>
+      </div>
+      <div class="hero-media rise d2">
+        <figure>
+          <img src="assets/img/hero-baker.webp" width="1536" height="1024" alt="A home baker smiling as she pipes cream roses onto a two-tier cake in her sunlit kitchen" fetchpriority="high">
+        </figure>
+        <div class="float float--age"><i class="hex"></i>Bakers aged 14 to 55</div>
+        <div class="float float--views"><strong>1.5B+</strong><span>views generated for home bakers, 100% organic</span></div>
+      </div>
+    </div>
+
+    <div class="ledger" aria-label="CakeNest in numbers">
+      <div><b>Views</b><strong>1.5B<sup>+</sup></strong><small>Generated organically for bakers and their cakes</small></div>
+      <div><b>Community</b><strong>7.6L<sup>+</sup></strong><small>6,75,000+ on Instagram and 89,000+ on Facebook</small></div>
+      <div><b>Home bakers</b><strong>5,000<sup>+</sup></strong><small>In the CakeNest network, first-timers to cake artists</small></div>
+      <div><b>Cities</b><strong>100<sup>+</sup></strong><small>Metros, Tier-2 and Tier-3 towns across India</small></div>
+      <div><b>Years</b><strong>8<sup>+</sup></strong><small>Of building home bakers into businesses</small></div>
+    </div>
+
+    <div class="worked">
+      <p>Brands, stars and leaders we've worked with</p>
+      <ul class="names">
+        <li>Tata</li><li>Yes Bank</li><li>Salesforce</li><li>Big FM</li><li>Google</li><li>YouTube</li><li><i>IPL players</i></li><li><i>Ministers</i></li><li><i>RJs &amp; VJs</i></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ============ STORY ============ -->
+<section class="band band--alt" id="story" aria-labelledby="story-title">
+  <div class="wrap">
+    <div class="story-grid">
+      <div style="display:grid; gap:22px; align-content:start; min-width:0">
+        <span class="eyebrow"><i class="hex"></i>Why CakeNest exists</span>
+        <h2 class="h2" id="story-title">We began with one belief. A home baker is a <em>business</em> waiting to be believed in.</h2>
+      </div>
+      <div class="story-copy">
+        <p>CakeNest started as a community of people who loved to bake. Over the years we saw the same story again and again. Gifted bakers, working from their own kitchens, had the skill but not the support. They weren't sure how to price a cake, how to get noticed, or how to turn a passion into an income.</p>
+        <p>So we built that support, one piece at a time. <strong>Classes to learn from. A community that cheers you on. Social media that brings customers to your door. Tools that run the business side.</strong> And when a baker is ready for a studio or a café, a team that builds the brand with them.</p>
+        <p>Today thousands of home bakers have joined us. Many now earn their living from baking. Some have their own studios with their names above the door. That is what we mean by a bakepreneur.</p>
+        <div class="mission">
+          <b>Our mission</b>
+          <q>To help every talented home baker in India build a brand that customers remember, trust and order from.</q>
+        </div>
+      </div>
+    </div>
+
+    <div class="ages">
+      <figure class="age-card age-card--young">
+        <img src="assets/img/young-baker.webp" width="1200" height="800" alt="A teenage baker smiling as she decorates pastel cupcakes at home" loading="lazy">
+        <figcaption><strong>14</strong><span>Our youngest baker</span></figcaption>
+      </figure>
+      <div class="ruler">
+        <span class="eyebrow"><i class="hex"></i>Every age, every stage</span>
+        <h3>From a school-going baker of <em>14</em> to a seasoned baker of <em>55</em>, there's a seat for you at this table.</h3>
+        <div class="scale" aria-hidden="true">
+          <div class="bar"></div><div class="ticks"></div>
+          <span class="pin" style="left:0%"></span><span class="pin" style="left:100%"></span>
+          <span class="lab" style="left:0%">14</span>
+          <span class="lab" style="left:14.63%">20</span>
+          <span class="lab" style="left:26.83%">25</span>
+          <span class="lab" style="left:39.02%">30</span>
+          <span class="lab" style="left:51.22%">35</span>
+          <span class="lab" style="left:63.41%">40</span>
+          <span class="lab" style="left:75.61%">45</span>
+          <span class="lab" style="left:87.8%">50</span>
+          <span class="lab" style="left:100%">55</span>
+        </div>
+        <p>Students, homemakers, working professionals and retired bakers have all grown with CakeNest. You don't need a shop, a big budget or the right connections. You need a kitchen, a little courage, and people who know the way.</p>
+      </div>
+      <figure class="age-card age-card--senior">
+        <img src="assets/img/senior-baker.webp" width="1200" height="800" alt="A baker in her fifties placing handmade sugar flowers on a two-tier cake" loading="lazy">
+        <figcaption><strong>55</strong><span>Our most seasoned baker</span></figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ECOSYSTEM ============ -->
+<section class="band" id="ecosystem" aria-labelledby="eco-title">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <span class="eyebrow"><i class="hex"></i>The CakeNest ecosystem</span>
+        <h2 class="h2" id="eco-title">One nest. Everything a home baker needs to <em>rise.</em></h2>
+      </div>
+      <p class="lede">Four platforms and a studio team, built to work together. Start with the one you need today and add the rest as you grow. Learn with us, earn with us, and scale with us.</p>
+    </div>
+
+    <div class="eco">
+      <article class="eco-card">
+        <div class="eco-media">
+          <img src="assets/img/workshop.webp" width="1536" height="1024" alt="Women of different ages learning to pipe buttercream flowers at a CakeNest-style workshop table" loading="lazy">
+          <span class="eco-verb">LEARN</span>
+        </div>
+        <div class="eco-body">
+          <h3>CakeNest Academy<small>Online courses and live batches</small></h3>
+          <p>Classes run through the year, from your first sponge to advanced decorating, plus the parts nobody teaches at home: costing, pricing and handling customers.</p>
+          <ul><li>Beginner to advanced</li><li>Live online batches</li><li>Business of baking</li></ul>
+          <a class="link" href="#join" data-intent="Learn baking with CakeNest Academy">Ask about the next batch</a>
+        </div>
+      </article>
+
+      <article class="eco-card">
+        <div class="eco-media">
+          <img src="assets/img/earn-packing.webp" width="1200" height="800" alt="A home baker smiling as she places a floral cake into a kraft box tied with gold ribbon" loading="lazy">
+          <span class="eco-verb">EARN</span>
+        </div>
+        <div class="eco-body">
+          <h3>CakeNest Orders<small>order.cakenest.in</small></h3>
+          <p>Our cake marketplace. Customers across cities order handcrafted, made-to-order cakes online, and bakers in the CakeNest network bake them. Real orders for real kitchens.</p>
+          <ul><li>Customer marketplace</li><li>Secure online payments</li><li>Made-to-order cakes</li></ul>
+          <a class="link" href="https://order.cakenest.in" target="_blank" rel="noopener">Visit CakeNest Orders ↗</a>
+        </div>
+      </article>
+
+      <article class="eco-card">
+        <div class="eco-media">
+          <img src="assets/img/grow-photo.webp" width="1200" height="800" alt="A baker photographing her gold-leaf cake with a phone on a tripod beside a ring light" loading="lazy">
+          <span class="eco-verb">GROW</span>
+        </div>
+        <div class="eco-body">
+          <h3>CakeNest Marketing<small>marketing.cakenest.in</small></h3>
+          <p>Instagram growth and management that's 100% organic. A Growth Manager and a three-member team plan, edit and post for you, so your page turns strangers into enquiries and enquiries into orders.</p>
+          <ul><li>No bots, ever</li><li>Reels, stories, posts</li><li>Weekly calls</li></ul>
+          <a class="link" href="https://marketing.cakenest.in" target="_blank" rel="noopener">Explore CakeNest Marketing ↗</a>
+        </div>
+      </article>
+
+      <article class="eco-card">
+        <div class="eco-media">
+          <div class="pro-mock" aria-hidden="true">
+            <div class="pm-top"><span><i class="hex"></i>CakeNest Pro · Order board</span><em>All sources</em></div>
+            <div class="pm-cols">
+              <div class="pm-col"><h5>New</h5>
+                <div class="pm-item"><img src="assets/img/c-rasmalai.webp" alt=""><span>Rasmalai cake<small>Instagram</small></span></div>
+                <div class="pm-item"><img src="assets/img/c-unicorn.webp" alt=""><span>Unicorn cake<small>WhatsApp</small></span></div>
+                <div class="pm-item"><img src="assets/img/c-firetruck.webp" alt=""><span>Fire truck<small>Marketplace</small></span></div>
+              </div>
+              <div class="pm-col"><h5>Baking</h5>
+                <div class="pm-item"><img src="assets/img/c-couture-rose.webp" alt=""><span>Rose tier cake<small>Walk-in</small></span></div>
+                <div class="pm-item"><img src="assets/img/c-jungle.webp" alt=""><span>Jungle cake<small>Instagram</small></span></div>
+                <div class="pm-item"><img src="assets/img/c-wedding-gold.webp" alt=""><span>Wedding cake<small>WhatsApp</small></span></div>
+              </div>
+              <div class="pm-col"><h5>Delivered</h5>
+                <div class="pm-item"><img src="assets/img/c-red-velvet.webp" alt=""><span>Red velvet<small>WhatsApp</small></span></div>
+                <div class="pm-item"><img src="assets/img/c-crown.webp" alt=""><span>Crown cake<small>Repeat</small></span></div>
+                <div class="pm-item"><img src="assets/img/c-baby-bloom.webp" alt=""><span>Baby shower<small>Instagram</small></span></div>
+              </div>
+            </div>
+          </div>
+          <span class="eco-verb">RUN</span>
+        </div>
+        <div class="eco-body">
+          <h3>CakeNest Pro<small>cakenestpro.com</small></h3>
+          <p>The bakery brain. Every order from WhatsApp, Instagram and walk-ins in one place, with your real revenue, cost-based pricing, customer records, GST invoices and a delivery calendar.</p>
+          <ul><li>Order pipeline</li><li>Pricing engine</li><li>Free portfolio page</li></ul>
+          <a class="link" href="https://cakenestpro.com" target="_blank" rel="noopener">See CakeNest Pro ↗</a>
+        </div>
+      </article>
+
+      <article class="eco-card eco-card--wide">
+        <div class="eco-media">
+          <img src="assets/img/brand-flatlay.webp" width="1536" height="1024" alt="A boutique cake studio's brand kit: kraft cake boxes, ribbon, stickers, menu and business cards" loading="lazy">
+          <span class="eco-verb">SCALE</span>
+        </div>
+        <div class="eco-body">
+          <h3>Studio &amp; brand services<small>For bakers ready to open a studio, bakery or café</small></h3>
+          <p>When your kitchen is too small for your dream, we build the brand with you from A to Z. Name and logo, packaging, menu, website, Meta ads, launch promotions and studio setup advice, handled by the same team that already knows your journey.</p>
+          <ul><li>Branding &amp; logo</li><li>Packaging</li><li>Menu design</li><li>Website</li><li>Meta ads</li><li>Launch promotions</li><li>Setup consulting</li></ul>
+          <a class="link" href="#join" data-intent="Open a studio, bakery or café">Plan your studio with us</a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ JOURNEY ============ -->
+<section class="band band--alt" id="journey" aria-labelledby="journey-title">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <span class="eyebrow"><i class="hex"></i>From A to Z</span>
+        <h2 class="h2" id="journey-title">Start wherever you are. We'll walk you to the <em>next step.</em></h2>
+      </div>
+      <p class="lede">Some bakers come to us before they've baked a single cake for money. Others arrive with a full order book and a dream of a café. Pick the line that sounds like you.</p>
+    </div>
+
+    <div class="journey">
+      <div class="j-steps" role="tablist" aria-label="Where are you in your baking journey?">
+        <button class="j-step" role="tab" id="tab-1" aria-controls="panel-1" aria-selected="true" tabindex="0"><span class="n">01</span><span class="q">"I want to learn to bake"</span><span class="s">Learn the craft</span></button>
+        <button class="j-step" role="tab" id="tab-2" aria-controls="panel-2" aria-selected="false" tabindex="-1"><span class="n">02</span><span class="q">"I bake well, but no one knows"</span><span class="s">Get online</span></button>
+        <button class="j-step" role="tab" id="tab-3" aria-controls="panel-3" aria-selected="false" tabindex="-1"><span class="n">03</span><span class="q">"I post, but nobody sees it"</span><span class="s">Get seen</span></button>
+        <button class="j-step" role="tab" id="tab-4" aria-controls="panel-4" aria-selected="false" tabindex="-1"><span class="n">04</span><span class="q">"I want steady orders"</span><span class="s">Get orders</span></button>
+        <button class="j-step" role="tab" id="tab-5" aria-controls="panel-5" aria-selected="false" tabindex="-1"><span class="n">05</span><span class="q">"My orders are chaos"</span><span class="s">Run it like a business</span></button>
+        <button class="j-step" role="tab" id="tab-6" aria-controls="panel-6" aria-selected="false" tabindex="-1"><span class="n">06</span><span class="q">"I'm ready for my own studio"</span><span class="s">Scale up</span></button>
+      </div>
+
+      <div class="j-panels">
+        <div class="j-panel" role="tabpanel" id="panel-1" aria-labelledby="tab-1">
+          <div class="j-visual"><img src="assets/img/learn-online.webp" width="1200" height="800" alt="A young baker following a live online cake-decorating class on her laptop" loading="lazy" style="object-position:30% 50%"></div>
+          <div class="j-copy">
+            <span class="tag">Step 01 · Learn</span>
+            <h3>Learn from people who bake for a living.</h3>
+            <p>Join live online batches that run all year. Learn the techniques customers pay for, and the business basics that keep you profitable.</p>
+            <ul><li>Cakes, frosting, piping and modern decorating</li><li>Costing and pricing, so you never sell at a loss</li><li>Live sessions where you can ask questions</li></ul>
+            <p class="via">Through <b>CakeNest Academy</b></p>
+            <a class="btn btn--solid" href="#join" data-intent="Learn baking with CakeNest Academy">Ask about the next batch</a>
+          </div>
+        </div>
+
+        <div class="j-panel" role="tabpanel" id="panel-2" aria-labelledby="tab-2" hidden>
+          <div class="j-visual">
+            <div class="ig" aria-hidden="true">
+              <div class="ig-phone">
+                <div class="ig-head"><span class="ig-av"><span><i></i></span></span><div><b>your.bakery</b><small>Home baker · Your city</small></div></div>
+                <div class="ig-grid">
+                  <img src="assets/img/c-couture-rose.webp" alt=""><img src="assets/img/c-one-jungle.webp" alt=""><img src="assets/img/c-rasmalai.webp" alt="">
+                  <img src="assets/img/c-hot-air.webp" alt=""><img src="assets/img/c-wedding-gold.webp" alt=""><img src="assets/img/c-baby-bloom.webp" alt="">
+                  <img src="assets/img/c-red-velvet.webp" alt=""><img src="assets/img/c-unicorn.webp" alt=""><img src="assets/img/c-safari-king.webp" alt="">
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="j-copy">
+            <span class="tag">Step 02 · Get online</span>
+            <h3>Look like the serious baker you already are.</h3>
+            <p>Your first impression happens on a phone screen. We help you set up a profile, a portfolio and a menu that make people trust you before they've tasted a bite.</p>
+            <ul><li>Instagram profile audit and setup</li><li>A free portfolio page with CakeNest Pro</li><li>Logo, menu design and a website when you're ready</li></ul>
+            <p class="via">Through <b>CakeNest Marketing</b> and <b>CakeNest Pro</b></p>
+            <a class="btn btn--solid" href="#join" data-intent="Get my bakery online">Help me get online</a>
+          </div>
+        </div>
+
+        <div class="j-panel" role="tabpanel" id="panel-3" aria-labelledby="tab-3" hidden>
+          <div class="j-visual"><img src="assets/img/phone-joy.webp" width="1200" height="800" alt="A home baker laughing as she reads new customer messages on her phone" loading="lazy" style="object-position:74% 40%"></div>
+          <div class="j-copy">
+            <span class="tag">Step 03 · Get seen</span>
+            <h3>Visibility that turns into DMs, not just likes.</h3>
+            <p>A dedicated Growth Manager and a three-member team plan your reels, run your daily stories and keep your page consistent, even in festive rush weeks. Everything is organic, so the people who find you are real customers.</p>
+            <ul><li>Trend-aware reels built to reach new local audiences</li><li>Daily stories that build trust and bring enquiries</li><li>A premium grid that lets you stop competing on price</li></ul>
+            <p class="via">Through <b>CakeNest Marketing</b> · 1.5B+ views generated so far</p>
+            <a class="btn btn--solid" href="https://marketing.cakenest.in" target="_blank" rel="noopener">See how growth works ↗</a>
+          </div>
+        </div>
+
+        <div class="j-panel" role="tabpanel" id="panel-4" aria-labelledby="tab-4" hidden>
+          <div class="j-visual"><img src="assets/img/orders-family.webp" width="1200" height="600" alt="A family celebrating a child's birthday around a handcrafted cake" loading="lazy" style="object-position:62% 50%"></div>
+          <div class="j-copy">
+            <span class="tag">Step 04 · Get orders</span>
+            <h3>Your cake, at the centre of someone's celebration.</h3>
+            <p>Business generation is where everything comes together. Your content brings enquiries to your own page, and the CakeNest marketplace brings customers who are already looking to order.</p>
+            <ul><li>Customers ordering online at order.cakenest.in</li><li>Calls-to-action and "orders open" stories that convert</li><li>Brand and corporate cake opportunities through CakeNest</li></ul>
+            <p class="via">Through <b>CakeNest Orders</b> and <b>CakeNest Marketing</b></p>
+            <a class="btn btn--solid" href="#join" data-intent="Get more orders">I want more orders</a>
+          </div>
+        </div>
+
+        <div class="j-panel" role="tabpanel" id="panel-5" aria-labelledby="tab-5" hidden>
+          <div class="j-visual">
+            <div class="pro-mock" aria-hidden="true">
+              <div class="pm-top"><span><i class="hex"></i>CakeNest Pro · This week</span><em>All sources</em></div>
+              <div class="pm-cols">
+                <div class="pm-col"><h5>Confirmed</h5>
+                  <div class="pm-item"><img src="assets/img/c-anniversary.webp" alt=""><span>Anniversary<small>Sat · 6 pm</small></span></div>
+                  <div class="pm-item"><img src="assets/img/c-farmhouse.webp" alt=""><span>Farm theme<small>Sun · 11 am</small></span></div>
+                  <div class="pm-item"><img src="assets/img/c-ganache.webp" alt=""><span>Ganache<small>Sun · 4 pm</small></span></div>
+                </div>
+                <div class="pm-col"><h5>Baking</h5>
+                  <div class="pm-item"><img src="assets/img/c-oh-baby.webp" alt=""><span>Baby shower<small>Fri · 5 pm</small></span></div>
+                  <div class="pm-item"><img src="assets/img/c-train.webp" alt=""><span>Train cake<small>Fri · 7 pm</small></span></div>
+                </div>
+                <div class="pm-col"><h5>Ready</h5>
+                  <div class="pm-item"><img src="assets/img/c-balloons.webp" alt=""><span>Balloon cake<small>Paid</small></span></div>
+                  <div class="pm-item"><img src="assets/img/c-moo.webp" alt=""><span>Moo cake<small>Paid</small></span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="j-copy">
+            <span class="tag">Step 05 · Run it right</span>
+            <h3>Stop running your bakery on sticky notes.</h3>
+            <p>CakeNest Pro is the bakery brain for home bakers. It keeps every order, customer and rupee in one place, so you can bake with a clear head.</p>
+            <ul><li>All orders from any source on one board</li><li>Ingredient costs, recipes and true profit per cake</li><li>GST invoices, reminders and a delivery calendar</li></ul>
+            <p class="via">Through <b>CakeNest Pro</b> · built for phones, set up in minutes</p>
+            <a class="btn btn--solid" href="https://cakenestpro.com" target="_blank" rel="noopener">Explore CakeNest Pro ↗</a>
+          </div>
+        </div>
+
+        <div class="j-panel" role="tabpanel" id="panel-6" aria-labelledby="tab-6" hidden>
+          <div class="j-visual"><img src="assets/img/scale-studio.webp" width="1200" height="800" alt="A proud cake studio owner standing behind a glass counter full of cakes and pastries" loading="lazy" style="object-position:30% 40%"></div>
+          <div class="j-copy">
+            <span class="tag">Step 06 · Scale</span>
+            <h3>From home kitchen to a studio with your name on it.</h3>
+            <p>Opening a cake studio, a bakery or a café is a big step. We help with all of it: the brand, the space, the menu and the launch, so you walk in on day one with customers already waiting.</p>
+            <ul><li>Complete branding, packaging and menu design</li><li>Website, Meta ads and launch promotions</li><li>Studio setup consulting from people who know the industry</li></ul>
+            <p class="via">Through <b>Studio &amp; brand services</b></p>
+            <a class="btn btn--solid" href="#join" data-intent="Open a studio, bakery or café">Plan my studio</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ GALLERY ============ -->
+<section class="band" aria-labelledby="gal-title">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <span class="eyebrow"><i class="hex"></i>Baked in home kitchens</span>
+        <h2 class="h2" id="gal-title">Proof that the best cakes in India come from <em>home.</em></h2>
+      </div>
+      <p class="lede">Every cake below was made for a real celebration through the CakeNest network. Birthdays, baby showers, weddings and first steps, baked with care in kitchens like yours.</p>
+    </div>
+  </div>
+  <div class="marquee" aria-label="Cakes from the CakeNest network">
+    <div class="track">
+      <img src="assets/img/c-couture-rose.webp" alt="Ivory tiered cake with a cascade of blush sugar roses" loading="lazy">
+      <img src="assets/img/c-one-jungle.webp" alt="First birthday cake with jungle animals and balloons" loading="lazy">
+      <img src="assets/img/c-rasmalai.webp" alt="Rasmalai cake with pistachio and rose petals" loading="lazy">
+      <img src="assets/img/c-hot-air.webp" alt="Two-tier teddy bear cake with a hot air balloon" loading="lazy">
+      <img src="assets/img/c-wedding-gold.webp" alt="Ivory and gold wedding cake with a couple silhouette" loading="lazy">
+      <img src="assets/img/c-baby-bloom.webp" alt="Baby in bloom cake with pastel flowers" loading="lazy">
+      <img src="assets/img/c-safari-king.webp" alt="Safari birthday cake with a lion, elephant and giraffe" loading="lazy">
+      <img src="assets/img/c-red-velvet.webp" alt="Red velvet cake with cream rosettes" loading="lazy">
+      <img src="assets/img/c-unicorn.webp" alt="Painted unicorn birthday cake with rainbow details" loading="lazy">
+      <img src="assets/img/c-farmhouse.webp" alt="Farmhouse theme cake with animals and a tractor" loading="lazy">
+      <img src="assets/img/c-couture-rose.webp" alt="" aria-hidden="true" loading="lazy">
+      <img src="assets/img/c-one-jungle.webp" alt="" aria-hidden="true" loading="lazy">
+      <img src="assets/img/c-rasmalai.webp" alt="" aria-hidden="true" loading="lazy">
+      <img src="assets/img/c-hot-air.webp" alt="" aria-hidden="true" loading="lazy">
+      <img src="assets/img/c-wedding-gold.webp" alt="" aria-hidden="true" loading="lazy">
+      <img src="assets/img/c-baby-bloom.webp" alt="" aria-hidden="true" loading="lazy">
+      <img src="assets/img/c-safari-king.webp" alt="" aria-hidden="true" loading="lazy">
+      <img src="assets/img/c-red-velvet.webp" alt="" aria-hidden="true" loading="lazy">
+      <img src="assets/img/c-unicorn.webp" alt="" aria-hidden="true" loading="lazy">
+      <img src="assets/img/c-farmhouse.webp" alt="" aria-hidden="true" loading="lazy">
+    </div>
+  </div>
+  <div class="marquee marquee--rev" aria-hidden="true">
+    <div class="track">
+      <img src="assets/img/c-anniversary.webp" alt="" loading="lazy">
+      <img src="assets/img/c-oh-baby.webp" alt="" loading="lazy">
+      <img src="assets/img/c-ganache.webp" alt="" loading="lazy">
+      <img src="assets/img/c-crown.webp" alt="" loading="lazy">
+      <img src="assets/img/c-balloons.webp" alt="" loading="lazy">
+      <img src="assets/img/c-jungle.webp" alt="" loading="lazy">
+      <img src="assets/img/c-train.webp" alt="" loading="lazy">
+      <img src="assets/img/c-corporate.webp" alt="" loading="lazy">
+      <img src="assets/img/c-moo.webp" alt="" loading="lazy">
+      <img src="assets/img/c-firetruck.webp" alt="" loading="lazy">
+      <img src="assets/img/c-anniversary.webp" alt="" loading="lazy">
+      <img src="assets/img/c-oh-baby.webp" alt="" loading="lazy">
+      <img src="assets/img/c-ganache.webp" alt="" loading="lazy">
+      <img src="assets/img/c-crown.webp" alt="" loading="lazy">
+      <img src="assets/img/c-balloons.webp" alt="" loading="lazy">
+      <img src="assets/img/c-jungle.webp" alt="" loading="lazy">
+      <img src="assets/img/c-train.webp" alt="" loading="lazy">
+      <img src="assets/img/c-corporate.webp" alt="" loading="lazy">
+      <img src="assets/img/c-moo.webp" alt="" loading="lazy">
+      <img src="assets/img/c-firetruck.webp" alt="" loading="lazy">
+    </div>
+  </div>
+  <div class="wrap"><p class="gal-note"><i class="hex"></i>Want your cakes here? Bakers in the CakeNest network are featured across our 7.6 lakh+ community.</p></div>
+</section>
+
+<!-- ============ VOICES ============ -->
+<section class="band band--alt" id="stories" aria-labelledby="voices-title">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <span class="eyebrow"><i class="hex"></i>In their own words</span>
+        <h2 class="h2" id="voices-title">Bakers who <em>grew</em> with CakeNest.</h2>
+      </div>
+      <p class="lede">Different cities, different ages, different dreams. Tap a story to hear it from them.</p>
+    </div>
+    <div class="rail" aria-label="Baker video stories">
+      <a class="voice" href="https://marketing.cakenest.in/testimonials" target="_blank" rel="noopener">
+        <img src="assets/img/t-manasi.webp" width="480" height="640" alt="Manasi Deshpande, co-owner of Tricks N Treats" loading="lazy">
+        <span class="play" aria-hidden="true"><svg viewBox="0 0 12 14"><path d="M0 0l12 7-12 7z" fill="currentColor"/></svg></span>
+        <span class="who"><b>Manasi Deshpande</b><span>Tricks N Treats</span><em>The baker behind a 280M-view viral reel</em></span>
+      </a>
+      <a class="voice" href="https://marketing.cakenest.in/testimonials" target="_blank" rel="noopener">
+        <img src="assets/img/t-saloni.webp" width="480" height="640" alt="Saloni, owner of Studio 143" loading="lazy">
+        <span class="play" aria-hidden="true"><svg viewBox="0 0 12 14"><path d="M0 0l12 7-12 7z" fill="currentColor"/></svg></span>
+        <span class="who"><b>Saloni</b><span>Studio 143</span><em>Owner of her own cake studio</em></span>
+      </a>
+      <a class="voice" href="https://marketing.cakenest.in/testimonials" target="_blank" rel="noopener">
+        <img src="assets/img/t-roshini.webp" width="480" height="640" alt="Roshini Shukla of SNF Cakes" loading="lazy">
+        <span class="play" aria-hidden="true"><svg viewBox="0 0 12 14"><path d="M0 0l12 7-12 7z" fill="currentColor"/></svg></span>
+        <span class="who"><b>Roshini Shukla</b><span>SNF Cakes</span><em>Floral cake artist, Bangalore</em></span>
+      </a>
+      <a class="voice" href="https://marketing.cakenest.in/testimonials" target="_blank" rel="noopener">
+        <img src="assets/img/t-jashan.webp" width="480" height="640" alt="Jashan of JCS Studio" loading="lazy">
+        <span class="play" aria-hidden="true"><svg viewBox="0 0 12 14"><path d="M0 0l12 7-12 7z" fill="currentColor"/></svg></span>
+        <span class="who"><b>Jashan</b><span>JCS Studio</span><em>Watch his story</em></span>
+      </a>
+      <a class="voice" href="https://marketing.cakenest.in/testimonials" target="_blank" rel="noopener">
+        <img src="assets/img/t-kritika.webp" width="480" height="640" alt="Kritika of Carnations Cakery" loading="lazy">
+        <span class="play" aria-hidden="true"><svg viewBox="0 0 12 14"><path d="M0 0l12 7-12 7z" fill="currentColor"/></svg></span>
+        <span class="who"><b>Kritika</b><span>Carnations Cakery</span><em>Watch her story</em></span>
+      </a>
+      <a class="voice" href="https://marketing.cakenest.in/testimonials" target="_blank" rel="noopener">
+        <img src="assets/img/t-jatin.webp" width="480" height="640" alt="Jatin of Amaira's Patisserie" loading="lazy">
+        <span class="play" aria-hidden="true"><svg viewBox="0 0 12 14"><path d="M0 0l12 7-12 7z" fill="currentColor"/></svg></span>
+        <span class="who"><b>Jatin</b><span>Amaira's Patisserie</span><em>Watch his story</em></span>
+      </a>
+      <a class="voice" href="https://marketing.cakenest.in/testimonials" target="_blank" rel="noopener">
+        <img src="assets/img/t-aastha.webp" width="480" height="640" alt="Aastha of Bakeofy" loading="lazy">
+        <span class="play" aria-hidden="true"><svg viewBox="0 0 12 14"><path d="M0 0l12 7-12 7z" fill="currentColor"/></svg></span>
+        <span class="who"><b>Aastha</b><span>Bakeofy</span><em>Watch her story</em></span>
+      </a>
+    </div>
+    <div class="voices-foot">
+      <p>These are a few of the thousands of home bakers who have learned, grown or scaled with CakeNest across India.</p>
+      <a class="link" href="https://marketing.cakenest.in/testimonials" target="_blank" rel="noopener">Watch all stories ↗</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ BRANDS ============ -->
+<section class="band" id="brands" aria-labelledby="brands-title">
+  <div class="wrap">
+    <div class="brand-grid">
+      <div class="brand-copy">
+        <span class="eyebrow"><i class="hex"></i>For brands &amp; partners</span>
+        <h2 class="h2" id="brands-title">Reach the people who bake India's <em>celebrations.</em></h2>
+        <p class="lede">CakeNest sits at the heart of India's home-baking economy. Brands work with us to launch products, run creator campaigns and celebrate their moments with cakes that tell their story.</p>
+        <div class="reach">
+          <div><strong>7.6L+</strong><span>Baking enthusiasts in our community</span></div>
+          <div><strong>5,000+</strong><span>Working home bakers in our network</span></div>
+          <div><strong>100+</strong><span>Cities reached across India</span></div>
+        </div>
+        <ul class="offer">
+          <li><i class="hex"></i><div><b>Creator campaigns</b><span>Home bakers and cake artists creating with your brand</span></div></li>
+          <li><i class="hex"></i><div><b>Sponsored reels and posts</b><span>Stories told to our 6.75 lakh+ Instagram community</span></div></li>
+          <li><i class="hex"></i><div><b>Product sampling and launches</b><span>Ingredients, packaging and equipment in the hands of working bakers</span></div></li>
+          <li><i class="hex"></i><div><b>Custom cakes and corporate gifting</b><span>Launch cakes, event cakes and celebration gifting at scale</span></div></li>
+          <li><i class="hex"></i><div><b>Workshops, live demos and supplier partnerships</b><span>Meet the community where it learns and buys</span></div></li>
+        </ul>
+        <p class="worked-line">We've worked with <b>Tata, Yes Bank, Salesforce, Big FM, Google and YouTube</b>, along with IPL players, ministers, and RJs and VJs.</p>
+      </div>
+
+      <div class="form-card" id="brand-form-card">
+        <div class="form-body">
+          <div style="display:grid; gap:8px; margin-bottom:22px">
+            <h3>Start a collaboration</h3>
+            <p class="sub">Tell us a little about your brand. Our partnerships team will get back to you.</p>
+          </div>
+          <form id="brand-form" novalidate>
+            <div class="row2">
+              <div class="field"><label for="b-company">Brand or company</label><input id="b-company" data-msg="Please add your brand or company name." name="company" autocomplete="organization" required placeholder="e.g. Your brand"><span class="err" aria-live="polite"></span></div>
+              <div class="field"><label for="b-name">Your name</label><input id="b-name" data-msg="Please add your name." name="name" autocomplete="name" required placeholder="Full name"><span class="err" aria-live="polite"></span></div>
+            </div>
+            <div class="row2">
+              <div class="field"><label for="b-email">Work email</label><input id="b-email" data-msg="Please add your work email." name="email" type="email" autocomplete="email" required placeholder="you@brand.com"><span class="err" aria-live="polite"></span></div>
+              <div class="field"><label for="b-phone">Phone / WhatsApp <span class="opt">(optional)</span></label><input id="b-phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" placeholder="+91"><span class="err" aria-live="polite"></span></div>
+            </div>
+            <fieldset class="field" id="b-interest">
+              <legend>What would you like to do?</legend>
+              <div class="chips">
+                <label class="chip"><input type="checkbox" name="interest" value="Creator campaign"><span>Creator campaign</span></label>
+                <label class="chip"><input type="checkbox" name="interest" value="Sponsored content"><span>Sponsored content</span></label>
+                <label class="chip"><input type="checkbox" name="interest" value="Product sampling or launch"><span>Product sampling</span></label>
+                <label class="chip"><input type="checkbox" name="interest" value="Custom cakes or gifting"><span>Custom cakes &amp; gifting</span></label>
+                <label class="chip"><input type="checkbox" name="interest" value="Workshop or event"><span>Workshop or event</span></label>
+                <label class="chip"><input type="checkbox" name="interest" value="Supplier partnership"><span>Supplier partnership</span></label>
+                <label class="chip"><input type="checkbox" name="interest" value="Something else"><span>Something else</span></label>
+              </div>
+            </fieldset>
+            <div class="row2">
+              <div class="field"><label for="b-budget">Budget <span class="opt">(optional)</span></label>
+                <select id="b-budget" name="budget"><option value="">Not sure yet</option><option>Under ₹50,000</option><option>₹50,000 to ₹2 lakh</option><option>₹2 lakh to ₹5 lakh</option><option>Above ₹5 lakh</option></select></div>
+              <div class="field"><label for="b-when">Timeline <span class="opt">(optional)</span></label>
+                <select id="b-when" name="timeline"><option value="">Just exploring</option><option>This month</option><option>In 1 to 3 months</option><option>Later this year</option></select></div>
+            </div>
+            <div class="field"><label for="b-msg">Tell us about your idea</label><textarea id="b-msg" data-msg="Please tell us a little about your idea." name="message" required placeholder="What are you launching or celebrating, and who do you want to reach?"></textarea><span class="err" aria-live="polite"></span></div>
+            <div class="form-actions">
+              <button class="btn btn--gold" type="submit">Send enquiry</button>
+              <span class="form-note">Prefer email? Write to help@cakenest.in</span>
+            </div>
+          </form>
+        </div>
+        <div class="done" hidden tabindex="-1">
+          <span class="eyebrow"><i class="hex"></i>Enquiry ready</span>
+          <h3>Thank you, <em data-fill="name">there</em>.</h3>
+          <p class="sub">One last step. Send these details to our partnerships team on WhatsApp so we can reply quickly, or copy them into an email to help@cakenest.in.</p>
+          <pre data-fill="summary"></pre>
+          <div class="form-actions">
+            <a class="btn btn--gold" data-fill="wa" href="https://wa.me/918837759003" target="_blank" rel="noopener">Send on WhatsApp ↗</a>
+            <button class="btn btn--ghost" type="button" data-copy-summary>Copy details</button>
+            <button class="textbtn" type="button" data-edit>Edit</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ JOIN ============ -->
+<section class="band band--soft" id="join" aria-labelledby="join-title">
+  <div class="wrap">
+    <div class="join-grid">
+      <div class="join-copy">
+        <span class="eyebrow"><i class="hex"></i>Join the nest</span>
+        <h2 class="h2" id="join-title">Your kitchen is where it starts. We'll walk the rest of the way <em>with you.</em></h2>
+        <p class="lede">Tell us where you are today and what you'd love to build. Whether it's your first class or your first café, someone from the CakeNest team will reach out to guide you.</p>
+        <div class="join-photo"><img src="assets/img/workshop.webp" width="1536" height="1024" alt="Bakers of different ages laughing together while piping buttercream flowers" loading="lazy"></div>
+        <div class="contact">
+          <div><div><small>WhatsApp</small><span id="c-phone">+91 88377 59003</span></div><button class="copy" type="button" data-copy="+91 88377 59003">Copy</button></div>
+          <div><div><small>Email</small><span id="c-mail">help@cakenest.in</span></div><button class="copy" type="button" data-copy="help@cakenest.in">Copy</button></div>
+          <div><div><small>Instagram</small><a href="https://instagram.com/cakenest.in" target="_blank" rel="noopener">@cakenest.in ↗</a></div></div>
+        </div>
+      </div>
+
+      <div class="form-card" id="join-form-card">
+        <div class="form-body">
+          <div style="display:grid; gap:8px; margin-bottom:22px">
+            <h3>Start your journey</h3>
+            <p class="sub">It takes a minute. No fees, no obligation.</p>
+          </div>
+          <form id="join-form" novalidate>
+            <div class="row2">
+              <div class="field"><label for="j-name">Your name</label><input id="j-name" data-msg="Please add your name." name="name" autocomplete="name" required placeholder="Full name"><span class="err" aria-live="polite"></span></div>
+              <div class="field"><label for="j-phone">WhatsApp number</label><input id="j-phone" data-msg="Please add your WhatsApp number." name="phone" type="tel" autocomplete="tel" inputmode="tel" required placeholder="+91 98xxx xxxxx"><span class="err" aria-live="polite"></span></div>
+            </div>
+            <div class="row2">
+              <div class="field"><label for="j-city">City</label><input id="j-city" data-msg="Please add your city." name="city" autocomplete="address-level2" required placeholder="e.g. Pune"><span class="err" aria-live="polite"></span></div>
+              <div class="field"><label for="j-stage">Where are you today?</label>
+                <select id="j-stage" name="stage" required>
+                  <option value="">Choose one</option>
+                  <option>I'm just starting to bake</option>
+                  <option>I bake for family and friends</option>
+                  <option>I take a few orders a month</option>
+                  <option>Baking is my main income</option>
+                  <option>I run a studio or bakery</option>
+                </select><span class="err" aria-live="polite"></span></div>
+            </div>
+            <div class="field"><label for="j-need">What would you like help with?</label>
+              <select id="j-need" name="need" required>
+                <option value="">Choose one</option>
+                <option>Learn baking with CakeNest Academy</option>
+                <option>Get my bakery online</option>
+                <option>Grow on Instagram</option>
+                <option>Get more orders</option>
+                <option>Manage my bakery with CakeNest Pro</option>
+                <option>Open a studio, bakery or café</option>
+                <option>I'm not sure yet, guide me</option>
+              </select><span class="err" aria-live="polite"></span></div>
+            <div class="field"><label for="j-msg">Anything you'd like us to know? <span class="opt">(optional)</span></label><textarea id="j-msg" name="message" placeholder="Your dream, your questions, your favourite cake to make…"></textarea></div>
+            <div class="form-actions">
+              <button class="btn btn--solid" type="submit">Send to CakeNest</button>
+              <span class="form-note">We'll only use your number to contact you about CakeNest.</span>
+            </div>
+          </form>
+        </div>
+        <div class="done" hidden tabindex="-1">
+          <span class="eyebrow"><i class="hex"></i>Almost there</span>
+          <h3>Welcome to the nest, <em data-fill="name">friend</em>.</h3>
+          <p class="sub">Tap below to send your details to the CakeNest team on WhatsApp. We'll take it from there.</p>
+          <pre data-fill="summary"></pre>
+          <div class="form-actions">
+            <a class="btn btn--solid" data-fill="wa" href="https://wa.me/918837759003" target="_blank" rel="noopener">Send on WhatsApp ↗</a>
+            <button class="btn btn--ghost" type="button" data-copy-summary>Copy details</button>
+            <button class="textbtn" type="button" data-edit>Edit</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <img src="assets/img/logo-cream.png" alt="CakeNest" width="540" height="101" loading="lazy">
+        <p>India's No. 1 home-baker platform. For more than eight years we've helped home bakers learn, earn and scale, from the first cake to the first café.</p>
+      </div>
+      <div>
+        <h4>Ecosystem</h4>
+        <ul>
+          <li><a href="https://order.cakenest.in" target="_blank" rel="noopener">CakeNest Orders</a></li>
+          <li><a href="https://cakenestpro.com" target="_blank" rel="noopener">CakeNest Pro</a></li>
+          <li><a href="https://marketing.cakenest.in" target="_blank" rel="noopener">CakeNest Marketing</a></li>
+          <li><a href="#join" data-intent="Learn baking with CakeNest Academy">CakeNest Academy</a></li>
+          <li><a href="https://marketing.cakenest.in/services" target="_blank" rel="noopener">Studio &amp; brand services</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>CakeNest</h4>
+        <ul>
+          <li><a href="#story">Our story</a></li>
+          <li><a href="#journey">Your journey</a></li>
+          <li><a href="#stories">Bakers' stories</a></li>
+          <li><a href="#brands">For brands</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <ul>
+          <li><span>+91 88377 59003</span></li>
+          <li><span>help@cakenest.in</span></li>
+          <li><a href="https://instagram.com/cakenest.in" target="_blank" rel="noopener">Instagram ↗</a></li>
+          <li><a href="https://wa.me/918837759003" target="_blank" rel="noopener">WhatsApp ↗</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-base">
+      <span>© 2026 CakeNest. All rights reserved.</span>
+      <span>Made with love for India's home bakers.</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  // When this page runs on cakenest.in, set this to your form API (for example a Cloudflare Worker URL)
+  // and enquiries will also be posted there as JSON. Left empty, forms hand off to WhatsApp.
+  var FORM_ENDPOINT = "";
+  var WA_NUMBER = "918837759003";
+
+
+  /* Theme toggle: follows the system until the visitor picks a theme */
+  var root = document.documentElement, tb = document.getElementById('theme-btn');
+  function mode(){ return (getComputedStyle(root).getPropertyValue('--mode') || 'light').trim(); }
+  function syncLabel(){ tb.setAttribute('aria-label', mode() === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'); }
+  syncLabel();
+  tb.addEventListener('click', function(){
+    var next = mode() === 'dark' ? 'light' : 'dark';
+    root.classList.add('theming');
+    root.setAttribute('data-cn', next);
+    try { localStorage.setItem('cn-theme', next); } catch (err) {}
+    syncLabel();
+    setTimeout(function(){ root.classList.remove('theming'); }, 450);
+  });
+  try { window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', syncLabel); } catch (err) {}
+  try { new MutationObserver(syncLabel).observe(root, {attributes:true, attributeFilter:['data-theme']}); } catch (err) {}
+
+  /* Typed headline: bakepreneurs. -> entrepreneurs. -> ... */
+  (function(){
+    var tw = document.getElementById('tw'); if (!tw) return;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    var txt = tw.querySelector('.tw-text');
+    var words = ['Bakepreneurs.', 'Entrepreneurs.'];
+    var onScreen = true;
+    if ('IntersectionObserver' in window) new IntersectionObserver(function(es){ onScreen = es[0].isIntersecting; }).observe(tw);
+    function wait(ms){ return new Promise(function(done){
+      (function go(){ if (document.hidden || !onScreen) { setTimeout(go, 300); } else { setTimeout(done, ms); } })();
+    }); }
+    async function type(w){
+      tw.classList.add('typing');
+      for (var i = 1; i <= w.length; i++) { txt.textContent = w.slice(0, i); await wait(70 + Math.random() * 55); }
+      tw.classList.remove('typing'); tw.classList.add('piped');
+    }
+    async function erase(){
+      tw.classList.remove('piped'); tw.classList.add('typing');
+      var w = txt.textContent;
+      for (var i = w.length - 1; i >= 0; i--) { txt.textContent = w.slice(0, i); await wait(34); }
+      tw.classList.remove('typing');
+    }
+    (async function run(){
+      txt.textContent = ''; tw.classList.remove('piped');
+      await wait(650);
+      for (var k = 0; ; k++) { await type(words[k % words.length]); await wait(2600); await erase(); await wait(380); }
+    })();
+  })();
+
+  /* Mobile menu */
+  var mb = document.getElementById('menu-btn'), mn = document.getElementById('mnav');
+  mb.addEventListener('click', function(){
+    var open = mn.hidden;
+    mn.hidden = !open;
+    mb.setAttribute('aria-expanded', String(open));
+    mb.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+  });
+  mn.addEventListener('click', function(e){ if (e.target.closest('a')) { mn.hidden = true; mb.setAttribute('aria-expanded','false'); } });
+
+  /* Journey tabs */
+  var tabs = Array.prototype.slice.call(document.querySelectorAll('.j-step'));
+  function selectTab(t, focus){
+    tabs.forEach(function(x){
+      var on = x === t;
+      x.setAttribute('aria-selected', String(on));
+      x.tabIndex = on ? 0 : -1;
+      var p = document.getElementById(x.getAttribute('aria-controls'));
+      p.hidden = !on;
+      if (on) { p.classList.remove('is-in'); void p.offsetWidth; p.classList.add('is-in'); }
+    });
+    if (focus) t.focus();
+    if (window.matchMedia('(max-width: 979px)').matches) {
+      t.scrollIntoView({block:'nearest', inline:'nearest', behavior:'smooth'});
+    }
+  }
+  tabs.forEach(function(t, i){
+    t.addEventListener('click', function(){ selectTab(t); });
+    t.addEventListener('keydown', function(e){
+      var k = e.key, n = null;
+      if (k === 'ArrowDown' || k === 'ArrowRight') n = tabs[(i+1) % tabs.length];
+      if (k === 'ArrowUp' || k === 'ArrowLeft') n = tabs[(i-1+tabs.length) % tabs.length];
+      if (k === 'Home') n = tabs[0];
+      if (k === 'End') n = tabs[tabs.length-1];
+      if (n) { e.preventDefault(); selectTab(n, true); }
+    });
+  });
+
+  /* Links that preselect what a baker needs */
+  document.addEventListener('click', function(e){
+    var a = e.target.closest('[data-intent]');
+    if (!a) return;
+    var sel = document.getElementById('j-need');
+    var want = a.getAttribute('data-intent');
+    for (var i = 0; i < sel.options.length; i++) {
+      if (sel.options[i].text === want) { sel.selectedIndex = i; break; }
+    }
+  });
+
+  /* Copy helpers */
+  function copyText(text, btn){
+    var label = btn.textContent;
+    function ok(){ btn.textContent = 'Copied'; setTimeout(function(){ btn.textContent = label; }, 1600); }
+    try {
+      navigator.clipboard.writeText(text).then(ok, function(){ fallback(); });
+    } catch (err) { fallback(); }
+    function fallback(){
+      var holder = btn.closest('.done') ? btn.closest('.done').querySelector('pre') : null;
+      var node = holder || btn.parentElement.querySelector('span');
+      if (node) { var r = document.createRange(); r.selectNodeContents(node); var s = window.getSelection(); s.removeAllRanges(); s.addRange(r); }
+      btn.textContent = 'Selected, press copy';
+      setTimeout(function(){ btn.textContent = label; }, 2200);
+    }
+  }
+  document.querySelectorAll('[data-copy]').forEach(function(b){
+    b.addEventListener('click', function(){ copyText(b.getAttribute('data-copy'), b); });
+  });
+
+  /* Forms */
+  function setErr(field, msg){
+    var f = field.closest('.field'); if (!f) return;
+    f.classList.toggle('bad', !!msg);
+    var e = f.querySelector('.err'); if (e) e.textContent = msg || '';
+  }
+  function validate(form){
+    var first = null;
+    form.querySelectorAll('input[required], select[required], textarea[required]').forEach(function(el){
+      var v = el.value.trim(), msg = '';
+      if (!v) msg = el.tagName === 'SELECT' ? 'Please choose one.' : (el.getAttribute('data-msg') || 'Please fill this in.');
+      else if (el.type === 'email' && !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v)) msg = 'Please check the email address.';
+      else if (el.type === 'tel' && v.replace(/\D/g,'').length < 10) msg = 'Please enter a 10-digit number.';
+      setErr(el, msg);
+      if (msg && !first) first = el;
+    });
+    form.querySelectorAll('input[type="tel"]:not([required])').forEach(function(el){
+      var v = el.value.trim(), msg = '';
+      if (v && v.replace(/\D/g,'').length < 10) msg = 'Please enter a 10-digit number, or leave it empty.';
+      setErr(el, msg); if (msg && !first) first = el;
+    });
+    if (first) first.focus();
+    return !first;
+  }
+  document.querySelectorAll('form').forEach(function(form){
+    form.addEventListener('input', function(e){ if (e.target.closest('.field.bad')) setErr(e.target, ''); });
+    form.addEventListener('change', function(e){ if (e.target.closest('.field.bad')) setErr(e.target, ''); });
+  });
+
+  function wire(formId, kind, build){
+    var form = document.getElementById(formId);
+    var card = form.closest('.form-card');
+    var body = card.querySelector('.form-body');
+    var done = card.querySelector('.done');
+    form.addEventListener('submit', function(e){
+      e.preventDefault();
+      if (!validate(form)) return;
+      var data = build(form);
+      var text = data.lines.join('\n');
+      done.querySelector('[data-fill="name"]').textContent = data.first;
+      done.querySelector('[data-fill="summary"]').textContent = text;
+      done.querySelector('[data-fill="wa"]').href = 'https://wa.me/' + WA_NUMBER + '?text=' + encodeURIComponent(text);
+      body.hidden = true; done.hidden = false; done.focus();
+      if (FORM_ENDPOINT) {
+        try {
+          fetch(FORM_ENDPOINT, {method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({kind:kind, fields:data.fields, submittedAt:new Date().toISOString()})}).catch(function(){});
+        } catch (err) {}
+      }
+    });
+    done.querySelector('[data-edit]').addEventListener('click', function(){ done.hidden = true; body.hidden = false; form.querySelector('input').focus(); });
+    done.querySelector('[data-copy-summary]').addEventListener('click', function(e){ copyText(done.querySelector('pre').textContent, e.currentTarget); });
+  }
+  function val(form, name){ var el = form.elements[name]; return el ? el.value.trim() : ''; }
+
+  wire('brand-form', 'brand', function(f){
+    var interests = Array.prototype.slice.call(f.querySelectorAll('input[name="interest"]:checked')).map(function(i){ return i.value; });
+    var fields = {company:val(f,'company'), name:val(f,'name'), email:val(f,'email'), phone:val(f,'phone'), interests:interests, budget:val(f,'budget') || 'Not sure yet', timeline:val(f,'timeline') || 'Just exploring', message:val(f,'message')};
+    var lines = ['Hello CakeNest, a brand collaboration enquiry:', '',
+      'Brand: ' + fields.company, 'Name: ' + fields.name, 'Email: ' + fields.email];
+    if (fields.phone) lines.push('Phone: ' + fields.phone);
+    if (interests.length) lines.push('Interested in: ' + interests.join(', '));
+    lines.push('Budget: ' + fields.budget, 'Timeline: ' + fields.timeline, '', fields.message);
+    return {first: fields.name.split(' ')[0], lines: lines, fields: fields};
+  });
+  wire('join-form', 'baker', function(f){
+    var fields = {name:val(f,'name'), phone:val(f,'phone'), city:val(f,'city'), stage:val(f,'stage'), need:val(f,'need'), message:val(f,'message')};
+    var lines = ['Hello CakeNest, I would like to start my journey with you.', '',
+      'Name: ' + fields.name, 'WhatsApp: ' + fields.phone, 'City: ' + fields.city,
+      'Where I am today: ' + fields.stage, 'I need help with: ' + fields.need];
+    if (fields.message) lines.push('', fields.message);
+    return {first: fields.name.split(' ')[0], lines: lines, fields: fields};
+  });
+})();
+</script>
+
+</body>
+</html>
