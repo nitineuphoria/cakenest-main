@@ -116,8 +116,15 @@ button{font:inherit; color:inherit}
 .row{display:flex; flex-wrap:wrap; align-items:center; gap:12px}
 
 /* ---------- Nav (floating pill) ---------- */
-.nav{position:fixed; z-index:80; left:50%; top:calc(env(safe-area-inset-top, 0px) + 14px); transform:translateX(-50%); width:min(1120px, calc(100% - 2*max(14px, env(safe-area-inset-left, 0px)))); display:flex; align-items:center; justify-content:space-between; gap:16px; padding:8px 8px 8px 22px; border-radius:999px; background:rgba(255,255,255,.82); backdrop-filter:blur(18px) saturate(1.4); -webkit-backdrop-filter:blur(18px) saturate(1.4); border:1px solid rgba(21,19,15,.07); box-shadow:0 12px 40px -22px rgba(20,14,8,.45); transition:transform .5s var(--ease), box-shadow .3s ease}
+.nav{position:fixed; z-index:80; left:50%; top:calc(env(safe-area-inset-top, 0px) + 14px); transform:translateX(-50%); width:min(1120px, calc(100% - 2*max(14px, env(safe-area-inset-left, 0px)))); display:flex; align-items:center; justify-content:space-between; gap:16px; padding:8px 8px 8px 22px; border-radius:999px; background:rgba(255,255,255,.82); backdrop-filter:blur(18px) saturate(1.4); -webkit-backdrop-filter:blur(18px) saturate(1.4); border:1px solid rgba(21,19,15,.07); box-shadow:0 12px 40px -22px rgba(20,14,8,.45); transition:transform .5s var(--ease), box-shadow .3s ease, background-color .4s ease, border-color .4s ease}
 .nav.is-hidden{transform:translate(-50%, calc(-100% - 30px))}
+.nav--glass{background:rgba(255,255,255,.1); border-color:rgba(255,255,255,.22); box-shadow:0 8px 32px -18px rgba(20,14,8,.2)}
+.nav--glass .nav-logo img{filter:brightness(0) invert(1); transition:filter .4s ease}
+.nav--glass .nav-links a{color:rgba(255,255,255,.78)}
+.nav--glass .nav-links a:hover{color:#fff; background:rgba(255,255,255,.14)}
+.nav--glass .nav-links a[aria-current="page"]{color:#fff; background:rgba(255,255,255,.2)}
+.nav--glass .nav-cta.btn--dark{background:rgba(255,255,255,.18); color:#fff; border-color:rgba(255,255,255,.34)}
+.nav--glass .menu-btn{background:rgba(255,255,255,.18); color:#fff}
 .nav-logo img{height:24px; width:auto}
 .nav-links{display:none; gap:4px}
 .nav-links a{position:relative; padding:9px 14px; border-radius:999px; font-size:14.5px; color:var(--ink-2); transition:color .25s ease, background-color .25s ease}
@@ -575,6 +582,8 @@ fieldset{border:0; margin:0; padding:0; min-width:0}
     if (nav) {
       if (y > 220 && y > lastY + 4) nav.classList.add('is-hidden');
       else if (y < lastY - 4 || y < 220) nav.classList.remove('is-hidden');
+      if (hero) nav.classList.toggle('nav--glass', y < hero.offsetTop + hero.offsetHeight - 100);
+      else nav.classList.remove('nav--glass');
     }
     lastY = y; ticking = false;
     parallax(); lit();
