@@ -10,8 +10,6 @@
     if (nav) {
       if (y > 220 && y > lastY + 4) nav.classList.add('is-hidden');
       else if (y < lastY - 4 || y < 220) nav.classList.remove('is-hidden');
-      if (hero) nav.classList.toggle('nav--glass', y < hero.offsetTop + hero.offsetHeight - 100);
-      else nav.classList.remove('nav--glass');
     }
     lastY = y; ticking = false;
     parallax(); lit();
