@@ -489,6 +489,55 @@ fieldset{border:0; margin:0; padding:0; min-width:0}
 .footer-mark{font-size:clamp(84px,19.5vw,300px); line-height:.78; letter-spacing:-.065em; font-weight:560; font-stretch:105%; color:#221D18; white-space:nowrap; margin-top:24px; user-select:none; text-align:center; transform:translateY(.06em)}
 .footer-base{display:flex; flex-wrap:wrap; justify-content:space-between; gap:12px 24px; padding-block:24px; border-top:1px solid var(--dark-line); font-size:13px; color:var(--on-dark-3)}
 
+/* ---------- Careers page ---------- */
+.jobs-grid{display:grid; gap:20px; grid-template-columns:repeat(auto-fill, minmax(min(100%, 380px), 1fr))}
+.jcard{background:#fff; border:1px solid var(--line); border-radius:var(--r-md); padding:28px 28px 24px; display:flex; flex-direction:column; gap:14px; transition:box-shadow .3s var(--ease), transform .3s var(--ease)}
+.jcard:hover{box-shadow:0 12px 40px -12px rgba(20,14,8,.12); transform:translateY(-2px)}
+.jcard-top{display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:8px}
+.jcard-dept{display:inline-block; padding:4px 12px; border-radius:99px; background:var(--sand); font-family:var(--mono); font-size:11.5px; font-weight:500; letter-spacing:.05em; color:var(--gold-ink)}
+.jcard-meta{display:flex; align-items:center; gap:6px; font-size:13px; color:var(--ink-3)}
+.jcard-dot{width:3px; height:3px; border-radius:50%; background:var(--ink-4); flex:none}
+.jcard-title{font-size:clamp(18px,1.6vw,22px); font-weight:500; letter-spacing:-.018em; color:var(--ink); line-height:1.25}
+.jcard-desc{font-size:14.5px; color:var(--ink-3); line-height:1.6; flex:1}
+.jcard-btn{align-self:flex-start; min-height:44px; padding:4px 4px 4px 18px; font-size:14px; margin-top:4px}
+.jobs-loading{display:grid; gap:20px; grid-template-columns:repeat(auto-fill, minmax(min(100%, 380px), 1fr))}
+.jcard-skel{height:220px; border-radius:var(--r-md); background:linear-gradient(90deg, var(--bg-2) 25%, var(--bg-3) 50%, var(--bg-2) 75%); background-size:400% 100%; animation:skel 1.6s ease infinite}
+@keyframes skel{0%{background-position:100% 0}100%{background-position:-100% 0}}
+.jobs-empty{display:grid; gap:20px; text-align:center; padding:clamp(56px,8vw,88px) 0}
+.jobs-empty .tag{justify-self:center}
+.jobs-empty p{font-size:17px; color:var(--ink-2); margin-inline:auto}
+
+/* Careers apply modal */
+.careers-overlay{position:fixed; inset:0; z-index:200; background:rgba(21,19,15,.54); backdrop-filter:blur(6px); -webkit-backdrop-filter:blur(6px); display:flex; align-items:center; justify-content:center; padding:16px}
+.careers-modal{background:#fff; border-radius:var(--r-lg); width:min(600px, 100%); max-height:92dvh; overflow-y:auto; padding:clamp(28px,5vw,44px); position:relative}
+.careers-modal-close{position:absolute; top:18px; right:18px; width:40px; height:40px; border-radius:50%; border:1px solid var(--line); background:#fff; display:grid; place-items:center; cursor:pointer; transition:border-color .2s}
+.careers-modal-close:hover{border-color:var(--ink)}
+.careers-modal-close svg{width:18px; height:18px}
+.careers-modal-head{margin-bottom:24px}
+.careers-modal-head .tag{margin-bottom:10px}
+.careers-form{display:grid; gap:4px}
+.cf-row{display:grid; grid-template-columns:1fr 1fr; gap:14px}
+@media (max-width:500px){.cf-row{grid-template-columns:1fr}}
+.cf-field{display:grid; gap:7px; margin-bottom:10px}
+.cf-field label{font-size:13.5px; font-weight:500; color:var(--ink-2)}
+.cf-opt{font-weight:400; color:var(--ink-3)}
+.cf-field input,.cf-field textarea{padding:13px 15px; border:1.5px solid var(--line); border-radius:var(--r-sm); font:inherit; font-size:15px; outline:none; transition:border-color .2s; width:100%}
+.cf-field input:focus,.cf-field textarea:focus{border-color:var(--gold)}
+.cf-field textarea{resize:vertical; min-height:100px}
+.cf-upload{position:relative; border:2px dashed var(--line-2); border-radius:var(--r-sm); transition:border-color .2s, background .2s; cursor:pointer}
+.cf-upload:hover,.cf-upload.is-drag{border-color:var(--gold); background:var(--sand)}
+.cf-upload input[type=file]{position:absolute; inset:0; opacity:0; cursor:pointer; z-index:1}
+.cf-upload-label{display:grid; justify-items:center; gap:8px; padding:24px 16px; text-align:center; pointer-events:none}
+.cf-upload-label svg{width:28px; height:28px; color:var(--ink-3)}
+.cf-upload-label span{font-size:14.5px; color:var(--ink-2)}
+.cf-upload-label small{font-size:12.5px; color:var(--ink-3); font-family:var(--mono)}
+.cf-error{font-size:14px; color:#c0392b; padding:10px 14px; background:#fff5f5; border-radius:var(--r-sm); border:1px solid #f5c6c6}
+.careers-success{display:grid; justify-items:center; text-align:center; gap:16px; padding:40px 20px}
+.careers-success-ic{width:60px; height:60px; border-radius:50%; background:var(--sand); display:grid; place-items:center}
+.careers-success-ic svg{width:28px; height:28px; color:var(--gold-ink)}
+.careers-success h3{font-size:22px; font-weight:500; letter-spacing:-.02em}
+.careers-success p{font-size:15px; color:var(--ink-2); max-width:42ch}
+
 /* ---------- Motion helpers (start visible; JS adds a gentle rise) ---------- */
 .js [data-rise]{transition:transform 1.05s var(--ease)}
 .js [data-rise].pre{transform:translateY(44px)}
@@ -509,13 +558,13 @@ fieldset{border:0; margin:0; padding:0; min-width:0}
 <body>
 <header class="nav" aria-label="Main">
   <a class="nav-logo" href="/" aria-label="CakeNest home"><img src="/assets/img/logo-ink.png" alt="CakeNest" width="540" height="101"></a>
-  <nav class="nav-links" aria-label="Primary"><a href="/about" aria-current="page">About</a><a href="/impact">Impact</a><a href="/programs">Programs</a><a href="/stories">Stories</a><a href="/partner">Partners</a></nav>
+  <nav class="nav-links" aria-label="Primary"><a href="/about" aria-current="page">About</a><a href="/impact">Impact</a><a href="/programs">Programs</a><a href="/stories">Stories</a><a href="/partner">Partners</a><a href="/careers">Careers</a></nav>
   <a class="btn btn--dark nav-cta" href="/join">Join the movement <span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></span></a>
   <button class="menu-btn" id="menu-btn" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mmenu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9h16M4 15h16"/></svg></button>
 </header>
 <div class="mmenu" id="mmenu" aria-hidden="true">
   <button class="mmenu-close" type="button" aria-label="Close menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
-  <nav aria-label="Mobile"><a href="/"><small>01</small>Home</a><a href="/about"><small>02</small>About</a><a href="/impact"><small>03</small>Impact</a><a href="/programs"><small>04</small>Programs</a><a href="/stories"><small>05</small>Stories</a><a href="/partner"><small>06</small>Partners</a></nav>
+  <nav aria-label="Mobile"><a href="/"><small>01</small>Home</a><a href="/about"><small>02</small>About</a><a href="/impact"><small>03</small>Impact</a><a href="/programs"><small>04</small>Programs</a><a href="/stories"><small>05</small>Stories</a><a href="/partner"><small>06</small>Partners</a><a href="/careers"><small>07</small>Careers</a></nav>
   <div style="display:grid; gap:10px">
     <a class="btn btn--dark" href="/join" style="justify-content:space-between">Join the movement <span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></span></a>
     <a class="btn btn--line" href="/partner" style="justify-content:space-between">Partner with us <span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></span></a>
@@ -526,11 +575,11 @@ fieldset{border:0; margin:0; padding:0; min-width:0}
   <div class="wrap">
     <span class="tag load-rise">About us</span>
     <div class="phero-grid">
-      <h1 class="h1 load-rise d1">Driven by purpose. Built for <span class="serif">her.</span></h1>
-      <p class="lede load-rise d2">We exist so that every woman with a skill has the tools, the audience and the confidence to earn from it.</p>
+      <h1 class="h1 load-rise d1" data-cn="about:hero_title">Driven by purpose. Built for <span class="serif">her.</span></h1>
+      <p class="lede load-rise d2" data-cn="about:hero_sub">We exist so that every woman with a skill has the tools, the audience and the confidence to earn from it.</p>
     </div>
     <div class="phero-img frame frame--wide load-rise d3">
-      <img class="pimg" src="/assets/img/women-group.webp" alt="A group of women and girls standing together outdoors" width="1500" height="1000" data-parallax="40" style="object-position:50% 60%">
+      <img class="pimg" src="/assets/img/women-group.webp" alt="A group of women and girls standing together outdoors" width="1500" height="1000" data-parallax="40" style="object-position:50% 60%" data-cn="about:hero_img">
     </div>
   </div>
 </section>
@@ -651,7 +700,7 @@ fieldset{border:0; margin:0; padding:0; min-width:0}
       </div>
       <div>
         <h4>Explore</h4>
-        <ul><li><a href="/about">About us</a></li><li><a href="/impact">Our impact</a></li><li><a href="/programs">Programs</a></li><li><a href="/stories">Stories</a></li><li><a href="/partner">Partner with us</a></li></ul>
+        <ul><li><a href="/about">About us</a></li><li><a href="/impact">Our impact</a></li><li><a href="/programs">Programs</a></li><li><a href="/stories">Stories</a></li><li><a href="/partner">Partner with us</a></li><li><a href="/careers">Careers</a></li></ul>
       </div>
       <div>
         <h4>Ecosystem</h4>
@@ -915,6 +964,27 @@ fieldset{border:0; margin:0; padding:0; min-width:0}
 
   onScroll();
   window.addEventListener('resize', function(){ parallax(); lit(); });
+})();
+
+/* ---------- CMS content loader ---------- */
+(function(){
+  var els = [].slice.call(document.querySelectorAll('[data-cn]'));
+  if (!els.length) return;
+  fetch('/api/content').then(function(r){ return r.json(); }).then(function(d){
+    var c = d.content || {};
+    els.forEach(function(el){
+      var v = c[el.dataset.cn];
+      if (!v) return;
+      if (el.tagName === 'IMG') {
+        el.src = (v[0]==='/'||v.slice(0,4)==='http') ? v : '/assets/img/'+v+'.webp';
+      } else if (el.tagName==='H1'||el.tagName==='H2'||el.tagName==='H3') {
+        el.innerHTML = v.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
+          .replace(/\*([^*]+)\*/g,'<span class="serif">$1</span>');
+      } else {
+        el.textContent = v;
+      }
+    });
+  }).catch(function(){});
 })();
 </script>
 </body>

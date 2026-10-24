@@ -246,3 +246,24 @@
   onScroll();
   window.addEventListener('resize', function(){ parallax(); lit(); });
 })();
+
+/* ---------- CMS content loader ---------- */
+(function(){
+  var els = [].slice.call(document.querySelectorAll('[data-cn]'));
+  if (!els.length) return;
+  fetch('/api/content').then(function(r){ return r.json(); }).then(function(d){
+    var c = d.content || {};
+    els.forEach(function(el){
+      var v = c[el.dataset.cn];
+      if (!v) return;
+      if (el.tagName === 'IMG') {
+        el.src = (v[0]==='/'||v.slice(0,4)==='http') ? v : '/assets/img/'+v+'.webp';
+      } else if (el.tagName==='H1'||el.tagName==='H2'||el.tagName==='H3') {
+        el.innerHTML = v.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
+          .replace(/\*([^*]+)\*/g,'<span class="serif">$1</span>');
+      } else {
+        el.textContent = v;
+      }
+    });
+  }).catch(function(){});
+})();

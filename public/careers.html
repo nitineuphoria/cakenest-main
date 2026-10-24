@@ -576,11 +576,11 @@ fieldset{border:0; margin:0; padding:0; min-width:0}
   <div class="wrap">
     <span class="tag load-rise" id="careers-tag">Join our team</span>
     <div class="phero-grid">
-      <h1 class="h1 load-rise d1" id="careers-h1">Build the future of home baking <span class="serif">with us.</span></h1>
-      <p class="lede load-rise d2" id="careers-subtitle">We are a small, passionate team helping India's women home bakers learn, earn and build businesses. Come help us grow the movement.</p>
+      <h1 class="h1 load-rise d1" data-cn="careers:hero_title">Build the future of home baking <span class="serif">with us.</span></h1>
+      <p class="lede load-rise d2" data-cn="careers:hero_sub">We are a small, passionate team helping India's women home bakers learn, earn and build businesses. Come help us grow the movement.</p>
     </div>
     <div class="phero-img frame load-rise d3" style="max-height:520px; overflow:hidden">
-      <img class="pimg" id="careers-hero-img" src="/assets/img/women-community.webp" alt="CakeNest team and community" width="1500" height="1000" data-parallax="40" style="object-position:60% 40%">
+      <img class="pimg" src="/assets/img/women-community.webp" alt="CakeNest team and community" width="1500" height="1000" data-parallax="40" style="object-position:60% 40%" data-cn="careers:hero_img">
     </div>
   </div>
 </section>
@@ -594,8 +594,8 @@ fieldset{border:0; margin:0; padding:0; min-width:0}
       </div>
       <div class="split-copy" data-rise>
         <span class="tag" id="culture-tag">Why CakeNest?</span>
-        <h2 class="h2" id="culture-title">A place where your work has <span class="serif">real impact.</span></h2>
-        <p class="lede" id="culture-body">We are a mission-first team. Every line of code, every campaign, every class we run has one goal — helping women become entrepreneurs. If that excites you, you will fit right in.</p>
+        <h2 class="h2" data-cn="careers:culture_title">A place where your work has <span class="serif">real impact.</span></h2>
+        <p class="lede" data-cn="careers:culture_body">We are a mission-first team. Every line of code, every campaign, every class we run has one goal — helping women become entrepreneurs. If that excites you, you will fit right in.</p>
         <ul class="ticks">
           <li><b>Mohali Aerocity</b><span>our home base, work from office</span></li>
           <li><b>Real ownership</b><span>small team, large responsibility</span></li>
@@ -1091,6 +1091,27 @@ fieldset{border:0; margin:0; padding:0; min-width:0}
 
   onScroll();
   window.addEventListener('resize', function(){ parallax(); lit(); });
+})();
+
+/* ---------- CMS content loader ---------- */
+(function(){
+  var els = [].slice.call(document.querySelectorAll('[data-cn]'));
+  if (!els.length) return;
+  fetch('/api/content').then(function(r){ return r.json(); }).then(function(d){
+    var c = d.content || {};
+    els.forEach(function(el){
+      var v = c[el.dataset.cn];
+      if (!v) return;
+      if (el.tagName === 'IMG') {
+        el.src = (v[0]==='/'||v.slice(0,4)==='http') ? v : '/assets/img/'+v+'.webp';
+      } else if (el.tagName==='H1'||el.tagName==='H2'||el.tagName==='H3') {
+        el.innerHTML = v.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
+          .replace(/\*([^*]+)\*/g,'<span class="serif">$1</span>');
+      } else {
+        el.textContent = v;
+      }
+    });
+  }).catch(function(){});
 })();
 </script>
 </body>

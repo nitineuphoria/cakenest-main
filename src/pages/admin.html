@@ -102,10 +102,20 @@ body{overflow:hidden}
 .adm-modal-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:20px}
 
 /* Content editor */
-.adm-content-form{background:#fff;border-radius:var(--r-md);border:1px solid var(--line);overflow:hidden}
-.adm-content-section{padding:28px;border-bottom:1px solid var(--line)}
-.adm-content-section:last-child{border-bottom:none}
-.adm-content-section h4{font-size:15px;font-weight:500;margin-bottom:18px;color:var(--ink-2);font-family:var(--mono);letter-spacing:.04em;text-transform:uppercase;font-size:11.5px}
+.adm-content-form{display:grid;gap:12px}
+.adm-cms-section{background:#fff;border-radius:var(--r-md);border:1px solid var(--line);overflow:hidden}
+.adm-cms-head{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:18px 22px;cursor:pointer;list-style:none;user-select:none}
+.adm-cms-head::-webkit-details-marker{display:none}
+.adm-cms-title{display:flex;align-items:center;gap:10px;font-size:15px;font-weight:500;color:var(--ink)}
+.adm-cms-icon{width:18px;height:18px;flex:none;transition:transform .2s;color:var(--ink-3)}
+.adm-cms-section[open] .adm-cms-icon{transform:rotate(90deg)}
+.adm-cms-body{padding:0 22px 22px}
+.adm-img-field{display:flex;gap:8px;align-items:center}
+.adm-img-field input{flex:1}
+.adm-upload-btn{cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:10px 14px;border:1.5px solid var(--line);border-radius:var(--r-sm);font-size:13px;font-weight:500;background:#fff;color:var(--ink-2);transition:border-color .2s,color .2s;white-space:nowrap}
+.adm-upload-btn:hover{border-color:var(--gold);color:var(--ink)}
+.adm-upload-btn svg{width:14px;height:14px}
+.adm-cms-save{min-height:36px;padding:4px 4px 4px 14px;font-size:13px}
 
 /* Forms (shared) */
 .f-row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
@@ -204,12 +214,9 @@ body{overflow:hidden}
     <!-- CONTENT TAB -->
     <div class="adm-tab" id="tab-content">
       <div class="adm-header">
-        <h2>Page content</h2>
-        <div class="adm-header-actions">
-          <button class="btn btn--dark" id="save-content-btn" style="min-height:40px;padding:4px 4px 4px 18px;font-size:14px">
-            Save changes
-            <span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span>
-          </button>
+        <div>
+          <h2>Page content</h2>
+          <p style="font-size:13px;color:var(--ink-3);margin-top:4px">Each page has its own Save button. In headings, wrap a word in *asterisks* for the serif italic accent.</p>
         </div>
       </div>
       <div class="adm-body">
@@ -598,37 +605,111 @@ async function loadContent() {
 }
 
 function renderContentForm(c) {
-  document.getElementById('content-form-wrap').innerHTML = `
-    <div class="adm-content-form">
-      <div class="adm-content-section">
-        <h4>Careers page hero</h4>
-        <div class="f-field"><label for="c-hero-title">Page title</label><input type="text" id="c-hero-title" value="${esc(c.hero_title||'')}"></div>
-        <div class="f-field"><label for="c-hero-sub">Subtitle</label><textarea id="c-hero-sub" rows="3">${esc(c.hero_subtitle||'')}</textarea></div>
-        <div class="f-field"><label for="c-hero-img">Hero image filename <small style="color:var(--ink-3)">(without .webp — e.g. women-community)</small></label><input type="text" id="c-hero-img" value="${esc(c.hero_image||'')}"></div>
-      </div>
-      <div class="adm-content-section">
-        <h4>Culture section</h4>
-        <div class="f-field"><label for="c-cult-title">Section heading</label><input type="text" id="c-cult-title" value="${esc(c.culture_title||'')}"></div>
-        <div class="f-field"><label for="c-cult-body">Body copy</label><textarea id="c-cult-body" rows="4">${esc(c.culture_body||'')}</textarea></div>
-      </div>
-    </div>`
-}
+  const ICON_CHECK = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>'
+  const IC2 = `<span class="ic" aria-hidden="true">${ICON_CHECK}${ICON_CHECK}</span>`
 
-document.getElementById('save-content-btn').addEventListener('click', async function() {
-  this.disabled = true; this.textContent = 'Saving…'
-  try {
-    await api('PUT', '/api/admin/content', {
-      hero_title:    document.getElementById('c-hero-title')?.value || '',
-      hero_subtitle: document.getElementById('c-hero-sub')?.value || '',
-      hero_image:    document.getElementById('c-hero-img')?.value || '',
-      culture_title: document.getElementById('c-cult-title')?.value || '',
-      culture_body:  document.getElementById('c-cult-body')?.value || ''
+  function fld(key, label, type, hint) {
+    const v = esc(c[key] || '')
+    const hh = hint ? ` <small style="font-weight:400;color:var(--ink-3)">${hint}</small>` : ''
+    if (type === 'textarea') return `<div class="f-field"><label>${label}${hh}</label><textarea data-key="${key}" rows="3">${v}</textarea></div>`
+    if (type === 'image') return `<div class="f-field"><label>${label} <small style="font-weight:400;color:var(--ink-3)">(filename or /api/img/… URL)</small></label>
+      <div class="adm-img-field">
+        <input type="text" data-key="${key}" value="${v}">
+        <label class="adm-upload-btn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+          Upload
+          <input type="file" class="cms-upload-trigger" data-target="${key}" accept="image/*" style="display:none">
+        </label>
+      </div></div>`
+    return `<div class="f-field"><label>${label}${hh}</label><input type="text" data-key="${key}" value="${v}"></div>`
+  }
+
+  function section(id, title, fields) {
+    return `<details class="adm-cms-section" open>
+      <summary class="adm-cms-head">
+        <span class="adm-cms-title">
+          <svg class="adm-cms-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+          ${title}
+        </span>
+        <button type="button" class="btn btn--dark adm-cms-save" data-page="${id}"><span class="cms-save-text">Save</span> ${IC2}</button>
+      </summary>
+      <div class="adm-cms-body">${fields}</div>
+    </details>`
+  }
+
+  const rich = '(use *word* for serif accent)'
+  document.getElementById('content-form-wrap').innerHTML = `<div class="adm-content-form">
+    ${section('home','Home',`
+      ${fld('home:hero_sub','Hero subtitle','text')}
+      ${fld('home:hero_img_1','Slide 1 image','image')}
+      ${fld('home:hero_img_2','Slide 2 image','image')}
+      ${fld('home:hero_img_3','Slide 3 image','image')}
+      ${fld('home:who_intro','"Who we are" intro','textarea')}
+    `)}
+    ${section('about','About',`
+      ${fld('about:hero_title','Hero heading','text',rich)}
+      ${fld('about:hero_sub','Hero subtitle','text')}
+      ${fld('about:hero_img','Hero image','image')}
+    `)}
+    ${section('impact','Impact',`
+      ${fld('impact:hero_title','Hero heading','text',rich)}
+      ${fld('impact:hero_sub','Hero subtitle','text')}
+    `)}
+    ${section('programs','Programs',`
+      ${fld('programs:hero_title','Hero heading','text',rich)}
+      ${fld('programs:hero_sub','Hero subtitle','text')}
+    `)}
+    ${section('stories','Stories',`
+      ${fld('stories:hero_title','Hero heading','text',rich)}
+      ${fld('stories:hero_sub','Hero subtitle','text')}
+    `)}
+    ${section('partner','Partners',`
+      ${fld('partner:hero_title','Hero heading','text',rich)}
+      ${fld('partner:hero_sub','Hero subtitle','text')}
+    `)}
+    ${section('join','Join',`
+      ${fld('join:hero_title','Hero heading','text',rich)}
+      ${fld('join:hero_sub','Hero subtitle','text')}
+    `)}
+    ${section('careers','Careers',`
+      ${fld('careers:hero_title','Hero heading','text',rich)}
+      ${fld('careers:hero_sub','Hero subtitle','text')}
+      ${fld('careers:hero_img','Hero image','image')}
+      ${fld('careers:culture_title','Culture heading','text',rich)}
+      ${fld('careers:culture_body','Culture body','textarea')}
+    `)}
+  </div>`
+
+  document.querySelectorAll('.adm-cms-save').forEach(function(btn) {
+    btn.addEventListener('click', async function(e) {
+      e.stopPropagation()
+      const section = this.closest('details')
+      const updates = {}
+      section.querySelectorAll('[data-key]').forEach(el => { updates[el.dataset.key] = el.value })
+      const txt = this.querySelector('.cms-save-text')
+      this.disabled = true; txt.textContent = 'Saving…'
+      try { await api('PUT', '/api/admin/content', updates); toast('Saved') }
+      catch(err) { toast(err.message, true) }
+      this.disabled = false; txt.textContent = 'Save'
     })
-    toast('Content saved')
-  } catch(e) { toast(e.message, true) }
-  this.disabled = false
-  this.innerHTML = 'Save changes <span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span>'
-})
+  })
+
+  document.querySelectorAll('.cms-upload-trigger').forEach(function(input) {
+    input.addEventListener('change', async function() {
+      const file = this.files[0]; if (!file) return
+      const inp = document.querySelector('[data-key="'+this.dataset.target+'"]')
+      const lbl = this.closest('label'); lbl.style.opacity = '0.5'
+      try {
+        const fd = new FormData(); fd.append('file', file)
+        const r = await fetch('/api/admin/upload', { method:'POST', headers:{'Authorization':'Bearer '+token}, body:fd })
+        const data = await r.json()
+        if (!r.ok) throw new Error(data.error)
+        inp.value = data.url; toast('Image uploaded')
+      } catch(err) { toast(err.message, true) }
+      lbl.style.opacity = '1'; this.value = ''
+    })
+  })
+}
 
 // ── Utilities ──────────────────────────────────────────────
 function esc(s) {
