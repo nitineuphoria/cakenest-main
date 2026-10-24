@@ -1,0 +1,654 @@
+<!--title: CakeNest Admin-->
+<!--deploytitle: CakeNest Admin-->
+<!--desc: CakeNest careers admin panel.-->
+<!--active: -->
+<style>
+/* Admin-specific layout — overrides / additions on top of site.css */
+body{overflow:hidden}
+.adm{display:grid;grid-template-columns:260px 1fr;height:100dvh;overflow:hidden}
+.adm-side{background:var(--dark);color:var(--on-dark);display:flex;flex-direction:column;padding:28px 20px;gap:8px;overflow-y:auto}
+.adm-logo{display:flex;align-items:center;gap:12px;padding:4px 8px 24px;border-bottom:1px solid var(--dark-line);margin-bottom:8px}
+.adm-logo img{height:22px;width:auto;filter:brightness(0) invert(1) opacity(.9)}
+.adm-logo span{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--on-dark-3);border:1px solid var(--dark-line);padding:3px 9px;border-radius:99px}
+.adm-nav-item{display:flex;align-items:center;gap:12px;padding:11px 14px;border-radius:12px;border:0;background:transparent;color:var(--on-dark-2);font-size:14.5px;font-weight:450;cursor:pointer;transition:background .2s,color .2s;text-align:left;width:100%}
+.adm-nav-item svg{width:17px;height:17px;flex:none;opacity:.7}
+.adm-nav-item:hover{background:rgba(245,241,234,.07);color:var(--on-dark)}
+.adm-nav-item.is-active{background:rgba(201,151,63,.15);color:var(--gold)}
+.adm-nav-item.is-active svg{opacity:1}
+.adm-side-foot{margin-top:auto;padding-top:16px;border-top:1px solid var(--dark-line);display:flex;flex-direction:column;gap:8px}
+.adm-side-foot small{font-family:var(--mono);font-size:11px;color:var(--on-dark-3);padding:0 14px}
+.adm-logout{display:flex;align-items:center;gap:10px;padding:10px 14px;border-radius:12px;border:0;background:transparent;color:var(--on-dark-3);font-size:14px;cursor:pointer;transition:color .2s;text-align:left;width:100%}
+.adm-logout svg{width:16px;height:16px}
+.adm-logout:hover{color:#e07070}
+.adm-main{display:flex;flex-direction:column;overflow:hidden;background:var(--bg-2)}
+
+/* Login overlay */
+.adm-login{position:fixed;inset:0;z-index:200;background:var(--bg-2);display:grid;place-items:center;padding:24px}
+.adm-login-card{background:#fff;border-radius:var(--r-lg);padding:48px;max-width:400px;width:100%;box-shadow:0 8px 48px -12px rgba(20,14,8,.14)}
+.adm-login-card img{height:28px;width:auto;margin-bottom:32px}
+.adm-login-card h1{font-size:26px;font-weight:450;letter-spacing:-.025em;margin-bottom:8px}
+.adm-login-card p{font-size:14px;color:var(--ink-3);margin-bottom:28px}
+.adm-login-card form{display:grid;gap:12px}
+.adm-login-card input{width:100%;padding:14px 16px;border:1.5px solid var(--line);border-radius:var(--r-sm);font:inherit;font-size:15px;outline:none;transition:border-color .2s}
+.adm-login-card input:focus{border-color:var(--gold)}
+.adm-login-card .btn{width:100%;justify-content:center}
+.adm-login-err{font-size:13.5px;color:#c0392b;margin-top:4px;display:none}
+
+/* Content area */
+.adm-content{flex:1;overflow-y:auto}
+.adm-tab{display:none}
+.adm-tab.is-active{display:block}
+.adm-header{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:28px 36px 20px;background:#fff;border-bottom:1px solid var(--line)}
+.adm-header h2{font-size:22px;font-weight:500;letter-spacing:-.02em}
+.adm-header-actions{display:flex;gap:10px;align-items:center}
+.adm-body{padding:28px 36px}
+
+/* Filters bar */
+.adm-filters{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:20px}
+.adm-filter-btn{padding:7px 16px;border-radius:99px;border:1.5px solid var(--line);background:#fff;font:inherit;font-size:13.5px;color:var(--ink-2);cursor:pointer;transition:border-color .2s,background .2s,color .2s}
+.adm-filter-btn.is-active{border-color:var(--ink);background:var(--ink);color:#fff}
+.adm-filter-select{padding:7px 14px;border-radius:99px;border:1.5px solid var(--line);background:#fff;font:inherit;font-size:13.5px;color:var(--ink-2);cursor:pointer;outline:none}
+
+/* Table */
+.adm-table-wrap{background:#fff;border-radius:var(--r-md);border:1px solid var(--line);overflow:hidden}
+.adm-table{width:100%;border-collapse:collapse;font-size:14px}
+.adm-table th{padding:12px 16px;text-align:left;font-family:var(--mono);font-size:11px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3);border-bottom:1px solid var(--line);background:var(--bg-2)}
+.adm-table td{padding:14px 16px;border-bottom:1px solid var(--line);vertical-align:middle}
+.adm-table tr:last-child td{border-bottom:none}
+.adm-table tr:hover td{background:var(--bg-2)}
+.adm-table .actions{display:flex;gap:8px;align-items:center}
+.tbl-empty{text-align:center;color:var(--ink-3);padding:40px!important}
+
+/* Badges */
+.badge{display:inline-flex;align-items:center;gap:5px;padding:4px 10px;border-radius:99px;font-size:12px;font-weight:500;font-family:var(--mono);letter-spacing:.04em}
+.badge::before{content:"";width:5px;height:5px;border-radius:50%;background:currentColor;flex:none}
+.badge-new{background:#fef3dc;color:#8A6424}
+.badge-reviewed{background:var(--bg-3);color:var(--ink-2)}
+.badge-selected{background:#e6f5ec;color:#276d3c}
+.badge-active{background:#e6f5ec;color:#276d3c}
+.badge-inactive{background:var(--bg-3);color:var(--ink-3)}
+
+/* Icon buttons */
+.ibtn{display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:10px;border:1.5px solid var(--line);background:#fff;color:var(--ink-2);cursor:pointer;transition:border-color .2s,color .2s,background .2s}
+.ibtn svg{width:15px;height:15px}
+.ibtn:hover{border-color:var(--ink);color:var(--ink)}
+.ibtn-del:hover{border-color:#c0392b;color:#c0392b;background:#fff5f5}
+
+/* Status select in table */
+.status-sel{padding:5px 10px;border:1.5px solid var(--line);border-radius:8px;font:inherit;font-size:13px;background:#fff;cursor:pointer;outline:none}
+.status-sel:focus{border-color:var(--gold)}
+
+/* Slide panel (add/edit job) */
+.adm-panel-overlay{position:fixed;inset:0;z-index:150;background:rgba(21,19,15,.48);backdrop-filter:blur(3px);display:none}
+.adm-panel-overlay.is-open{display:block}
+.adm-panel{position:fixed;top:0;right:0;bottom:0;z-index:160;width:min(540px,100%);background:#fff;overflow-y:auto;box-shadow:-8px 0 48px rgba(20,14,8,.12);transform:translateX(100%);transition:transform .35s cubic-bezier(.2,.7,.1,1)}
+.adm-panel.is-open{transform:none}
+.adm-panel-head{display:flex;align-items:center;justify-content:space-between;padding:24px 28px;border-bottom:1px solid var(--line)}
+.adm-panel-head h3{font-size:18px;font-weight:500;letter-spacing:-.015em}
+.adm-panel-body{padding:28px}
+.adm-panel-foot{padding:20px 28px;border-top:1px solid var(--line);display:flex;gap:10px;justify-content:flex-end}
+
+/* App detail modal */
+.adm-modal-overlay{position:fixed;inset:0;z-index:170;background:rgba(21,19,15,.52);backdrop-filter:blur(4px);display:none;align-items:center;justify-content:center;padding:24px}
+.adm-modal-overlay.is-open{display:flex}
+.adm-modal{background:#fff;border-radius:var(--r-lg);max-width:560px;width:100%;max-height:86dvh;overflow-y:auto;padding:32px}
+.adm-modal h3{font-size:20px;font-weight:500;letter-spacing:-.018em;margin-bottom:20px}
+.adm-modal-close{float:right;margin:-4px -4px 0 0}
+.adm-detail-row{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:16px}
+.adm-detail-item{flex:1;min-width:140px}
+.adm-detail-item label{display:block;font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3);margin-bottom:4px}
+.adm-detail-item p{font-size:14.5px;color:var(--ink);word-break:break-word}
+.adm-cover{background:var(--bg-2);border-radius:var(--r-sm);padding:16px;font-size:14px;line-height:1.65;color:var(--ink-2);white-space:pre-wrap;word-break:break-word;max-height:200px;overflow-y:auto;margin-bottom:20px}
+.adm-modal-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:20px}
+
+/* Content editor */
+.adm-content-form{background:#fff;border-radius:var(--r-md);border:1px solid var(--line);overflow:hidden}
+.adm-content-section{padding:28px;border-bottom:1px solid var(--line)}
+.adm-content-section:last-child{border-bottom:none}
+.adm-content-section h4{font-size:15px;font-weight:500;margin-bottom:18px;color:var(--ink-2);font-family:var(--mono);letter-spacing:.04em;text-transform:uppercase;font-size:11.5px}
+
+/* Forms (shared) */
+.f-row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.f-field{display:grid;gap:7px;margin-bottom:16px}
+.f-field label{font-size:13px;font-weight:500;color:var(--ink-2)}
+.f-field input,.f-field select,.f-field textarea{padding:11px 14px;border:1.5px solid var(--line);border-radius:var(--r-sm);font:inherit;font-size:14.5px;outline:none;transition:border-color .2s;background:#fff;color:var(--ink);width:100%}
+.f-field input:focus,.f-field select:focus,.f-field textarea:focus{border-color:var(--gold)}
+.f-field textarea{resize:vertical;min-height:100px}
+.f-err{font-size:13px;color:#c0392b;display:none}
+
+/* Toast */
+.adm-toast{position:fixed;bottom:28px;left:50%;transform:translateX(-50%) translateY(16px);z-index:300;background:var(--ink);color:#fff;padding:12px 22px;border-radius:12px;font-size:14px;font-weight:500;opacity:0;transition:opacity .3s,transform .3s;pointer-events:none;white-space:nowrap}
+.adm-toast.is-show{opacity:1;transform:translateX(-50%) translateY(0)}
+.adm-toast.is-err{background:#c0392b}
+
+/* Loading spinner */
+.adm-spinner{width:36px;height:36px;border:3px solid var(--line);border-top-color:var(--gold);border-radius:50%;animation:spin .7s linear infinite;margin:48px auto}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+@media (max-width:900px){
+  .adm{grid-template-columns:1fr}
+  .adm-side{display:none}
+}
+</style>
+
+<!-- Admin shell — no nav/footer -->
+<div class="adm" id="adm" hidden>
+  <aside class="adm-side">
+    <div class="adm-logo">
+      <img src="/assets/img/logo-cream.png" alt="CakeNest">
+      <span>Admin</span>
+    </div>
+    <button class="adm-nav-item is-active" data-tab="jobs">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M9 7V5a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2M3 13h18"/></svg>
+      Jobs
+    </button>
+    <button class="adm-nav-item" data-tab="recruitment">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0"/><path d="M16 4.6a3.5 3.5 0 0 1 0 6.8M18 14.2a6.5 6.5 0 0 1 3.5 5.8"/></svg>
+      Recruitment
+    </button>
+    <button class="adm-nav-item" data-tab="content">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.12 2.12 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+      Content
+    </button>
+    <div class="adm-side-foot">
+      <small id="adm-user-label">cakenestindia@gmail.com</small>
+      <button class="adm-logout" id="adm-logout">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+        Sign out
+      </button>
+    </div>
+  </aside>
+
+  <main class="adm-main">
+    <!-- JOBS TAB -->
+    <div class="adm-tab is-active" id="tab-jobs">
+      <div class="adm-header">
+        <h2>Job positions</h2>
+        <div class="adm-header-actions">
+          <button class="btn btn--dark" id="add-job-btn" style="min-height:40px;padding:4px 4px 4px 18px;font-size:14px">
+            Add position
+            <span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg></span>
+          </button>
+        </div>
+      </div>
+      <div class="adm-body">
+        <div id="jobs-table-wrap" class="adm-table-wrap">
+          <div class="adm-spinner"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- RECRUITMENT TAB -->
+    <div class="adm-tab" id="tab-recruitment">
+      <div class="adm-header">
+        <h2>Recruitment</h2>
+        <div class="adm-header-actions">
+          <select class="adm-filter-select" id="app-job-filter" style="min-width:160px">
+            <option value="">All positions</option>
+          </select>
+        </div>
+      </div>
+      <div class="adm-body">
+        <div class="adm-filters">
+          <button class="adm-filter-btn is-active" data-status="all">All</button>
+          <button class="adm-filter-btn" data-status="new">New</button>
+          <button class="adm-filter-btn" data-status="reviewed">Reviewed</button>
+          <button class="adm-filter-btn" data-status="selected">Selected</button>
+        </div>
+        <div id="apps-table-wrap" class="adm-table-wrap">
+          <div class="adm-spinner"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CONTENT TAB -->
+    <div class="adm-tab" id="tab-content">
+      <div class="adm-header">
+        <h2>Page content</h2>
+        <div class="adm-header-actions">
+          <button class="btn btn--dark" id="save-content-btn" style="min-height:40px;padding:4px 4px 4px 18px;font-size:14px">
+            Save changes
+            <span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span>
+          </button>
+        </div>
+      </div>
+      <div class="adm-body">
+        <div id="content-form-wrap">
+          <div class="adm-spinner"></div>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+
+<!-- Login screen -->
+<div class="adm-login" id="adm-login">
+  <div class="adm-login-card">
+    <img src="/assets/img/logo-ink.png" alt="CakeNest">
+    <h1>Admin panel</h1>
+    <p>Sign in to manage careers and recruitment.</p>
+    <form id="login-form">
+      <input type="password" id="login-pwd" placeholder="Admin password" autocomplete="current-password" required>
+      <div class="adm-login-err" id="login-err">Incorrect password. Please try again.</div>
+      <button class="btn btn--dark" type="submit" id="login-btn" style="min-height:48px;padding:6px 6px 6px 22px">
+        Sign in
+        <span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </button>
+    </form>
+  </div>
+</div>
+
+<!-- Job add/edit panel -->
+<div class="adm-panel-overlay" id="panel-overlay"></div>
+<div class="adm-panel" id="job-panel" role="dialog" aria-modal="true">
+  <div class="adm-panel-head">
+    <h3 id="panel-title">Add position</h3>
+    <button class="ibtn" id="panel-close" aria-label="Close">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 6l12 12M18 6 6 18"/></svg>
+    </button>
+  </div>
+  <div class="adm-panel-body">
+    <form id="job-form" novalidate>
+      <input type="hidden" id="pf-id">
+      <div class="f-field"><label for="pf-title">Job title *</label><input type="text" id="pf-title" placeholder="e.g. Content Creator" required></div>
+      <div class="f-row">
+        <div class="f-field"><label for="pf-dept">Department</label><input type="text" id="pf-dept" placeholder="e.g. Marketing"></div>
+        <div class="f-field"><label for="pf-location">Location</label><input type="text" id="pf-location" placeholder="Mohali Aerocity"></div>
+      </div>
+      <div class="f-row">
+        <div class="f-field">
+          <label for="pf-type">Type</label>
+          <select id="pf-type">
+            <option>Full-time</option><option>Part-time</option><option>Contract</option><option>Internship</option>
+          </select>
+        </div>
+        <div class="f-field">
+          <label for="pf-status">Status</label>
+          <select id="pf-status"><option value="active">Active</option><option value="inactive">Inactive</option></select>
+        </div>
+      </div>
+      <div class="f-field"><label for="pf-desc">Description</label><textarea id="pf-desc" rows="4" placeholder="What this role involves…"></textarea></div>
+      <div class="f-field"><label for="pf-req">Requirements</label><textarea id="pf-req" rows="4" placeholder="Skills, experience…"></textarea></div>
+      <p id="panel-err" class="f-err"></p>
+    </form>
+  </div>
+  <div class="adm-panel-foot">
+    <button class="btn btn--line" id="panel-cancel" style="min-height:40px;padding:4px 4px 4px 18px;font-size:14px">Cancel <span class="ic" aria-hidden="true"></span></button>
+    <button class="btn btn--dark" id="panel-save" style="min-height:40px;padding:4px 4px 4px 18px;font-size:14px">
+      Save position
+      <span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span>
+    </button>
+  </div>
+</div>
+
+<!-- Application detail modal -->
+<div class="adm-modal-overlay" id="app-modal-overlay">
+  <div class="adm-modal" id="app-modal">
+    <button class="ibtn adm-modal-close" id="app-modal-close" aria-label="Close">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 6l12 12M18 6 6 18"/></svg>
+    </button>
+    <h3 id="app-modal-title">Application details</h3>
+    <div id="app-modal-body"></div>
+  </div>
+</div>
+
+<!-- Toast -->
+<div class="adm-toast" id="toast"></div>
+
+<script>
+(function(){
+'use strict'
+
+// ── State ──────────────────────────────────────────────────
+let token = localStorage.getItem('cn-admin-token') || ''
+let jobs = [], applications = [], currentStatus = 'all', currentJobFilter = ''
+
+// ── Boot ───────────────────────────────────────────────────
+async function boot() {
+  if (token) {
+    try { await api('GET', '/api/admin/jobs'); showApp() }
+    catch { showLogin() }
+  } else { showLogin() }
+}
+
+function showLogin() { document.getElementById('adm-login').style.display = 'grid'; document.getElementById('adm').hidden = true }
+function showApp()   { document.getElementById('adm-login').style.display = 'none'; document.getElementById('adm').hidden = false; loadAll() }
+
+// ── API helper ─────────────────────────────────────────────
+async function api(method, url, body) {
+  const opts = { method, headers: { 'Authorization': 'Bearer ' + token } }
+  if (body && !(body instanceof FormData)) {
+    opts.headers['Content-Type'] = 'application/json'
+    opts.body = JSON.stringify(body)
+  } else if (body) { opts.body = body }
+  const r = await fetch(url, opts)
+  if (r.status === 401) { logout(); throw new Error('Session expired') }
+  const data = await r.json()
+  if (!r.ok) throw new Error(data.error || 'Request failed')
+  return data
+}
+
+// ── Login ──────────────────────────────────────────────────
+document.getElementById('login-form').addEventListener('submit', async function(e) {
+  e.preventDefault()
+  const pwd = document.getElementById('login-pwd').value
+  const btn = document.getElementById('login-btn')
+  const err = document.getElementById('login-err')
+  err.style.display = 'none'; btn.disabled = true; btn.textContent = 'Signing in…'
+  try {
+    const { token: t } = await (await fetch('/api/admin/login', {
+      method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify({password: pwd})
+    })).json().then(async d => { if (d.error) throw new Error(d.error); return d })
+    token = t; localStorage.setItem('cn-admin-token', t); showApp()
+  } catch {
+    err.style.display = 'block'
+    btn.disabled = false; btn.textContent = 'Sign in'
+  }
+})
+
+function logout() {
+  token = ''; localStorage.removeItem('cn-admin-token'); showLogin()
+}
+document.getElementById('adm-logout').addEventListener('click', logout)
+
+// ── Tabs ───────────────────────────────────────────────────
+document.querySelectorAll('.adm-nav-item').forEach(btn => {
+  btn.addEventListener('click', function() {
+    document.querySelectorAll('.adm-nav-item').forEach(b => b.classList.remove('is-active'))
+    document.querySelectorAll('.adm-tab').forEach(t => t.classList.remove('is-active'))
+    this.classList.add('is-active')
+    document.getElementById('tab-' + this.dataset.tab).classList.add('is-active')
+  })
+})
+
+// ── Load all ───────────────────────────────────────────────
+async function loadAll() {
+  await Promise.all([loadJobs(), loadApplications(), loadContent()])
+}
+
+// ──────────────────────────────────────────────────────────
+// JOBS
+// ──────────────────────────────────────────────────────────
+async function loadJobs() {
+  try {
+    const { jobs: j } = await api('GET', '/api/admin/jobs')
+    jobs = j || []
+    renderJobsTable()
+    populateJobFilter()
+  } catch(e) { toast(e.message, true) }
+}
+
+function renderJobsTable() {
+  const wrap = document.getElementById('jobs-table-wrap')
+  if (!jobs.length) {
+    wrap.innerHTML = '<p class="tbl-empty">No positions yet. Add your first one above.</p>'
+    return
+  }
+  wrap.innerHTML = `<table class="adm-table">
+    <thead><tr>
+      <th>Title</th><th>Department</th><th>Location / Type</th><th>Status</th><th style="width:100px">Actions</th>
+    </tr></thead>
+    <tbody>${jobs.map(j => `<tr>
+      <td><strong style="font-size:14.5px">${esc(j.title)}</strong></td>
+      <td style="color:var(--ink-3)">${esc(j.department)}</td>
+      <td style="color:var(--ink-3)">${esc(j.location)} · ${esc(j.type)}</td>
+      <td><span class="badge badge-${j.status === 'active' ? 'active' : 'inactive'}">${j.status}</span></td>
+      <td><div class="actions">
+        <button class="ibtn" onclick="editJob(${j.id})" title="Edit"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.12 2.12 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></button>
+        <button class="ibtn ibtn-del" onclick="deleteJob(${j.id}, '${esc(j.title)}')" title="Delete"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18M8 6V4h8v2M19 6l-1 14H6L5 6"/></svg></button>
+      </div></td>
+    </tr>`).join('')}</tbody>
+  </table>`
+}
+
+window.editJob = function(id) {
+  const j = jobs.find(x => x.id === id)
+  if (!j) return
+  document.getElementById('panel-title').textContent = 'Edit position'
+  document.getElementById('pf-id').value = j.id
+  document.getElementById('pf-title').value = j.title
+  document.getElementById('pf-dept').value = j.department
+  document.getElementById('pf-location').value = j.location
+  document.getElementById('pf-type').value = j.type
+  document.getElementById('pf-status').value = j.status
+  document.getElementById('pf-desc').value = j.description
+  document.getElementById('pf-req').value = j.requirements
+  openPanel()
+}
+
+window.deleteJob = async function(id, title) {
+  if (!confirm(`Delete "${title}"? This cannot be undone.`)) return
+  try {
+    await api('DELETE', '/api/admin/jobs/' + id)
+    jobs = jobs.filter(j => j.id !== id)
+    renderJobsTable(); populateJobFilter()
+    toast('Position deleted')
+  } catch(e) { toast(e.message, true) }
+}
+
+// Panel (add/edit)
+function openPanel() {
+  document.getElementById('panel-overlay').classList.add('is-open')
+  document.getElementById('job-panel').classList.add('is-open')
+  document.getElementById('pf-title').focus()
+}
+function closePanel() {
+  document.getElementById('panel-overlay').classList.remove('is-open')
+  document.getElementById('job-panel').classList.remove('is-open')
+  document.getElementById('job-form').reset()
+  document.getElementById('pf-id').value = ''
+  document.getElementById('panel-title').textContent = 'Add position'
+  document.getElementById('panel-err').style.display = 'none'
+}
+
+document.getElementById('add-job-btn').addEventListener('click', openPanel)
+document.getElementById('panel-close').addEventListener('click', closePanel)
+document.getElementById('panel-cancel').addEventListener('click', closePanel)
+document.getElementById('panel-overlay').addEventListener('click', closePanel)
+
+document.getElementById('panel-save').addEventListener('click', async function() {
+  const id    = document.getElementById('pf-id').value
+  const title = document.getElementById('pf-title').value.trim()
+  const errEl = document.getElementById('panel-err')
+  if (!title) { errEl.textContent = 'Title is required'; errEl.style.display = 'block'; return }
+  errEl.style.display = 'none'
+  const body = {
+    title, department: document.getElementById('pf-dept').value,
+    location: document.getElementById('pf-location').value || 'Mohali Aerocity',
+    type: document.getElementById('pf-type').value,
+    status: document.getElementById('pf-status').value,
+    description: document.getElementById('pf-desc').value,
+    requirements: document.getElementById('pf-req').value
+  }
+  this.disabled = true; this.textContent = 'Saving…'
+  try {
+    if (id) {
+      const { job } = await api('PUT', '/api/admin/jobs/' + id, body)
+      jobs = jobs.map(j => j.id === Number(id) ? job : j)
+      toast('Position updated')
+    } else {
+      const { job } = await api('POST', '/api/admin/jobs', body)
+      jobs = [job, ...jobs]
+      toast('Position added')
+    }
+    renderJobsTable(); populateJobFilter(); closePanel()
+  } catch(e) { errEl.textContent = e.message; errEl.style.display = 'block' }
+  this.disabled = false; this.innerHTML = 'Save position <span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span>'
+})
+
+// ──────────────────────────────────────────────────────────
+// APPLICATIONS
+// ──────────────────────────────────────────────────────────
+function populateJobFilter() {
+  const sel = document.getElementById('app-job-filter')
+  const cur = sel.value
+  sel.innerHTML = '<option value="">All positions</option>' +
+    jobs.map(j => `<option value="${j.id}"${j.id == cur ? ' selected' : ''}>${esc(j.title)}</option>`).join('')
+}
+
+async function loadApplications() {
+  let url = '/api/admin/applications'
+  const params = []
+  if (currentStatus && currentStatus !== 'all') params.push('status=' + currentStatus)
+  if (currentJobFilter) params.push('job=' + currentJobFilter)
+  if (params.length) url += '?' + params.join('&')
+  try {
+    const { applications: a } = await api('GET', url)
+    applications = a || []
+    renderAppsTable()
+  } catch(e) { toast(e.message, true) }
+}
+
+function renderAppsTable() {
+  const wrap = document.getElementById('apps-table-wrap')
+  if (!applications.length) {
+    wrap.innerHTML = '<p class="tbl-empty">No applications found.</p>'
+    return
+  }
+  wrap.innerHTML = `<table class="adm-table">
+    <thead><tr>
+      <th>Applicant</th><th>Position</th><th>Date</th><th>Status</th><th style="width:130px">Actions</th>
+    </tr></thead>
+    <tbody>${applications.map(a => `<tr>
+      <td><div><strong style="font-size:14px">${esc(a.name)}</strong><br><small style="color:var(--ink-3)">${esc(a.email)}</small></div></td>
+      <td style="color:var(--ink-3);font-size:13.5px">${esc(a.job_title)}</td>
+      <td style="color:var(--ink-3);font-size:13px;white-space:nowrap">${fmtDate(a.created_at)}</td>
+      <td>
+        <select class="status-sel" onchange="updateAppStatus(${a.id}, this.value)">
+          <option value="new"${a.status==='new'?' selected':''}>New</option>
+          <option value="reviewed"${a.status==='reviewed'?' selected':''}>Reviewed</option>
+          <option value="selected"${a.status==='selected'?' selected':''}>Selected</option>
+        </select>
+      </td>
+      <td><div class="actions">
+        <button class="ibtn" onclick="viewApp(${a.id})" title="View details"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 8v4M12 16h.01"/></svg></button>
+        ${a.cv_key ? `<a class="ibtn" href="/api/admin/applications/${a.id}/cv" title="Download CV" download><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v10M8 15l4 4 4-4"/><path d="M5 20h14"/></svg></a>` : ''}
+        <button class="ibtn ibtn-del" onclick="deleteApp(${a.id})" title="Delete"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18M8 6V4h8v2M19 6l-1 14H6L5 6"/></svg></button>
+      </div></td>
+    </tr>`).join('')}</tbody>
+  </table>`
+}
+
+window.updateAppStatus = async function(id, status) {
+  try {
+    await api('PATCH', '/api/admin/applications/' + id, { status })
+    applications = applications.map(a => a.id === id ? {...a, status} : a)
+    toast('Status updated')
+  } catch(e) { toast(e.message, true); await loadApplications() }
+}
+
+window.deleteApp = async function(id) {
+  if (!confirm('Delete this application? The CV will also be removed.')) return
+  try {
+    await api('DELETE', '/api/admin/applications/' + id)
+    applications = applications.filter(a => a.id !== id)
+    renderAppsTable(); toast('Application deleted')
+  } catch(e) { toast(e.message, true) }
+}
+
+window.viewApp = function(id) {
+  const a = applications.find(x => x.id === id)
+  if (!a) return
+  document.getElementById('app-modal-title').textContent = a.name
+  document.getElementById('app-modal-body').innerHTML = `
+    <div class="adm-detail-row">
+      <div class="adm-detail-item"><label>Position</label><p>${esc(a.job_title)}</p></div>
+      <div class="adm-detail-item"><label>Status</label><p><span class="badge badge-${a.status}">${a.status}</span></p></div>
+    </div>
+    <div class="adm-detail-row">
+      <div class="adm-detail-item"><label>Email</label><p><a href="mailto:${esc(a.email)}" style="color:var(--gold-ink)">${esc(a.email)}</a></p></div>
+      <div class="adm-detail-item"><label>Phone</label><p>${esc(a.phone) || '—'}</p></div>
+    </div>
+    <div class="adm-detail-row">
+      <div class="adm-detail-item"><label>Applied on</label><p>${fmtDate(a.created_at)}</p></div>
+    </div>
+    ${a.cover_letter ? `<label style="font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3);display:block;margin-bottom:8px">Cover letter</label><div class="adm-cover">${esc(a.cover_letter)}</div>` : ''}
+    <div class="adm-modal-actions">
+      ${a.cv_key ? `<a class="btn btn--dark" href="/api/admin/applications/${a.id}/cv" download style="min-height:40px;padding:4px 4px 4px 18px;font-size:14px">Download CV <span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v10M8 15l4 4 4-4"/><path d="M5 20h14"/></svg><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v10M8 15l4 4 4-4"/><path d="M5 20h14"/></svg></span></a>` : ''}
+      <a class="btn btn--line" href="mailto:${esc(a.email)}" style="min-height:40px;padding:4px 4px 4px 18px;font-size:14px">Reply by email <span class="ic" aria-hidden="true"></span></a>
+    </div>`
+  document.getElementById('app-modal-overlay').classList.add('is-open')
+}
+
+document.getElementById('app-modal-close').addEventListener('click', () => document.getElementById('app-modal-overlay').classList.remove('is-open'))
+document.getElementById('app-modal-overlay').addEventListener('click', e => { if (e.target === document.getElementById('app-modal-overlay')) document.getElementById('app-modal-overlay').classList.remove('is-open') })
+
+// Status filter buttons
+document.querySelectorAll('.adm-filter-btn').forEach(btn => {
+  btn.addEventListener('click', function() {
+    document.querySelectorAll('.adm-filter-btn').forEach(b => b.classList.remove('is-active'))
+    this.classList.add('is-active')
+    currentStatus = this.dataset.status
+    loadApplications()
+  })
+})
+
+document.getElementById('app-job-filter').addEventListener('change', function() {
+  currentJobFilter = this.value; loadApplications()
+})
+
+// ──────────────────────────────────────────────────────────
+// CONTENT
+// ──────────────────────────────────────────────────────────
+async function loadContent() {
+  try {
+    const { content } = await api('GET', '/api/admin/content')
+    renderContentForm(content || {})
+  } catch(e) { toast(e.message, true) }
+}
+
+function renderContentForm(c) {
+  document.getElementById('content-form-wrap').innerHTML = `
+    <div class="adm-content-form">
+      <div class="adm-content-section">
+        <h4>Careers page hero</h4>
+        <div class="f-field"><label for="c-hero-title">Page title</label><input type="text" id="c-hero-title" value="${esc(c.hero_title||'')}"></div>
+        <div class="f-field"><label for="c-hero-sub">Subtitle</label><textarea id="c-hero-sub" rows="3">${esc(c.hero_subtitle||'')}</textarea></div>
+        <div class="f-field"><label for="c-hero-img">Hero image filename <small style="color:var(--ink-3)">(without .webp — e.g. women-community)</small></label><input type="text" id="c-hero-img" value="${esc(c.hero_image||'')}"></div>
+      </div>
+      <div class="adm-content-section">
+        <h4>Culture section</h4>
+        <div class="f-field"><label for="c-cult-title">Section heading</label><input type="text" id="c-cult-title" value="${esc(c.culture_title||'')}"></div>
+        <div class="f-field"><label for="c-cult-body">Body copy</label><textarea id="c-cult-body" rows="4">${esc(c.culture_body||'')}</textarea></div>
+      </div>
+    </div>`
+}
+
+document.getElementById('save-content-btn').addEventListener('click', async function() {
+  this.disabled = true; this.textContent = 'Saving…'
+  try {
+    await api('PUT', '/api/admin/content', {
+      hero_title:    document.getElementById('c-hero-title')?.value || '',
+      hero_subtitle: document.getElementById('c-hero-sub')?.value || '',
+      hero_image:    document.getElementById('c-hero-img')?.value || '',
+      culture_title: document.getElementById('c-cult-title')?.value || '',
+      culture_body:  document.getElementById('c-cult-body')?.value || ''
+    })
+    toast('Content saved')
+  } catch(e) { toast(e.message, true) }
+  this.disabled = false
+  this.innerHTML = 'Save changes <span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span>'
+})
+
+// ── Utilities ──────────────────────────────────────────────
+function esc(s) {
+  return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;')
+}
+
+function fmtDate(s) {
+  if (!s) return '—'
+  const d = new Date(s.replace(' ','T') + 'Z')
+  return d.toLocaleDateString('en-IN', {day:'numeric',month:'short',year:'numeric'})
+}
+
+function toast(msg, isErr) {
+  const el = document.getElementById('toast')
+  el.textContent = msg
+  el.className = 'adm-toast' + (isErr ? ' is-err' : '')
+  el.classList.add('is-show')
+  setTimeout(() => el.classList.remove('is-show'), 3000)
+}
+
+boot()
+})()
+</script>

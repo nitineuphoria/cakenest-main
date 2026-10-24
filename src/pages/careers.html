@@ -1,0 +1,233 @@
+<!--title: Careers at CakeNest-->
+<!--deploytitle: Careers | CakeNest — Join our team-->
+<!--desc: Join the CakeNest team. We're hiring passionate people to help India's women home bakers build businesses. View open positions and apply.-->
+<!--active: careers-->
+{{nav}}
+<main>
+
+<section class="phero">
+  <div class="wrap">
+    <span class="tag load-rise" id="careers-tag">Join our team</span>
+    <div class="phero-grid">
+      <h1 class="h1 load-rise d1" id="careers-h1">Build the future of home baking <span class="serif">with us.</span></h1>
+      <p class="lede load-rise d2" id="careers-subtitle">We are a small, passionate team helping India's women home bakers learn, earn and build businesses. Come help us grow the movement.</p>
+    </div>
+    <div class="phero-img frame load-rise d3" style="max-height:520px; overflow:hidden">
+      <img class="pimg" id="careers-hero-img" src="assets/img/women-community.webp" alt="CakeNest team and community" width="1500" height="1000" data-parallax="40" style="object-position:60% 40%">
+    </div>
+  </div>
+</section>
+
+<section class="section--tight bg-2">
+  <div class="wrap">
+    <div class="split">
+      <div class="split-media" data-mask>
+        <img src="assets/img/founder-laptop.webp" alt="Team member working on laptop" loading="lazy" width="1500" height="1000" style="object-position:52% 40%">
+        <div class="float-card"><span class="dot">{{i:sprout}}</span><div><b>Mission-first</b><span>Every role moves the needle</span></div></div>
+      </div>
+      <div class="split-copy" data-rise>
+        <span class="tag" id="culture-tag">Why CakeNest?</span>
+        <h2 class="h2" id="culture-title">A place where your work has <span class="serif">real impact.</span></h2>
+        <p class="lede" id="culture-body">We are a mission-first team. Every line of code, every campaign, every class we run has one goal — helping women become entrepreneurs. If that excites you, you will fit right in.</p>
+        <ul class="ticks">
+          <li><b>Mohali Aerocity</b><span>our home base, work from office</span></li>
+          <li><b>Real ownership</b><span>small team, large responsibility</span></li>
+          <li><b>Meaningful work</b><span>you see the impact daily</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="openings">
+  <div class="wrap">
+    <div class="head">
+      <div><span class="tag">Open positions</span><h2 class="h2">Find your role at <span class="serif">CakeNest.</span></h2></div>
+      <p class="lede">Every role here is a chance to work on something that genuinely matters for women across India.</p>
+    </div>
+
+    <div id="jobs-loading" class="jobs-loading" aria-live="polite">
+      <div class="jcard-skel"></div>
+      <div class="jcard-skel"></div>
+      <div class="jcard-skel"></div>
+    </div>
+
+    <div id="jobs-grid" class="jobs-grid" hidden></div>
+
+    <div id="jobs-empty" class="jobs-empty" hidden>
+      <span class="tag">All caught up</span>
+      <p>No open positions right now. Check back soon — we grow fast.</p>
+      <a class="btn btn--dark" href="mailto:cakenestindia@gmail.com">Send us your CV anyway {{ic}}</a>
+    </div>
+  </div>
+</section>
+
+{{cta:meeting-smile|A smiling woman during a planning session}}
+
+</main>
+{{footer}}
+
+<!-- Apply modal -->
+<div class="careers-overlay" id="apply-overlay" role="dialog" aria-modal="true" aria-labelledby="modal-title" hidden>
+  <div class="careers-modal">
+    <button class="careers-modal-close" id="modal-close" aria-label="Close">
+      {{i:close}}
+    </button>
+    <div class="careers-modal-head">
+      <span class="tag tag--dark" id="modal-job-dept"></span>
+      <h3 class="h3" id="modal-title">Apply for position</h3>
+    </div>
+    <form id="apply-form" class="careers-form" novalidate>
+      <input type="hidden" id="f-job-id" name="jobId">
+      <input type="hidden" id="f-job-title" name="jobTitle">
+      <div class="cf-row">
+        <div class="cf-field">
+          <label for="f-name">Full name <span aria-hidden="true">*</span></label>
+          <input type="text" id="f-name" name="name" placeholder="Your full name" autocomplete="name" required>
+        </div>
+        <div class="cf-field">
+          <label for="f-email">Email <span aria-hidden="true">*</span></label>
+          <input type="email" id="f-email" name="email" placeholder="you@email.com" autocomplete="email" required>
+        </div>
+      </div>
+      <div class="cf-field">
+        <label for="f-phone">Phone number <span aria-hidden="true">*</span></label>
+        <input type="tel" id="f-phone" name="phone" placeholder="+91 98765 43210" autocomplete="tel" required>
+      </div>
+      <div class="cf-field">
+        <label for="f-cover">Cover letter <span class="cf-opt">(optional)</span></label>
+        <textarea id="f-cover" name="coverLetter" rows="4" placeholder="Tell us why you'd be a great fit…"></textarea>
+      </div>
+      <div class="cf-field">
+        <label for="f-cv">Resume / CV <span aria-hidden="true">*</span></label>
+        <div class="cf-upload" id="cv-drop">
+          <input type="file" id="f-cv" name="cv" accept=".pdf,.doc,.docx" required>
+          <div class="cf-upload-label">
+            {{i:box}}
+            <span id="cv-label">Drop your CV here or <u>browse</u></span>
+            <small>PDF or Word · max 5 MB</small>
+          </div>
+        </div>
+      </div>
+      <p id="apply-error" class="cf-error" hidden></p>
+      <button class="btn btn--dark" type="submit" id="apply-submit" style="width:100%">
+        Submit application {{ic}}
+      </button>
+    </form>
+    <div id="apply-success" class="careers-success" hidden>
+      <span class="careers-success-ic">{{i:check}}</span>
+      <h3>Application received!</h3>
+      <p>Thanks, we have got your application and will be in touch. We review every submission carefully.</p>
+      <button class="btn btn--line" id="modal-done">Close</button>
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+  // Load content from CMS
+  fetch('/api/jobs')
+    .then(r => r.json())
+    .then(({ jobs }) => renderJobs(jobs || []))
+    .catch(() => renderJobs([]))
+
+  function renderJobs(jobs) {
+    const loading = document.getElementById('jobs-loading')
+    const grid = document.getElementById('jobs-grid')
+    const empty = document.getElementById('jobs-empty')
+    loading.hidden = true
+    if (!jobs.length) { empty.hidden = false; return }
+    grid.innerHTML = jobs.map(j => `
+      <div class="jcard" data-rise>
+        <div class="jcard-top">
+          <span class="jcard-dept">${esc(j.department)}</span>
+          <div class="jcard-meta"><span>${esc(j.location)}</span><span class="jcard-dot"></span><span>${esc(j.type)}</span></div>
+        </div>
+        <h3 class="jcard-title">${esc(j.title)}</h3>
+        ${j.description ? `<p class="jcard-desc">${esc(j.description.slice(0,160))}${j.description.length > 160 ? '…' : ''}</p>` : ''}
+        <button class="btn btn--dark jcard-btn" data-id="${j.id}" data-title="${esc(j.title)}" data-dept="${esc(j.department)}">
+          Apply now
+          <span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></span>
+        </button>
+      </div>`).join('')
+    grid.hidden = false
+    // wire up apply buttons
+    grid.querySelectorAll('.jcard-btn').forEach(btn => {
+      btn.addEventListener('click', () => openModal(btn.dataset.id, btn.dataset.title, btn.dataset.dept))
+    })
+    // trigger reveal animations
+    if (typeof initReveals === 'function') initReveals()
+  }
+
+  function esc(s) {
+    return String(s || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;')
+  }
+
+  // Modal
+  const overlay = document.getElementById('apply-overlay')
+  const form    = document.getElementById('apply-form')
+  const success = document.getElementById('apply-success')
+
+  function openModal(id, title, dept) {
+    document.getElementById('f-job-id').value = id
+    document.getElementById('f-job-title').value = title
+    document.getElementById('modal-title').textContent = 'Apply — ' + title
+    document.getElementById('modal-job-dept').textContent = dept || 'Open role'
+    form.hidden = false; success.hidden = true
+    form.reset()
+    document.getElementById('cv-label').innerHTML = 'Drop your CV here or <u>browse</u>'
+    document.getElementById('apply-error').hidden = true
+    overlay.hidden = false
+    document.body.style.overflow = 'hidden'
+    document.getElementById('f-name').focus()
+  }
+
+  function closeModal() {
+    overlay.hidden = true
+    document.body.style.overflow = ''
+  }
+
+  document.getElementById('modal-close').addEventListener('click', closeModal)
+  document.getElementById('modal-done').addEventListener('click', closeModal)
+  overlay.addEventListener('click', e => { if (e.target === overlay) closeModal() })
+  document.addEventListener('keydown', e => { if (e.key === 'Escape' && !overlay.hidden) closeModal() })
+
+  // CV file label
+  document.getElementById('f-cv').addEventListener('change', function() {
+    const f = this.files[0]
+    document.getElementById('cv-label').innerHTML = f ? `<b>${esc(f.name)}</b>` : 'Drop your CV here or <u>browse</u>'
+  })
+
+  // CV drag-and-drop
+  const drop = document.getElementById('cv-drop')
+  drop.addEventListener('dragover', e => { e.preventDefault(); drop.classList.add('is-drag') })
+  drop.addEventListener('dragleave', () => drop.classList.remove('is-drag'))
+  drop.addEventListener('drop', e => {
+    e.preventDefault(); drop.classList.remove('is-drag')
+    const f = e.dataTransfer.files[0]
+    if (f) { document.getElementById('f-cv').files = e.dataTransfer.files; document.getElementById('cv-label').innerHTML = `<b>${esc(f.name)}</b>` }
+  })
+
+  // Submit
+  form.addEventListener('submit', async function(e) {
+    e.preventDefault()
+    const errEl = document.getElementById('apply-error')
+    const btn   = document.getElementById('apply-submit')
+    errEl.hidden = true
+    btn.disabled = true
+    btn.textContent = 'Submitting…'
+    try {
+      const fd = new FormData(form)
+      const r = await fetch('/api/apply', { method: 'POST', body: fd })
+      const data = await r.json()
+      if (!r.ok) throw new Error(data.error || 'Something went wrong')
+      form.hidden = true; success.hidden = false
+    } catch(err) {
+      errEl.textContent = err.message
+      errEl.hidden = false
+      btn.disabled = false
+      btn.innerHTML = 'Submit application <span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></span>'
+    }
+  })
+})()
+</script>

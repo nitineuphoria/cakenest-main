@@ -11,7 +11,7 @@ sys.path.insert(0, str(ROOT / 'src'))
 from partials import icon, IC, nav, brands, words, cta, footer
 
 SITE = 'https://www.cakenest.in'
-PAGES = ['index', 'about', 'impact', 'programs', 'stories', 'partner', 'join']
+PAGES = ['index', 'about', 'impact', 'programs', 'stories', 'partner', 'join', 'careers']
 FONTS = ('<link rel="preconnect" href="https://fonts.googleapis.com">\n<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>\n'
          '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Mona+Sans:ital,wdth,wght@0,75..125,200..900;1,75..125,200..900&family=Instrument+Serif:ital@0;1&family=Geist+Mono:wght@400;500&display=swap">\n')
 CSS = (ROOT / 'src/site.css').read_text()
@@ -90,7 +90,7 @@ def prod_doc(name, meta, body):
         f'<meta property="og:url" content="{url}">', f'<meta property="og:image" content="{SITE}/assets/img/og.jpg">',
         '<meta property="og:locale" content="en_IN">', '<meta name="twitter:card" content="summary_large_image">',
     ]
-    if name == '404':
+    if name in ('404', 'admin'):
         head = [h for h in head if 'canonical' not in h and 'og:url' not in h] + ['<meta name="robots" content="noindex">']
     if name == 'index':
         head.append('<script type="application/ld+json">' + json.dumps(ORG_SCHEMA) + '</script>')

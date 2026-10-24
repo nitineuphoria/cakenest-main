@@ -35,7 +35,7 @@ ICONS = {
 def icon(n): return S.format(ICONS[n])
 IC = '<span class="ic" aria-hidden="true">' + icon('arrowUR') + icon('arrowUR') + '</span>'
 
-PAGES = [('about.html','About','about'),('impact.html','Impact','impact'),('programs.html','Programs','programs'),('stories.html','Stories','stories'),('partner.html','Partners','partner')]
+PAGES = [('about.html','About','about'),('impact.html','Impact','impact'),('programs.html','Programs','programs'),('stories.html','Stories','stories'),('partner.html','Partners','partner'),('careers.html','Careers','careers')]
 
 def nav(active):
     links = ''.join('<a href="{}"{}>{}</a>'.format(h, ' aria-current="page"' if k == active else '', t) for h, t, k in PAGES)
@@ -104,7 +104,7 @@ def footer():
       </div>
       <div>
         <h4>Explore</h4>
-        <ul><li><a href="about.html">About us</a></li><li><a href="impact.html">Our impact</a></li><li><a href="programs.html">Programs</a></li><li><a href="stories.html">Stories</a></li><li><a href="partner.html">Partner with us</a></li></ul>
+        <ul><li><a href="about.html">About us</a></li><li><a href="impact.html">Our impact</a></li><li><a href="programs.html">Programs</a></li><li><a href="stories.html">Stories</a></li><li><a href="partner.html">Partner with us</a></li><li><a href="careers.html">Careers</a></li></ul>
       </div>
       <div>
         <h4>Ecosystem</h4>
