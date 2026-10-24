@@ -588,13 +588,12 @@ body{overflow:hidden}
 .adm-login-err{font-size:13.5px;color:#c0392b;margin-top:4px;display:none}
 
 /* Content area */
-.adm-content{flex:1;overflow-y:auto}
 .adm-tab{display:none}
-.adm-tab.is-active{display:block}
+.adm-tab.is-active{display:flex;flex-direction:column;flex:1;min-height:0;overflow:hidden}
 .adm-header{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:28px 36px 20px;background:#fff;border-bottom:1px solid var(--line)}
 .adm-header h2{font-size:22px;font-weight:500;letter-spacing:-.02em}
 .adm-header-actions{display:flex;gap:10px;align-items:center}
-.adm-body{padding:28px 36px}
+.adm-body{padding:28px 36px;flex:1;overflow-y:auto;min-height:0}
 
 /* Filters bar */
 .adm-filters{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:20px}
