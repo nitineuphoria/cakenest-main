@@ -79,7 +79,6 @@
     </div>
     <form id="apply-form" class="careers-form" novalidate>
       <input type="hidden" id="f-job-id" name="jobId">
-      <input type="hidden" id="f-job-title" name="jobTitle">
       <div class="cf-row">
         <div class="cf-field">
           <label for="f-name">Full name <span aria-hidden="true">*</span></label>
@@ -109,6 +108,11 @@
           </div>
         </div>
       </div>
+      <label class="cf-consent">
+        <input type="checkbox" id="f-consent" name="consent" value="yes" required>
+        <span>I agree that CakeNest can store my application and CV for up to 12 months to consider me for roles, as described in the <a href="privacy.html" target="_blank" rel="noopener">Privacy Policy</a>.</span>
+      </label>
+      <div class="cf-turnstile" data-sitekey="{{turnstile}}" data-size="flexible" data-theme="light"></div>
       <p id="apply-error" class="cf-error" hidden></p>
       <button class="btn btn--dark" type="submit" id="apply-submit" style="width:100%">
         Submit application {{ic}}
@@ -123,6 +127,7 @@
   </div>
 </div>
 
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 <script>
 (function(){
   // Load content from CMS
@@ -170,16 +175,20 @@
 
   function openModal(id, title, dept) {
     document.getElementById('f-job-id').value = id
-    document.getElementById('f-job-title').value = title
     document.getElementById('modal-title').textContent = 'Apply — ' + title
     document.getElementById('modal-job-dept').textContent = dept || 'Open role'
     form.hidden = false; success.hidden = true
     form.reset()
     document.getElementById('cv-label').innerHTML = 'Drop your CV here or <u>browse</u>'
     document.getElementById('apply-error').hidden = true
+    resetCheck()
     overlay.hidden = false
     document.body.style.overflow = 'hidden'
     document.getElementById('f-name').focus()
+  }
+
+  function resetCheck() {
+    try { if (window.turnstile) window.turnstile.reset() } catch (e) {}
   }
 
   function closeModal() {
@@ -214,17 +223,25 @@
     const errEl = document.getElementById('apply-error')
     const btn   = document.getElementById('apply-submit')
     errEl.hidden = true
+    const missing = !form.name.value.trim() ? 'Please enter your full name.'
+      : !form.email.value.trim() ? 'Please enter your email.'
+      : !form.phone.value.trim() ? 'Please enter your phone number.'
+      : !document.getElementById('f-cv').files.length ? 'Please attach your CV.'
+      : !document.getElementById('f-consent').checked ? 'Please agree to the Privacy Policy to apply.'
+      : ''
+    if (missing) { errEl.textContent = missing; errEl.hidden = false; return }
     btn.disabled = true
     btn.textContent = 'Submitting…'
     try {
       const fd = new FormData(form)
       const r = await fetch('/api/apply', { method: 'POST', body: fd })
-      const data = await r.json()
+      const data = await r.json().catch(() => ({}))
       if (!r.ok) throw new Error(data.error || 'Something went wrong')
       form.hidden = true; success.hidden = false
     } catch(err) {
       errEl.textContent = err.message
       errEl.hidden = false
+      resetCheck()
       btn.disabled = false
       btn.innerHTML = 'Submit application <span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></span>'
     }

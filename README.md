@@ -8,7 +8,8 @@ Pro (cakenestpro.com) and Marketing (marketing.cakenest.in).
 - `public/`  — the built site that is live on cakenest.in. Do not edit by hand; it is regenerated.
 - `src/`     — the source: `pages/*.html` (one per page), `site.css`, `site.js`, `partials.py` (nav, footer, shared blocks).
 - `assets/img/` — images used by the site.
-- `build.py` — builds `public/` from `src/` (Python 3, no packages needed).
+- `build.py` — builds `public/` from `src/` (Python 3, no packages needed). Holds `LEGAL` details and `TURNSTILE_SITEKEY`.
+- `functions/` + `lib/` — careers and admin APIs (Cloudflare Pages Functions, D1 database `cakenest-careers-db`, R2 bucket `cakenest-cvs`).
 - `archive/` — earlier versions (May 2026 prototype, V1, first V2 copy). Not deployed.
 
 ## Update the live site
@@ -28,6 +29,12 @@ Pro (cakenestpro.com) and Marketing (marketing.cakenest.in).
 In Cloudflare: delete the "Root to www" redirect rule, remove the two Pages custom domains, then in DNS restore
 `cakenest.in  A  198.54.121.188  (Proxied)` and `www.cakenest.in  CNAME  cakenest.in  (Proxied)`.
 The WordPress files on the Namecheap server were not changed.
+
+## Admin and careers security
+- `/admin` is protected by Cloudflare Access (Zero Trust free plan): sign in with a one-time code sent to an approved email, then the admin password.
+  To add or remove people: Zero Trust → Access → Applications → CakeNest Admin → Policies.
+- Careers form uses Cloudflare Turnstile; the secret is set with `npx wrangler pages secret put TURNSTILE_SECRET_KEY`.
+- Applications and CVs older than 12 months are deleted automatically when the admin opens Applications (unless marked selected).
 
 ## Forms
 Join and Partner forms validate, then open WhatsApp (+91 88377 59003) with the details filled in.

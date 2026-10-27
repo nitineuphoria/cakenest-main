@@ -11,7 +11,22 @@ sys.path.insert(0, str(ROOT / 'src'))
 from partials import icon, IC, nav, brands, words, cta, footer
 
 SITE = 'https://www.cakenest.in'
-PAGES = ['index', 'about', 'impact', 'programs', 'stories', 'partner', 'join', 'careers']
+PAGES = ['index', 'about', 'impact', 'programs', 'stories', 'partner', 'join', 'careers', 'privacy', 'terms']
+
+# Cloudflare Turnstile site key (public). Local/preview builds use Cloudflare's always-pass test key.
+TURNSTILE_SITEKEY = '0x4AAAAAAFmsyhunwQO1YDD7'
+TURNSTILE_TEST_KEY = '1x00000000000000000000AA'
+
+# Business details used on /privacy and /terms. The production build refuses to run while any is blank.
+LEGAL = {
+    'entity': 'Cakenest India Private Limited',
+    'address': 'Sector 51 A, Chandigarh, India',
+    'grievance': 'Nitin Sharma',
+    'jurisdiction': 'Chandigarh',
+    'email': 'help@cakenest.in',
+    'phone': '+91 88377 59003',
+    'updated': '26 October 2026',
+}
 FONTS = ('<link rel="preconnect" href="https://fonts.googleapis.com">\n<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>\n'
          '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Mona+Sans:ital,wdth,wght@0,75..125,200..900;1,75..125,200..900&family=Instrument+Serif:ital@0;1&family=Geist+Mono:wght@400;500&display=swap">\n')
 CSS = (ROOT / 'src/site.css').read_text()
@@ -19,7 +34,7 @@ JS = (ROOT / 'src/site.js').read_text()
 RESET = ':root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}'
 
 ORG_SCHEMA = {
-    "@context": "https://schema.org", "@type": "Organization", "name": "CakeNest", "url": SITE,
+    "@context": "https://schema.org", "@type": "Organization", "name": "CakeNest", "legalName": "Cakenest India Private Limited", "url": SITE,
     "logo": SITE + "/assets/img/logo-ink.png",
     "description": "A women-led movement helping India's home bakers learn, showcase, earn and build businesses from home.",
     "sameAs": ["https://www.instagram.com/cakenest.in/"],
@@ -38,6 +53,8 @@ OLD_REDIRECTS = {
     '/how-to-make-moist-and-fluffy-cupcakes': '/programs', '/7-tips-every-cake-photographer-must-know-about': '/programs',
     '/how-to-grow-a-home-bakery': '/impact', '/how-home-bakers-are-turning-their-passion-into-business': '/impact',
     '/wp-admin': '/', '/wp-login.php': '/',
+    '/privacy-policy': '/privacy', '/terms-and-conditions': '/terms', '/terms-of-service': '/terms', '/terms-conditions': '/terms',
+    '/refund-policy': 'https://order.cakenest.in/refund-policy', '/refund_returns': 'https://order.cakenest.in/refund-policy',
 }
 
 HEADERS = """/*
@@ -59,6 +76,8 @@ def render(path):
     body = re.sub(r'\{\{cta:?([^}]*)\}\}', lambda m: cta(*m.group(1).split('|')) if m.group(1) else cta(), body)
     body = body.replace('{{ic}}', IC)
     body = re.sub(r'\{\{i:(\w+)\}\}', lambda m: icon(m.group(1)), body)
+    body = body.replace('{{turnstile}}', SITEKEY)
+    body = re.sub(r'\{\{legal:(\w+)\}\}', lambda m: LEGAL[m.group(1)] or '[' + m.group(1).upper() + ' — TO BE CONFIRMED]', body)
     assert '{{' not in body, re.findall(r'\{\{.*?\}\}', body)[:3]
     return meta, body
 
@@ -106,9 +125,18 @@ def artifact_doc(name, meta, body):
             f'<title>{meta["title"]}</title>\n<meta name="description" content="{meta["desc"]}">\n' + FONTS +
             f'<style>{RESET}</style>\n<style>\n{CSS}</style>\n</head>\n<body>\n{body}\n<script>\n{JS}</script>\n</body>\n</html>\n')
 
+SITEKEY = TURNSTILE_TEST_KEY
+
 def build(mode='prod', fonts=None):
-    global FONTS
+    global FONTS, SITEKEY
     if fonts: FONTS = fonts
+    if mode == 'prod':
+        missing = [k for k in ('entity', 'address', 'grievance', 'jurisdiction') if not LEGAL[k].strip()]
+        if missing: sys.exit('build.py: fill in LEGAL ' + ', '.join(missing) + ' before building the live site.')
+        if not TURNSTILE_SITEKEY: sys.exit('build.py: set TURNSTILE_SITEKEY before building the live site.')
+        SITEKEY = TURNSTILE_SITEKEY
+    else:
+        SITEKEY = TURNSTILE_TEST_KEY
     out = ROOT / ('public' if mode == 'prod' else 'dist' if mode == 'artifact' else mode)
     if out.exists(): shutil.rmtree(out)
     (out / 'assets').mkdir(parents=True)
@@ -121,7 +149,7 @@ def build(mode='prod', fonts=None):
         (out / p.name).write_text(doc)
     if mode != 'artifact':
         today = datetime.date.today().isoformat()
-        urls = ''.join(f'  <url><loc>{page_url(n)}</loc><lastmod>{today}</lastmod><priority>{"1.0" if n == "index" else "0.8"}</priority></url>\n' for n in PAGES)
+        urls = ''.join(f'  <url><loc>{page_url(n)}</loc><lastmod>{today}</lastmod><priority>{"1.0" if n == "index" else "0.3" if n in ("privacy", "terms") else "0.8"}</priority></url>\n' for n in PAGES)
         (out / 'sitemap.xml').write_text(f'<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n{urls}</urlset>\n')
         (out / 'robots.txt').write_text(f'User-agent: *\nAllow: /\n\nSitemap: {SITE}/sitemap.xml\n')
         lines = []

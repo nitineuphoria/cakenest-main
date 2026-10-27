@@ -50,3 +50,15 @@
 /wp-admin / 301
 /wp-admin/* / 301
 /wp-login.php / 301
+/privacy-policy /privacy 301
+/privacy-policy/* /privacy 301
+/terms-and-conditions /terms 301
+/terms-and-conditions/* /terms 301
+/terms-of-service /terms 301
+/terms-of-service/* /terms 301
+/terms-conditions /terms 301
+/terms-conditions/* /terms 301
+/refund-policy https://order.cakenest.in/refund-policy 301
+/refund-policy/* https://order.cakenest.in/refund-policy 301
+/refund_returns https://order.cakenest.in/refund-policy 301
+/refund_returns/* https://order.cakenest.in/refund-policy 301

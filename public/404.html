@@ -193,9 +193,9 @@ button{font:inherit; color:inherit}
 .brands p{text-align:center; font-size:14px; color:var(--ink-3); margin-bottom:26px}
 .brand-item{display:flex; align-items:center; gap:clamp(40px,6vw,88px); padding-right:clamp(40px,6vw,88px); font-size:clamp(22px,2.2vw,30px); letter-spacing:-.03em; font-weight:550; font-stretch:105%; color:#A39C91; white-space:nowrap}
 .brand-item em{font-family:var(--serif); font-style:italic; font-weight:400; letter-spacing:0; font-stretch:normal}
-.words{padding-block:clamp(36px,5vw,64px); border-block:1px solid var(--line)}
-.word-item{display:flex; align-items:center; gap:clamp(28px,4vw,56px); padding-right:clamp(28px,4vw,56px); font-size:clamp(48px,7vw,104px); letter-spacing:-.045em; font-weight:430; font-stretch:96%; line-height:1; white-space:nowrap; color:var(--ink)}
-.word-item svg{width:clamp(22px,2.6vw,36px); height:clamp(22px,2.6vw,36px); color:var(--gold); flex:none}
+.words{padding-block:clamp(18px,2.5vw,32px); border-block:1px solid var(--line)}
+.word-item{display:flex; align-items:center; gap:clamp(18px,2.5vw,36px); padding-right:clamp(18px,2.5vw,36px); font-size:clamp(28px,4vw,56px); letter-spacing:-.045em; font-weight:430; font-stretch:96%; line-height:1; white-space:nowrap; color:var(--ink)}
+.word-item svg{width:clamp(14px,1.6vw,22px); height:clamp(14px,1.6vw,22px); color:var(--gold); flex:none}
 .word-item .o{color:var(--ink-4)}
 
 /* ---------- Intro (scroll-lit) ---------- */
@@ -552,6 +552,28 @@ fieldset{border:0; margin:0; padding:0; min-width:0}
 .load-rise.d1{animation-delay:.12s}.load-rise.d2{animation-delay:.24s}.load-rise.d3{animation-delay:.36s}
 @keyframes lrise{from{transform:translateY(36px); opacity:0}to{transform:none; opacity:1}}
 @media (prefers-reduced-motion: reduce){.load-rise{animation:none}}
+
+/* ---------- Consent, verification and legal pages ---------- */
+.fnote a,.cf-consent a,.footer-base a{text-decoration:underline; text-underline-offset:3px}
+.footer-base a{margin-left:14px; color:inherit}
+.footer-base a:hover{color:var(--on-dark)}
+.cf-consent{display:grid; grid-template-columns:20px 1fr; gap:10px; align-items:start; font-size:13.5px; line-height:1.5; color:var(--ink-2); margin:4px 0 12px; cursor:pointer}
+.cf-consent input{width:18px; height:18px; margin:1px 0 0; accent-color:var(--ink)}
+.cf-turnstile{margin:0 0 12px; min-height:65px}
+.legal{padding-bottom:clamp(88px,11vw,150px)}
+.legal-body{max-width:760px; display:grid; gap:0}
+.legal-body h2{font-size:clamp(21px,2vw,25px); line-height:1.25; letter-spacing:-.02em; font-weight:500; margin:44px 0 12px}
+.legal-body h2:first-child{margin-top:0}
+.legal-body p,.legal-body li{font-size:16px; line-height:1.7; color:var(--ink-2)}
+.legal-body p{margin:0 0 14px}
+.legal-body ul{margin:0 0 16px; padding-left:20px; display:grid; gap:8px}
+.legal-body strong{color:var(--ink); font-weight:550}
+.legal-body a{text-decoration:underline; text-underline-offset:3px}
+.legal-meta{font-family:var(--mono); font-size:12px; letter-spacing:.04em; color:var(--ink-3); text-transform:uppercase}
+.legal-table{width:100%; border-collapse:collapse; margin:4px 0 18px; font-size:15px}
+.legal-table th,.legal-table td{text-align:left; vertical-align:top; padding:12px 14px 12px 0; border-bottom:1px solid var(--line); color:var(--ink-2); line-height:1.55}
+.legal-table th{font-weight:550; color:var(--ink); font-size:13.5px}
+@media (max-width:640px){.legal-table thead{display:none} .legal-table tr{display:grid; padding:10px 0; border-bottom:1px solid var(--line)} .legal-table td{border:0; padding:2px 0} .legal-table td:first-child{font-weight:550; color:var(--ink)}}
 </style>
 </head>
 <body>
@@ -606,7 +628,7 @@ fieldset{border:0; margin:0; padding:0; min-width:0}
         <ul><li><span>+91 88377 59003</span></li><li><span>help@cakenest.in</span></li><li><a href="https://instagram.com/cakenest.in" target="_blank" rel="noopener">Instagram ↗</a></li><li><a href="https://wa.me/918837759003" target="_blank" rel="noopener">WhatsApp ↗</a></li></ul>
       </div>
     </div>
-    <div class="footer-base"><span>© 2026 CakeNest. All rights reserved.</span><span>98% women. 100+ cities. One movement.</span></div>
+    <div class="footer-base"><span>© 2026 CakeNest. All rights reserved. <a href="/privacy">Privacy Policy</a> <a href="/terms">Terms of Use</a></span><span>98% women. 100+ cities. One movement.</span></div>
   </div>
   <div class="footer-mark" aria-hidden="true">cakenest</div>
 </footer>

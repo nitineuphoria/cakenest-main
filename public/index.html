@@ -17,7 +17,7 @@
 <meta property="og:image" content="https://www.cakenest.in/assets/img/og.jpg">
 <meta property="og:locale" content="en_IN">
 <meta name="twitter:card" content="summary_large_image">
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Organization", "name": "CakeNest", "url": "https://www.cakenest.in", "logo": "https://www.cakenest.in/assets/img/logo-ink.png", "description": "A women-led movement helping India's home bakers learn, showcase, earn and build businesses from home.", "sameAs": ["https://www.instagram.com/cakenest.in/"], "contactPoint": {"@type": "ContactPoint", "telephone": "+91-88377-59003", "email": "help@cakenest.in", "contactType": "customer support", "areaServed": "IN"}}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Organization", "name": "CakeNest", "legalName": "Cakenest India Private Limited", "url": "https://www.cakenest.in", "logo": "https://www.cakenest.in/assets/img/logo-ink.png", "description": "A women-led movement helping India's home bakers learn, showcase, earn and build businesses from home.", "sameAs": ["https://www.instagram.com/cakenest.in/"], "contactPoint": {"@type": "ContactPoint", "telephone": "+91-88377-59003", "email": "help@cakenest.in", "contactType": "customer support", "areaServed": "IN"}}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Mona+Sans:ital,wdth,wght@0,75..125,200..900;1,75..125,200..900&family=Instrument+Serif:ital@0;1&family=Geist+Mono:wght@400;500&display=swap">
@@ -554,6 +554,28 @@ fieldset{border:0; margin:0; padding:0; min-width:0}
 .load-rise.d1{animation-delay:.12s}.load-rise.d2{animation-delay:.24s}.load-rise.d3{animation-delay:.36s}
 @keyframes lrise{from{transform:translateY(36px); opacity:0}to{transform:none; opacity:1}}
 @media (prefers-reduced-motion: reduce){.load-rise{animation:none}}
+
+/* ---------- Consent, verification and legal pages ---------- */
+.fnote a,.cf-consent a,.footer-base a{text-decoration:underline; text-underline-offset:3px}
+.footer-base a{margin-left:14px; color:inherit}
+.footer-base a:hover{color:var(--on-dark)}
+.cf-consent{display:grid; grid-template-columns:20px 1fr; gap:10px; align-items:start; font-size:13.5px; line-height:1.5; color:var(--ink-2); margin:4px 0 12px; cursor:pointer}
+.cf-consent input{width:18px; height:18px; margin:1px 0 0; accent-color:var(--ink)}
+.cf-turnstile{margin:0 0 12px; min-height:65px}
+.legal{padding-bottom:clamp(88px,11vw,150px)}
+.legal-body{max-width:760px; display:grid; gap:0}
+.legal-body h2{font-size:clamp(21px,2vw,25px); line-height:1.25; letter-spacing:-.02em; font-weight:500; margin:44px 0 12px}
+.legal-body h2:first-child{margin-top:0}
+.legal-body p,.legal-body li{font-size:16px; line-height:1.7; color:var(--ink-2)}
+.legal-body p{margin:0 0 14px}
+.legal-body ul{margin:0 0 16px; padding-left:20px; display:grid; gap:8px}
+.legal-body strong{color:var(--ink); font-weight:550}
+.legal-body a{text-decoration:underline; text-underline-offset:3px}
+.legal-meta{font-family:var(--mono); font-size:12px; letter-spacing:.04em; color:var(--ink-3); text-transform:uppercase}
+.legal-table{width:100%; border-collapse:collapse; margin:4px 0 18px; font-size:15px}
+.legal-table th,.legal-table td{text-align:left; vertical-align:top; padding:12px 14px 12px 0; border-bottom:1px solid var(--line); color:var(--ink-2); line-height:1.55}
+.legal-table th{font-weight:550; color:var(--ink); font-size:13.5px}
+@media (max-width:640px){.legal-table thead{display:none} .legal-table tr{display:grid; padding:10px 0; border-bottom:1px solid var(--line)} .legal-table td{border:0; padding:2px 0} .legal-table td:first-child{font-weight:550; color:var(--ink)}}
 </style>
 </head>
 <body>
@@ -780,7 +802,7 @@ fieldset{border:0; margin:0; padding:0; min-width:0}
         <ul><li><span>+91 88377 59003</span></li><li><span>help@cakenest.in</span></li><li><a href="https://instagram.com/cakenest.in" target="_blank" rel="noopener">Instagram ↗</a></li><li><a href="https://wa.me/918837759003" target="_blank" rel="noopener">WhatsApp ↗</a></li></ul>
       </div>
     </div>
-    <div class="footer-base"><span>© 2026 CakeNest. All rights reserved.</span><span>98% women. 100+ cities. One movement.</span></div>
+    <div class="footer-base"><span>© 2026 CakeNest. All rights reserved. <a href="/privacy">Privacy Policy</a> <a href="/terms">Terms of Use</a></span><span>98% women. 100+ cities. One movement.</span></div>
   </div>
   <div class="footer-mark" aria-hidden="true">cakenest</div>
 </footer>

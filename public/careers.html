@@ -553,6 +553,28 @@ fieldset{border:0; margin:0; padding:0; min-width:0}
 .load-rise.d1{animation-delay:.12s}.load-rise.d2{animation-delay:.24s}.load-rise.d3{animation-delay:.36s}
 @keyframes lrise{from{transform:translateY(36px); opacity:0}to{transform:none; opacity:1}}
 @media (prefers-reduced-motion: reduce){.load-rise{animation:none}}
+
+/* ---------- Consent, verification and legal pages ---------- */
+.fnote a,.cf-consent a,.footer-base a{text-decoration:underline; text-underline-offset:3px}
+.footer-base a{margin-left:14px; color:inherit}
+.footer-base a:hover{color:var(--on-dark)}
+.cf-consent{display:grid; grid-template-columns:20px 1fr; gap:10px; align-items:start; font-size:13.5px; line-height:1.5; color:var(--ink-2); margin:4px 0 12px; cursor:pointer}
+.cf-consent input{width:18px; height:18px; margin:1px 0 0; accent-color:var(--ink)}
+.cf-turnstile{margin:0 0 12px; min-height:65px}
+.legal{padding-bottom:clamp(88px,11vw,150px)}
+.legal-body{max-width:760px; display:grid; gap:0}
+.legal-body h2{font-size:clamp(21px,2vw,25px); line-height:1.25; letter-spacing:-.02em; font-weight:500; margin:44px 0 12px}
+.legal-body h2:first-child{margin-top:0}
+.legal-body p,.legal-body li{font-size:16px; line-height:1.7; color:var(--ink-2)}
+.legal-body p{margin:0 0 14px}
+.legal-body ul{margin:0 0 16px; padding-left:20px; display:grid; gap:8px}
+.legal-body strong{color:var(--ink); font-weight:550}
+.legal-body a{text-decoration:underline; text-underline-offset:3px}
+.legal-meta{font-family:var(--mono); font-size:12px; letter-spacing:.04em; color:var(--ink-3); text-transform:uppercase}
+.legal-table{width:100%; border-collapse:collapse; margin:4px 0 18px; font-size:15px}
+.legal-table th,.legal-table td{text-align:left; vertical-align:top; padding:12px 14px 12px 0; border-bottom:1px solid var(--line); color:var(--ink-2); line-height:1.55}
+.legal-table th{font-weight:550; color:var(--ink); font-size:13.5px}
+@media (max-width:640px){.legal-table thead{display:none} .legal-table tr{display:grid; padding:10px 0; border-bottom:1px solid var(--line)} .legal-table td{border:0; padding:2px 0} .legal-table td:first-child{font-weight:550; color:var(--ink)}}
 </style>
 </head>
 <body>
@@ -673,7 +695,7 @@ fieldset{border:0; margin:0; padding:0; min-width:0}
         <ul><li><span>+91 88377 59003</span></li><li><span>help@cakenest.in</span></li><li><a href="https://instagram.com/cakenest.in" target="_blank" rel="noopener">Instagram ↗</a></li><li><a href="https://wa.me/918837759003" target="_blank" rel="noopener">WhatsApp ↗</a></li></ul>
       </div>
     </div>
-    <div class="footer-base"><span>© 2026 CakeNest. All rights reserved.</span><span>98% women. 100+ cities. One movement.</span></div>
+    <div class="footer-base"><span>© 2026 CakeNest. All rights reserved. <a href="/privacy">Privacy Policy</a> <a href="/terms">Terms of Use</a></span><span>98% women. 100+ cities. One movement.</span></div>
   </div>
   <div class="footer-mark" aria-hidden="true">cakenest</div>
 </footer>
@@ -690,7 +712,6 @@ fieldset{border:0; margin:0; padding:0; min-width:0}
     </div>
     <form id="apply-form" class="careers-form" novalidate>
       <input type="hidden" id="f-job-id" name="jobId">
-      <input type="hidden" id="f-job-title" name="jobTitle">
       <div class="cf-row">
         <div class="cf-field">
           <label for="f-name">Full name <span aria-hidden="true">*</span></label>
@@ -720,6 +741,11 @@ fieldset{border:0; margin:0; padding:0; min-width:0}
           </div>
         </div>
       </div>
+      <label class="cf-consent">
+        <input type="checkbox" id="f-consent" name="consent" value="yes" required>
+        <span>I agree that CakeNest can store my application and CV for up to 12 months to consider me for roles, as described in the <a href="/privacy" target="_blank" rel="noopener">Privacy Policy</a>.</span>
+      </label>
+      <div class="cf-turnstile" data-sitekey="0x4AAAAAAFmsyhunwQO1YDD7" data-size="flexible" data-theme="light"></div>
       <p id="apply-error" class="cf-error" hidden></p>
       <button class="btn btn--dark" type="submit" id="apply-submit" style="width:100%">
         Submit application <span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></span>
@@ -734,6 +760,7 @@ fieldset{border:0; margin:0; padding:0; min-width:0}
   </div>
 </div>
 
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 <script>
 (function(){
   // Load content from CMS
@@ -781,16 +808,20 @@ fieldset{border:0; margin:0; padding:0; min-width:0}
 
   function openModal(id, title, dept) {
     document.getElementById('f-job-id').value = id
-    document.getElementById('f-job-title').value = title
     document.getElementById('modal-title').textContent = 'Apply — ' + title
     document.getElementById('modal-job-dept').textContent = dept || 'Open role'
     form.hidden = false; success.hidden = true
     form.reset()
     document.getElementById('cv-label').innerHTML = 'Drop your CV here or <u>browse</u>'
     document.getElementById('apply-error').hidden = true
+    resetCheck()
     overlay.hidden = false
     document.body.style.overflow = 'hidden'
     document.getElementById('f-name').focus()
+  }
+
+  function resetCheck() {
+    try { if (window.turnstile) window.turnstile.reset() } catch (e) {}
   }
 
   function closeModal() {
@@ -825,17 +856,25 @@ fieldset{border:0; margin:0; padding:0; min-width:0}
     const errEl = document.getElementById('apply-error')
     const btn   = document.getElementById('apply-submit')
     errEl.hidden = true
+    const missing = !form.name.value.trim() ? 'Please enter your full name.'
+      : !form.email.value.trim() ? 'Please enter your email.'
+      : !form.phone.value.trim() ? 'Please enter your phone number.'
+      : !document.getElementById('f-cv').files.length ? 'Please attach your CV.'
+      : !document.getElementById('f-consent').checked ? 'Please agree to the Privacy Policy to apply.'
+      : ''
+    if (missing) { errEl.textContent = missing; errEl.hidden = false; return }
     btn.disabled = true
     btn.textContent = 'Submitting…'
     try {
       const fd = new FormData(form)
       const r = await fetch('/api/apply', { method: 'POST', body: fd })
-      const data = await r.json()
+      const data = await r.json().catch(() => ({}))
       if (!r.ok) throw new Error(data.error || 'Something went wrong')
       form.hidden = true; success.hidden = false
     } catch(err) {
       errEl.textContent = err.message
       errEl.hidden = false
+      resetCheck()
       btn.disabled = false
       btn.innerHTML = 'Submit application <span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></span>'
     }

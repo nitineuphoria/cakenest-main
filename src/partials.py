@@ -115,7 +115,7 @@ def footer():
         <ul><li><span>+91 88377 59003</span></li><li><span>help@cakenest.in</span></li><li><a href="https://instagram.com/cakenest.in" target="_blank" rel="noopener">Instagram ↗</a></li><li><a href="https://wa.me/918837759003" target="_blank" rel="noopener">WhatsApp ↗</a></li></ul>
       </div>
     </div>
-    <div class="footer-base"><span>© 2026 CakeNest. All rights reserved.</span><span>98% women. 100+ cities. One movement.</span></div>
+    <div class="footer-base"><span>© 2026 CakeNest. All rights reserved. <a href="privacy.html">Privacy Policy</a> <a href="terms.html">Terms of Use</a></span><span>98% women. 100+ cities. One movement.</span></div>
   </div>
   <div class="footer-mark" aria-hidden="true">cakenest</div>
 </footer>'''
