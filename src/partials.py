@@ -128,7 +128,7 @@ def footer():
       <div class="footer-brand">
         <img src="assets/img/logo-cream.png" alt="CakeNest" width="540" height="101" loading="lazy">
         <h3>Helping India's women turn a skill into a <span class="serif">livelihood.</span></h3>
-        <div class="row"><a class="btn btn--gold" href="join.html">Join the movement {IC}</a></div>
+        <div class="row"><a class="btn btn--gold" href="join.html">Start your journey {IC}</a></div>
       </div>
       <div>
         <h4>Explore</h4>
