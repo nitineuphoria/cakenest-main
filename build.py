@@ -5,10 +5,25 @@
 
 Edit the source in src/ (pages, site.css, site.js, partials.py) and assets/img, then rebuild.
 """
-import re, pathlib, shutil, sys, json, datetime
+import re, pathlib, shutil, sys, json, datetime, hashlib
 ROOT = pathlib.Path(__file__).resolve().parent
 sys.path.insert(0, str(ROOT / 'src'))
 from partials import icon, IC, nav, brands, words, cta, footer
+
+# Content hash per image, so its URL changes whenever the file's bytes change (?v=<hash>).
+# Images are cached for 30 days (see HEADERS below); without this, replacing a photo under the
+# same filename would leave every browser that already visited the site showing the old one
+# until that cache expired. Just overwrite the file under its existing name and rebuild —
+# no need to rename it to bust the cache.
+def _asset_versions():
+    img_dir = ROOT / 'assets/img'
+    return {f.name: hashlib.md5(f.read_bytes()).hexdigest()[:8] for f in img_dir.iterdir() if f.is_file()} if img_dir.exists() else {}
+
+ASSET_VER = _asset_versions()
+
+def verurl(path):
+    v = ASSET_VER.get(path.rsplit('/', 1)[-1], '')
+    return path + ('?v=' + v if v else '')
 
 SITE = 'https://www.cakenest.in'
 PAGES = ['index', 'about', 'impact', 'programs', 'stories', 'partner', 'join', 'careers', 'privacy', 'terms']
@@ -35,7 +50,7 @@ RESET = ':root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-
 
 ORG_SCHEMA = {
     "@context": "https://schema.org", "@type": "Organization", "name": "CakeNest", "legalName": "Cakenest India Private Limited", "url": SITE,
-    "logo": SITE + "/assets/img/logo-ink.png",
+    "logo": SITE + verurl("/assets/img/logo-ink.png"),
     "description": "A women-led movement helping India's home bakers learn, showcase, earn and build businesses from home.",
     "sameAs": ["https://www.instagram.com/cakenest.in/"],
     "contactPoint": {"@type": "ContactPoint", "telephone": "+91-88377-59003", "email": "help@cakenest.in", "contactType": "customer support", "areaServed": "IN"},
@@ -87,7 +102,8 @@ def clean_links(html):
         name, hsh = m.group(1), m.group(2) or ''
         return 'href="' + ('/' if name == 'index' else '/' + name) + hsh + '"'
     html = re.sub(r'href="(\w+)\.html(#[\w-]+)?"', rep, html)
-    return html.replace('src="assets/', 'src="/assets/').replace('href="assets/', 'href="/assets/')
+    html = re.sub(r'(src|href)="/?assets/img/([\w.-]+)"', lambda m: f'{m.group(1)}="{verurl("/assets/img/" + m.group(2))}"', html)
+    return html
 
 def page_url(name):
     return SITE + ('/' if name in ('index',) else '/' + name)
@@ -102,11 +118,11 @@ def prod_doc(name, meta, body):
         f'<title>{title}</title>', f'<meta name="description" content="{desc}">',
         f'<link rel="canonical" href="{url}">',
         '<meta name="theme-color" content="#FFFFFF">',
-        '<link rel="icon" type="image/png" href="/assets/img/favicon.png">',
-        '<link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png">',
+        f'<link rel="icon" type="image/png" href="{verurl("/assets/img/favicon.png")}">',
+        f'<link rel="apple-touch-icon" href="{verurl("/assets/img/apple-touch-icon.png")}">',
         '<meta property="og:type" content="website">', '<meta property="og:site_name" content="CakeNest">',
         f'<meta property="og:title" content="{title}">', f'<meta property="og:description" content="{desc}">',
-        f'<meta property="og:url" content="{url}">', f'<meta property="og:image" content="{SITE}/assets/img/og.jpg">',
+        f'<meta property="og:url" content="{url}">', f'<meta property="og:image" content="{SITE + verurl("/assets/img/og.jpg")}">',
         '<meta property="og:locale" content="en_IN">', '<meta name="twitter:card" content="summary_large_image">',
     ]
     if name in ('404', 'admin'):
