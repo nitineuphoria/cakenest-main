@@ -1,31 +1,27 @@
+import { verifyAccess, isLocal, json } from '../../../lib/security.js'
+import { verifyToken } from '../../../lib/admin-token.js'
+
+// Every /api/admin/* request must pass two checks:
+// 1. Cloudflare Access — the visitor signed in with a one-time code sent to an approved email.
+//    Checked here as well, so the API stays locked on cakenest-main.pages.dev and preview URLs too.
+// 2. The admin password token issued by /api/admin/login.
 export async function onRequest({ request, env, next }) {
   const url = new URL(request.url)
-  if (url.pathname === '/api/admin/login') return next()
 
-  const auth = request.headers.get('Authorization') || ''
-  const token = auth.startsWith('Bearer ') ? auth.slice(7) : ''
-  if (!token || !env.ADMIN_PASSWORD || !await verify(token, env.ADMIN_PASSWORD)) {
-    return new Response(JSON.stringify({ error: 'Unauthorized' }), {
-      status: 401,
-      headers: { 'Content-Type': 'application/json' }
-    })
+  if (!isLocal(url)) {
+    const access = await verifyAccess(request, env)
+    if (!access.ok) return json({ error: 'Forbidden' }, 403)
   }
-  return next()
-}
 
-async function verify(token, password) {
-  const week = Math.floor(Date.now() / (1000 * 60 * 60 * 24 * 7))
-  for (let i = 0; i <= 1; i++) {
-    if (token === await makeToken(password, week - i)) return true
+  if (url.pathname !== '/api/admin/login') {
+    const auth = request.headers.get('Authorization') || ''
+    const token = auth.startsWith('Bearer ') ? auth.slice(7) : ''
+    if (!(await verifyToken(token, env.ADMIN_PASSWORD))) return json({ error: 'Unauthorized' }, 401)
   }
-  return false
-}
 
-async function makeToken(password, week) {
-  const key = await crypto.subtle.importKey(
-    'raw', new TextEncoder().encode(password),
-    { name: 'HMAC', hash: 'SHA-256' }, false, ['sign']
-  )
-  const sig = await crypto.subtle.sign('HMAC', key, new TextEncoder().encode('cakenest-admin:' + week))
-  return btoa(String.fromCharCode(...new Uint8Array(sig)))
+  const res = await next()
+  const out = new Response(res.body, res)
+  out.headers.set('Cache-Control', 'no-store')
+  out.headers.set('X-Robots-Tag', 'noindex')
+  return out
 }

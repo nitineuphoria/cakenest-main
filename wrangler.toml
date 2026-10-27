@@ -10,3 +10,9 @@ database_id = "1efa0570-dc6e-4851-853d-85767a352f37"
 [[r2_buckets]]
 binding = "R2"
 bucket_name = "cakenest-cvs"
+
+# Cloudflare Access (Zero Trust team "lively-salad-754a", application "CakeNest Admin").
+# Not secrets: the admin API uses these to verify that requests came through Access.
+[vars]
+ACCESS_TEAM_DOMAIN = "lively-salad-754a.cloudflareaccess.com"
+ACCESS_AUD = "778617081a6a3d12aa54be571c25b180a48ad69b34820c7cd03b83b1460914a1"
