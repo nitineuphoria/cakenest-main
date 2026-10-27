@@ -33,6 +33,18 @@
     document.addEventListener('keydown', function(e){ if (e.key === 'Escape' && mm.classList.contains('is-open')) setMenu(false); });
   }
 
+  /* ---------- Ecosystem dropdown (desktop nav) ---------- */
+  var eco = document.querySelector('.nav-eco'), ecoBtn = eco && eco.querySelector('.nav-eco-btn');
+  if (eco && ecoBtn){
+    function setEco(open){
+      eco.classList.toggle('is-open', open);
+      ecoBtn.setAttribute('aria-expanded', String(open));
+    }
+    ecoBtn.addEventListener('click', function(){ setEco(!eco.classList.contains('is-open')); });
+    document.addEventListener('click', function(e){ if (!eco.contains(e.target)) setEco(false); });
+    document.addEventListener('keydown', function(e){ if (e.key === 'Escape') setEco(false); });
+  }
+
   /* ---------- Rise / mask reveals (elements start visible; below-fold ones get a gentle rise) ---------- */
   var revealEls = Array.prototype.slice.call(document.querySelectorAll('[data-rise],[data-mask]'));
   if (!reduce && 'IntersectionObserver' in window){

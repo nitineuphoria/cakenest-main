@@ -129,8 +129,26 @@ button{font:inherit; color:inherit}
 .nav .btn .ic{width:36px; height:36px}
 .menu-btn{width:44px; height:44px; border-radius:50%; border:0; background:var(--ink); color:#fff; display:grid; place-items:center; cursor:pointer}
 .menu-btn svg{width:18px; height:18px}
+
+/* ---------- Ecosystem dropdown (desktop nav) ---------- */
+.nav-eco{position:relative}
+.nav-eco-btn{display:flex; align-items:center; gap:5px; padding:9px 12px 9px 14px; border-radius:999px; border:0; background:none; font:inherit; font-size:14.5px; color:var(--ink-2); cursor:pointer; transition:color .25s ease, background-color .25s ease}
+.nav-eco-btn:hover{color:var(--ink); background:var(--bg-2)}
+.nav-eco-btn[aria-current="page"]{color:var(--ink); background:var(--bg-2)}
+.nav-eco-btn svg{width:13px; height:13px; transition:transform .25s var(--ease)}
+.nav-eco:hover .nav-eco-btn svg, .nav-eco:focus-within .nav-eco-btn svg, .nav-eco.is-open .nav-eco-btn svg{transform:rotate(180deg)}
+.nav-eco-menu{position:absolute; top:calc(100% + 10px); left:50%; transform:translateX(-50%) translateY(-6px); width:272px; padding:10px; display:grid; border-radius:var(--r-md); background:rgba(255,255,255,.97); backdrop-filter:blur(18px) saturate(1.4); -webkit-backdrop-filter:blur(18px) saturate(1.4); border:1px solid rgba(21,19,15,.07); box-shadow:0 20px 50px -22px rgba(20,14,8,.5); opacity:0; visibility:hidden; pointer-events:none; transition:opacity .22s var(--ease), transform .22s var(--ease), visibility .22s}
+.nav-eco:hover .nav-eco-menu, .nav-eco:focus-within .nav-eco-menu, .nav-eco.is-open .nav-eco-menu{opacity:1; visibility:visible; pointer-events:auto; transform:translateX(-50%) translateY(0)}
+.nav-eco-menu a{display:grid; gap:1px; padding:10px 12px; border-radius:12px; transition:background-color .2s ease}
+.nav-eco-menu a:hover{background:var(--bg-2)}
+.nav-eco-menu a b{font-size:14px; font-weight:500; color:var(--ink)}
+.nav-eco-menu a span{font-size:12.5px; color:var(--ink-3)}
+.nav-eco-all{display:flex !important; flex-direction:row; align-items:center; justify-content:space-between; margin-top:2px; border-top:1px solid var(--line); border-radius:0 !important; padding-top:14px !important; font-family:var(--mono); font-size:11px; letter-spacing:.05em; text-transform:uppercase; color:var(--ink-2)}
+.nav-eco-all svg{width:15px; height:15px; flex:none}
+.nav-eco-all:hover{background:none !important; color:var(--ink)}
+
 @media (min-width:1000px){.nav-links{display:flex}.nav-cta{display:inline-flex}.menu-btn{display:none}}
-.mmenu{position:fixed; inset:0; z-index:90; background:#fff; padding:calc(env(safe-area-inset-top,0px) + 96px) max(24px, env(safe-area-inset-right,0px)) calc(env(safe-area-inset-bottom,0px) + 32px) max(24px, env(safe-area-inset-left,0px)); display:flex; flex-direction:column; justify-content:space-between; gap:32px; opacity:0; visibility:hidden; transition:opacity .4s var(--ease), visibility .4s}
+.mmenu{position:fixed; inset:0; z-index:90; background:#fff; padding:calc(env(safe-area-inset-top,0px) + 96px) max(24px, env(safe-area-inset-right,0px)) calc(env(safe-area-inset-bottom,0px) + 32px) max(24px, env(safe-area-inset-left,0px)); display:flex; flex-direction:column; justify-content:space-between; gap:32px; opacity:0; visibility:hidden; overflow-y:auto; overscroll-behavior:contain; transition:opacity .4s var(--ease), visibility .4s}
 .mmenu.is-open{opacity:1; visibility:visible}
 .mmenu nav{display:grid}
 .mmenu nav a{display:flex; align-items:baseline; gap:14px; padding:12px 0; border-bottom:1px solid var(--line); font-size:clamp(30px,9vw,44px); letter-spacing:-.035em; font-weight:430; transform:translateY(24px); opacity:0; transition:transform .6s var(--ease), opacity .6s var(--ease)}
@@ -139,6 +157,11 @@ button{font:inherit; color:inherit}
 .mmenu.is-open nav a:nth-child(2){transition-delay:.04s}.mmenu.is-open nav a:nth-child(3){transition-delay:.08s}.mmenu.is-open nav a:nth-child(4){transition-delay:.12s}.mmenu.is-open nav a:nth-child(5){transition-delay:.16s}.mmenu.is-open nav a:nth-child(6){transition-delay:.2s}
 .mmenu-close{position:absolute; top:calc(env(safe-area-inset-top,0px) + 22px); right:max(22px, env(safe-area-inset-right,0px)); width:44px; height:44px; border-radius:50%; border:1px solid var(--line-2); background:#fff; display:grid; place-items:center; cursor:pointer}
 .mmenu-close svg{width:18px; height:18px}
+.mmenu-bottom{display:grid; gap:22px}
+.mmenu-eco{display:grid; gap:12px}
+.mmenu-eco-label{font-family:var(--mono); font-size:11px; letter-spacing:.06em; text-transform:uppercase; color:var(--ink-3)}
+.mmenu-eco-grid{display:grid; grid-template-columns:1fr 1fr; gap:8px}
+.mmenu-eco-grid a{padding:12px 14px; border:1px solid var(--line); border-radius:14px; font-size:13.5px; color:var(--ink)}
 
 /* ---------- Hero slider (home) ---------- */
 .hero{padding:12px max(12px, env(safe-area-inset-right,0px)) 0 max(12px, env(safe-area-inset-left,0px))}
@@ -580,16 +603,19 @@ fieldset{border:0; margin:0; padding:0; min-width:0}
 <body>
 <header class="nav" aria-label="Main">
   <a class="nav-logo" href="/" aria-label="CakeNest home"><img src="/assets/img/logo-ink.png?v=bc09bcab" alt="CakeNest" width="540" height="101"></a>
-  <nav class="nav-links" aria-label="Primary"><a href="/about">About</a><a href="/impact">Impact</a><a href="/programs">Programs</a><a href="/stories">Stories</a><a href="/partner">Partners</a><a href="/careers">Careers</a></nav>
-  <a class="btn btn--dark nav-cta" href="/join">Join the movement <span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></span></a>
+  <nav class="nav-links" aria-label="Primary"><a href="/about">About</a><a href="/impact">Impact</a><div class="nav-eco"><button type="button" class="nav-eco-btn" aria-haspopup="true" aria-expanded="false">Ecosystem<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button><div class="nav-eco-menu" role="menu"><a href="/programs#learn" role="menuitem"><b>CakeNest Academy</b><span>Courses & workshops</span></a><a href="https://marketing.cakenest.in" role="menuitem" target="_blank" rel="noopener"><b>CakeNest Marketing</b><span>Brand growth & social</span></a><a href="https://order.cakenest.in" role="menuitem" target="_blank" rel="noopener"><b>CakeNest Orders</b><span>Cake marketplace</span></a><a href="https://cakenestpro.com" role="menuitem" target="_blank" rel="noopener"><b>CakeNest Pro</b><span>Business management</span></a><a href="/programs#scale" role="menuitem"><b>CakeNest Studio</b><span>Branding & setup</span></a><a href="/programs" class="nav-eco-all" role="menuitem">See how it all fits together<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div></div><a href="/stories">Stories</a><a href="/partner">Partners</a><a href="/careers">Careers</a></nav>
+  <a class="btn btn--dark nav-cta" href="/join">Start your journey <span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></span></a>
   <button class="menu-btn" id="menu-btn" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mmenu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9h16M4 15h16"/></svg></button>
 </header>
 <div class="mmenu" id="mmenu" aria-hidden="true">
   <button class="mmenu-close" type="button" aria-label="Close menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
-  <nav aria-label="Mobile"><a href="/"><small>01</small>Home</a><a href="/about"><small>02</small>About</a><a href="/impact"><small>03</small>Impact</a><a href="/programs"><small>04</small>Programs</a><a href="/stories"><small>05</small>Stories</a><a href="/partner"><small>06</small>Partners</a><a href="/careers"><small>07</small>Careers</a></nav>
-  <div style="display:grid; gap:10px">
-    <a class="btn btn--dark" href="/join" style="justify-content:space-between">Join the movement <span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></span></a>
-    <a class="btn btn--line" href="/partner" style="justify-content:space-between">Partner with us <span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></span></a>
+  <nav aria-label="Mobile"><a href="/"><small>01</small>Home</a><a href="/about"><small>02</small>About</a><a href="/impact"><small>03</small>Impact</a><a href="/programs"><small>04</small>Ecosystem</a><a href="/stories"><small>05</small>Stories</a><a href="/partner"><small>06</small>Partners</a><a href="/careers"><small>07</small>Careers</a></nav>
+  <div class="mmenu-bottom">
+    <div class="mmenu-eco"><span class="mmenu-eco-label">Ecosystem</span><div class="mmenu-eco-grid"><a href="/programs#learn">CakeNest Academy</a><a href="https://marketing.cakenest.in" target="_blank" rel="noopener">CakeNest Marketing</a><a href="https://order.cakenest.in" target="_blank" rel="noopener">CakeNest Orders</a><a href="https://cakenestpro.com" target="_blank" rel="noopener">CakeNest Pro</a><a href="/programs#scale">CakeNest Studio</a></div></div>
+    <div style="display:grid; gap:10px">
+      <a class="btn btn--dark" href="/join" style="justify-content:space-between">Start your journey <span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></span></a>
+      <a class="btn btn--line" href="/partner" style="justify-content:space-between">Partner with us <span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></span></a>
+    </div>
   </div>
 </div>
 <main>
@@ -737,6 +763,18 @@ fieldset{border:0; margin:0; padding:0; min-width:0}
     closeBtn.addEventListener('click', function(){ setMenu(false); });
     mm.addEventListener('click', function(e){ if (e.target.closest('a')) setMenu(false); });
     document.addEventListener('keydown', function(e){ if (e.key === 'Escape' && mm.classList.contains('is-open')) setMenu(false); });
+  }
+
+  /* ---------- Ecosystem dropdown (desktop nav) ---------- */
+  var eco = document.querySelector('.nav-eco'), ecoBtn = eco && eco.querySelector('.nav-eco-btn');
+  if (eco && ecoBtn){
+    function setEco(open){
+      eco.classList.toggle('is-open', open);
+      ecoBtn.setAttribute('aria-expanded', String(open));
+    }
+    ecoBtn.addEventListener('click', function(){ setEco(!eco.classList.contains('is-open')); });
+    document.addEventListener('click', function(e){ if (!eco.contains(e.target)) setEco(false); });
+    document.addEventListener('keydown', function(e){ if (e.key === 'Escape') setEco(false); });
   }
 
   /* ---------- Rise / mask reveals (elements start visible; below-fold ones get a gentle rise) ---------- */

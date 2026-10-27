@@ -31,27 +31,55 @@ ICONS = {
   'person': '<circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/>',
   'key': '<circle cx="8" cy="15" r="4"/><path d="M11 12l9-9M17 6l3 3M15 8l2 2"/>',
   'pin': '<path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/>',
+  'chevron': '<path d="M6 9l6 6 6-6"/>',
 }
 def icon(n): return S.format(ICONS[n])
 IC = '<span class="ic" aria-hidden="true">' + icon('arrowUR') + icon('arrowUR') + '</span>'
 
-PAGES = [('about.html','About','about'),('impact.html','Impact','impact'),('programs.html','Programs','programs'),('stories.html','Stories','stories'),('partner.html','Partners','partner'),('careers.html','Careers','careers')]
+# (href, label, nav-active-key). "programs" stays the active key for both the
+# Ecosystem dropdown trigger and the flat mobile link, since programs.html is
+# still the page that explains all six stages in one place.
+PAGES = [('about.html','About','about'),('impact.html','Impact','impact'),('stories.html','Stories','stories'),('partner.html','Partners','partner'),('careers.html','Careers','careers')]
+
+# (href, name, one-line descriptor, external?)
+ECOSYSTEM = [
+    ('programs.html#learn', 'CakeNest Academy', 'Courses & workshops', False),
+    ('https://marketing.cakenest.in', 'CakeNest Marketing', 'Brand growth & social', True),
+    ('https://order.cakenest.in', 'CakeNest Orders', 'Cake marketplace', True),
+    ('https://cakenestpro.com', 'CakeNest Pro', 'Business management', True),
+    ('programs.html#scale', 'CakeNest Studio', 'Branding & setup', False),
+]
 
 def nav(active):
-    links = ''.join('<a href="{}"{}>{}</a>'.format(h, ' aria-current="page"' if k == active else '', t) for h, t, k in PAGES)
-    mlinks = ''.join('<a href="{}"><small>0{}</small>{}</a>'.format(h, i + 1, t) for i, (h, t, k) in enumerate([('index.html','Home','home')] + PAGES))
+    before = ''.join('<a href="{}"{}>{}</a>'.format(h, ' aria-current="page"' if k == active else '', t) for h, t, k in PAGES[:2])
+    after = ''.join('<a href="{}"{}>{}</a>'.format(h, ' aria-current="page"' if k == active else '', t) for h, t, k in PAGES[2:])
+    eco_items = ''.join(
+        '<a href="{}" role="menuitem"{}><b>{}</b><span>{}</span></a>'.format(h, ' target="_blank" rel="noopener"' if ext else '', n, d)
+        for h, n, d, ext in ECOSYSTEM
+    )
+    eco_active = ' aria-current="page"' if active == 'programs' else ''
+    eco = (f'<div class="nav-eco"><button type="button" class="nav-eco-btn" aria-haspopup="true" aria-expanded="false"{eco_active}>'
+           f'Ecosystem{icon("chevron")}</button>'
+           f'<div class="nav-eco-menu" role="menu">{eco_items}'
+           f'<a href="programs.html" class="nav-eco-all" role="menuitem">See how it all fits together{icon("arrow")}</a>'
+           f'</div></div>')
+    mlinks = ''.join('<a href="{}"><small>0{}</small>{}</a>'.format(h, i + 1, t) for i, (h, t, k) in enumerate([('index.html','Home','home')] + PAGES[:2] + [('programs.html','Ecosystem','programs')] + PAGES[2:]))
+    meco = ''.join('<a href="{}"{}>{}</a>'.format(h, ' target="_blank" rel="noopener"' if ext else '', n) for h, n, d, ext in ECOSYSTEM)
     return f'''<header class="nav" aria-label="Main">
   <a class="nav-logo" href="index.html" aria-label="CakeNest home"><img src="assets/img/logo-ink.png" alt="CakeNest" width="540" height="101"></a>
-  <nav class="nav-links" aria-label="Primary">{links}</nav>
-  <a class="btn btn--dark nav-cta" href="join.html">Join the movement {IC}</a>
+  <nav class="nav-links" aria-label="Primary">{before}{eco}{after}</nav>
+  <a class="btn btn--dark nav-cta" href="join.html">Start your journey {IC}</a>
   <button class="menu-btn" id="menu-btn" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mmenu">{icon('menu')}</button>
 </header>
 <div class="mmenu" id="mmenu" aria-hidden="true">
   <button class="mmenu-close" type="button" aria-label="Close menu">{icon('close')}</button>
   <nav aria-label="Mobile">{mlinks}</nav>
-  <div style="display:grid; gap:10px">
-    <a class="btn btn--dark" href="join.html" style="justify-content:space-between">Join the movement {IC}</a>
-    <a class="btn btn--line" href="partner.html" style="justify-content:space-between">Partner with us {IC}</a>
+  <div class="mmenu-bottom">
+    <div class="mmenu-eco"><span class="mmenu-eco-label">Ecosystem</span><div class="mmenu-eco-grid">{meco}</div></div>
+    <div style="display:grid; gap:10px">
+      <a class="btn btn--dark" href="join.html" style="justify-content:space-between">Start your journey {IC}</a>
+      <a class="btn btn--line" href="partner.html" style="justify-content:space-between">Partner with us {IC}</a>
+    </div>
   </div>
 </div>'''
 
